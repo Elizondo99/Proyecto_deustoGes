@@ -4,7 +4,7 @@ from django.db import models
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=15)
-    telefono = models.IntegerField(max_length=9)
+    telefono = models.IntegerField()
     email = models.EmailField()
     direccion = models.CharField(max_length=50)
 
@@ -18,7 +18,7 @@ class Empleado(models.Model):
     nombre = models.CharField(max_length=15)
     apellidos = models.CharField(max_length=40)
     email = models.EmailField()
-    telefono = models.IntegerField(max_length=9)
+    telefono = models.IntegerField()
     responsable = models.BooleanField(default=False)
 
 
@@ -36,7 +36,7 @@ class Proyecto(models.Model):
 
     miembros = models.ManyToManyField(Empleado, blank=True)
     responsable  = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-    cliente =models.ForeignKey(Cliente)
+    cliente =models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
