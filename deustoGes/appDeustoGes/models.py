@@ -34,6 +34,7 @@ class Proyecto(models.Model):
     presupuesto = models.IntegerField()
     tareas = models.TextField(blank=True)
 
+    miembros = models.ManyToManyField(Empleado, blank=True)
     responsable  = models.ForeignKey(Empleado, on_delete=models.CASCADE)
     cliente =models.ForeignKey(Cliente)
 
