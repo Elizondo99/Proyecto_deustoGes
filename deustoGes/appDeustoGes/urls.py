@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from appDeustoGes import views
+from . import views
 
 urlpatterns = [
     path('', views.index, name='request'),
-
+    path("/empleados", views.index_empleados(), name='empleados_index'),
+    path("/empleados/int:pk", views.show_empleado(), name='empleados_detail')
 ]
