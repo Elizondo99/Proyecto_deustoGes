@@ -29,7 +29,7 @@ class Empleado(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.nombre + " " + self.apellido
+        return str(self.nombre) + " " + str(self.apellido)
 
     class Meta:
         verbose_name = "empleado"
@@ -52,7 +52,7 @@ class Proyecto(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.nombre + " (Responsable: " + self.responsable + ")"
+        return str(self.nombre) + " (Responsable: " + str(self.responsable) + ")"
 
     class Meta:
         verbose_name = "proyecto"
@@ -76,7 +76,7 @@ class Tarea(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.nombre + " (prioridad: " + str(self.prioridad) + ")"
+        return str(self.nombre) + " (prioridad: " + str(self.prioridad) + ")"
 
     class Meta:
         verbose_name = 'tarea'
