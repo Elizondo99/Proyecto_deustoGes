@@ -1,5 +1,5 @@
 """
-URL configuration for deustoGes project.
+URL configuration for appDeustoGes project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -20,10 +20,10 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='request'),
-    path("/empleados", views.index_empleados, name='empleados_index'),
-    path("/empleados/int:pk", views.show_empleado, name='empleados_detail'),
-    path("/empleados/new", views.new_empleado, name='empleados_new'),
+    path("empleados", views.index_empleados, name='empleados_index'),
+    path("empleados/int:id_empleado", views.show_empleado, name='empleados_detail'),
+    path("empleados/new", views.new_empleado, name='empleados_new'),
     path("proyectos", views.index_proyectos, name='proyectos_index'),
-    path("proyectos/<int:pk>", views.show_proyecto, name='proyectos_detail'),
+    path("proyectos/<int:id_proyecto>", views.show_proyecto, name='proyectos_detail'),
     path("proyectos/new", views.new_proyecto, name='proyectos_new')
 ]

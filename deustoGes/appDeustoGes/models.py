@@ -1,5 +1,5 @@
-from django.db import models
 
+from django.db import models
 
 # Create your models here.
 
@@ -20,7 +20,7 @@ class Cliente(models.Model):
 class Empleado(models.Model):
     dni = models.CharField(max_length=9)
     nombre = models.CharField(max_length=15)
-    apellido = models.CharField(max_length=40)
+    apellido = models.CharField(max_length=40, default="")
     email = models.EmailField()
     telefono = models.IntegerField()
     responsable = models.BooleanField(default=False)
@@ -39,8 +39,8 @@ class Empleado(models.Model):
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField()
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
+    fecha_inicio = models.DateField(default=1/1/2020)
+    fecha_fin = models.DateField(default=1/1/2020)
     presupuesto = models.IntegerField()
     tareas = models.TextField(blank=True)
 

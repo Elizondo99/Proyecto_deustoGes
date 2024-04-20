@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from deustoGes.appDeustoGes.models import Empleado, Proyecto
+from .models import Empleado, Proyecto
 
 
 # from appEmpresaDjango.models import Empleado, Departamento, Habilidad
@@ -19,7 +19,7 @@ def new_empleado(nombre, apellido, email, telefono, responsable):
 
 # Función para obtener una lista de empleados.
 def index_empleados(request):
-    empleados = Empleado.objects.all.order_by('id')()
+    empleados = Empleado.objects.all()
     return render(request, "appDeustoGes/empleados_index.html", {"empleados": empleados})
 
 
@@ -39,7 +39,7 @@ def new_proyecto(nombre, descripcion, fecha_inicio, fecha_fin, presupuesto, tare
 
 # Función para obtener una lista de proyectos.
 def index_proyectos(request):
-    proyecto = Proyecto.objects.all.order_by('cliente', 'fecha_fin')
+    proyecto = Proyecto.objects.all()
     return HttpResponse("proyectos_index.html")
 
 
