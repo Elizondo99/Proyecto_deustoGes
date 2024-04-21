@@ -25,5 +25,8 @@ urlpatterns = [
     path("empleados/new", views.new_empleado, name='empleados_new'),
     path("proyectos", views.index_proyectos, name='proyectos_index'),
     path("proyectos/<int:id_proyecto>", views.show_proyecto, name='proyectos_detail'),
-    path("proyectos/new", views.new_proyecto, name='proyectos_new')
+    path("proyectos/new", views.new_proyecto, name='proyectos_new'),
+    path("clientes", views.index_clientes, name='clientes_index'),
+    path("clientes/<int:id_cliente>", views.show_cliente, name='clientes_detail'),
+    path("clientes/new", views.new_cliente, name='clientes_new')
 ]

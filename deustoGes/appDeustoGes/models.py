@@ -1,5 +1,7 @@
+from datetime import date
 
 from django.db import models
+
 
 # Create your models here.
 
@@ -39,10 +41,12 @@ class Empleado(models.Model):
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField()
-    fecha_inicio = models.DateField(default=1/1/2020)
-    fecha_fin = models.DateField(default=1/1/2020)
+    fecha_inicio = models.DateField(default=date(2020, 1, 1))
+    fecha_fin = models.DateField(default=date(2020, 1, 1))
     presupuesto = models.IntegerField()
-    tareas = models.TextField(blank=True)
+    tareas = models.TextField(
+        blank=True)  # AQUI PONEMOS LO DE blank=True ? significa que en el formulario de django se puede
+    # quedar "tareas" vacio
 
     # miembros = models.ManyToManyField(Empleado, blank=True)
     responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
