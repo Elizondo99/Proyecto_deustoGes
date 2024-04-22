@@ -1,5 +1,4 @@
 from datetime import date
-
 from django.db import models
 
 
@@ -14,6 +13,9 @@ class Cliente(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return str(self.nombre) + " (" + str(self.direccion) + ")"
+
     class Meta:
         verbose_name = "cliente"
         verbose_name_plural = "clientes"
@@ -22,16 +24,16 @@ class Cliente(models.Model):
 class Empleado(models.Model):
     dni = models.CharField(max_length=9)
     nombre = models.CharField(max_length=15)
-    apellido = models.CharField(max_length=40, default="")
+    apellidos = models.CharField(max_length=40, default="")
     email = models.EmailField()
-    telefono = models.IntegerField()
+    telefono = models.PositiveIntegerField()
     responsable = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.nombre) + " " + str(self.apellido)
+        return str(self.nombre) + " " + str(self.apellidos)
 
     class Meta:
         verbose_name = "empleado"

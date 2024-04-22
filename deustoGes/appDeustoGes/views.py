@@ -13,10 +13,10 @@ def index(request):
 
 
 # Función para crear un nuevo empleado.
-def new_empleado(nombre, apellido, email, telefono, responsable):
+def new_empleado(nombre, apellidos, email, telefono, responsable):
     created = datetime.now()
     updated = datetime.now()
-    empleado = Empleado(nombre=nombre, apellido=apellido, email=email, telefono=telefono, responsable=responsable,
+    empleado = Empleado(nombre=nombre, apellidos=apellidos, email=email, telefono=telefono, responsable=responsable,
                         created=created, updated=updated)
     empleado.save()
     return HttpResponse("index.html")
@@ -77,7 +77,14 @@ def show_cliente(request, id_cliente):
     cliente = get_object_or_404(Proyecto, id=id_cliente)
     return HttpResponse("show_cliente.html")
 
-#Función para crear una nueva tarea.
+
+# Función para mostrar los proyectos de un cliente
+def index_proyectos_del_cliente(request, cliente_id):
+    proyectos = Proyecto.objects.get(cliente=cliente_id)
+    return render(request, 'appDeustoGes/proyectos_del_cliente.html', {"proyectos":proyectos})
+
+
+# Función para crear una nueva tarea.
 def new_tareas(nombre, descripccion, fecha_inicio, fecha_fin, prioidad, estado, empleado, notas_adicionales, proyecto):
     created = datetime.now()
     updated = datetime.now()
@@ -86,9 +93,11 @@ def new_tareas(nombre, descripccion, fecha_inicio, fecha_fin, prioidad, estado, 
                   proyecto=proyecto)
     tarea.save()
 
+
 def index_tareas(request):
     tareas = Tarea.objects.all()
     return HttpResponse('tareas_index.html')
+
 
 def show_tareas(request, id_tarea):
     tarea = get_object_or_404(Proyecto, id_tarea=id_tarea)

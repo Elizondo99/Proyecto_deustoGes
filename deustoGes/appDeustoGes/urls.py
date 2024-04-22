@@ -28,5 +28,6 @@ urlpatterns = [
     path("proyectos/new", views.new_proyecto, name='proyectos_new'),
     path("clientes", views.index_clientes, name='clientes_index'),
     path("clientes/<int:id_cliente>", views.show_cliente, name='clientes_detail'),
-    path("clientes/new", views.new_cliente, name='clientes_new')
+    path("clientes/new", views.new_cliente, name='clientes_new'),
+    path("clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente')
 ]
