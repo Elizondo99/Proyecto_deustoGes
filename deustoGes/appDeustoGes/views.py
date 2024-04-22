@@ -3,7 +3,7 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from .models import Empleado, Proyecto, Cliente
+from .models import Empleado, Proyecto, Cliente, Tarea
 
 
 # from appEmpresaDjango.models import Empleado, Departamento, Habilidad
@@ -76,3 +76,20 @@ def index_clientes(request):
 def show_cliente(request, id_cliente):
     cliente = get_object_or_404(Proyecto, id=id_cliente)
     return HttpResponse("show_cliente.html")
+
+#Función para crear una nueva tarea.
+def new_tareas(nombre, descripccion, fecha_inicio, fecha_fin, prioidad, estado, empleado, notas_adicionales, proyecto):
+    created = datetime.now()
+    updated = datetime.now()
+    tarea = Tarea(nombre=nombre, descripcion=descripccion, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin,
+                  prioidad=prioidad, estado=estado, empleado=empleado, notas_adicionales=notas_adicionales,
+                  proyecto=proyecto)
+    tarea.save()
+
+def index_tareas(request):
+    tareas = Tarea.objects.all()
+    return HttpResponse('tareas_index.html')
+
+def show_tareas(request, id_tarea):
+    tarea = get_object_or_404(Proyecto, id_tarea=id_tarea)
+    return HttpResponse('tareas_show.html')
