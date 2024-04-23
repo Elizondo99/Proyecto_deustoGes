@@ -31,7 +31,7 @@ def index_empleados(request):
 # Función para obtener la información de un empleado
 def show_empleado(request, id_empleado):
     empleado = get_object_or_404(Empleado, id=id_empleado)
-    return render(request, "appDeustoGes/empleados_detail.html", {"empleado": empleado})
+    return render(request, "appDeustoGes/empleado_detail.html", {"empleado": empleado})
 
 
 # Función para crear un nuevo proyecto

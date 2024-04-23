@@ -8,11 +8,11 @@
         {% if empleados %}
             <ul>
                 {% for empleado in empleados %}
-                    <li><a href="{% url 'empleados_detail' empleado.id_empledo %}">{{ empleado.nombre }}</a></li>
+                    <li><a href="{% url 'empleado_detail' empleado.id %}">{{ empleado.nombre }}</a></li>
                 {% endfor %}
             </ul>
         {% else  %}
-            <p>no  hay departamentos creados</p>
+            <p>no  hay empleados metidos en la base de datos</p>
         {% endif %}
     
     
