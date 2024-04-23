@@ -1,1 +1,21 @@
 {% extends "base.html" %}
+
+{% block main_contenido %}
+    
+    <hi>Gestor de empleados</hi>
+    <h2>listado de empleados</h2>
+
+        {% if empleados %}
+            <ul>
+                {% for empleado in empleados %}
+                    <li><a href="{% url 'empleados_detail' empleado.id_empledo %}">{{ empleado.nombre }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else  %}
+            <p>no  hay departamentos creados</p>
+        {% endif %}
+    
+    
+    
+    
+{% endblock %}
