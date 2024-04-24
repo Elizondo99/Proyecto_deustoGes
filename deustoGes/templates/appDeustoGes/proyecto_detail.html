@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="content">
+    <hi>Gestor de proyectos</hi>
+    <h2>Detalle del proyecto</h2>
+    <p>Aquí esta la información sobre su proyecto:</p>
+    {% if  proyecto %}
+        <ul>
+            <li><h>Nombre: </h>{{ proyecto.nombre }}</li>
+            <li><h>Descripción: </h>{{ proyecto.descripcion }}</li>
+            <li><h>Fecha de inicio: </h>{{ proyecto.fecha_inicio }}</li>
+            <li><h>Fecha de finalización: </h>{{ proyecto.fecha_fin }}</li>
+            <li><h>Presupuesto: </h>{{ proyecto.presupuesto}}</li>
+            <li><h>Tareas: </h>{{ proyecto.tareas }}</li>
+            <li><h>El responsable del proyecto es: </h>{{ proyecto.responsable }}</li>
+            <li><h>El cliente es: </h>{{ proyecto.cliente }}</li>
+        </ul>
+    {% endif %}
+
+    </div>
+</body>

@@ -47,15 +47,14 @@ def new_proyecto(nombre, descripcion, fecha_inicio, fecha_fin, presupuesto, tare
 
 # Función para obtener una lista de proyectos.
 def index_proyectos(request):
-    proyecto = Proyecto.objects.all()
-    return HttpResponse("proyectos_index.html")
+    proyectos = Proyecto.objects.all()
+    return render(request, "appDeustoGes/proyectos_index.html", {"proyectos": proyectos})
 
 
 # Función para obtener la información de un proyecto
 def show_proyecto(request, id_proyecto):
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
-    return HttpResponse("show_proyecto.html")
-
+    return render(request, "appDeustoGes/proyecto_detail.html", {"proyecto": proyecto})
 
 # Función para crear un nuevo cliente
 def new_cliente(nombre, telefono, email, direccion):

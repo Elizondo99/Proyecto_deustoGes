@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block main_contenido %}
+    
+    <hi>Gestor de Proyectos</hi>
+    <h2>Listado de proyectos</h2>
+
+        {% if proyectos %}
+            <ul>
+                {% for proyecto in proyectos %}
+                    <li><a href="{% url 'proyecto_detail' proyecto.id %}">{{ proyecto.nombre }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else  %}
+            <p>no  hay proyectos metidos en la base de datos</p>
+        {% endif %}
+    
+    
+    
+    
+{% endblock %}
