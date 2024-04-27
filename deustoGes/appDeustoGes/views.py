@@ -1,8 +1,10 @@
 from datetime import datetime
 
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import View
 
+from .forms import EmpleadoForm
 from .models import Empleado, Proyecto, Cliente, Tarea
 
 
@@ -13,13 +15,18 @@ def index(request):
 
 
 # Función para crear un nuevo empleado.
-def new_empleado(nombre, apellidos, email, telefono, responsable):
-    created = datetime.now()
-    updated = datetime.now()
-    empleado = Empleado(nombre=nombre, apellidos=apellidos, email=email, telefono=telefono, responsable=responsable,
-                        created=created, updated=updated)
-    empleado.save()
-    return HttpResponse("index.html")
+class EmpleadoCreateView(View):
+    def get(self, request):
+        formulario = EmpleadoForm()
+        context = {'formulario': formulario}
+        return render(request, 'appDeustoGes/empleado_create.html', context)
+
+    def post(self, request):
+        formulario = EmpleadoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('empleado_create')
+        return render(request, 'appDeustoGes/empleado_create.html', {'formulario': formulario})
 
 
 # Función para obtener una lista de empleados.

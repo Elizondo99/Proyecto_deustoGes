@@ -17,15 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from .views import EmpleadoCreateView
 
 urlpatterns = [
     path('', views.index, name='request'),
     path("/empleados", views.index_empleados, name='empleados_index'),
     path("/empleados/<int:id_empleado>", views.show_empleado, name='empleado_detail'),
-    path("/empleados/new", views.new_empleado, name='empleados_new'),
+    #path("/empleados/new", views.new_empleado, name='empleados_new'),
+    path('/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
+
     path("/proyectos", views.index_proyectos, name='proyectos_index'),
     path("/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
     path("/proyectos/new", views.new_proyecto, name='proyectos_new'),
+
     path("/clientes", views.index_clientes, name='clientes_index'),
     path("/clientes/<int:id_cliente>", views.show_cliente, name='cliente_detail'),
     path("/clientes/new", views.new_cliente, name='clientes_new'),
