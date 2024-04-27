@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block main_contenido %}
+    <h1>deustoGes</h1>
+    <h2>Login</h2>
+    <p>¡Bienvenido a desutoGes, tu herramienta integral para la gestión de proyectos en nuestra empresa!
+
+    Estamos encantados de darte la bienvenida a bordo de desutoGes, donde la eficiencia y la colaboración se unen para impulsar el éxito de nuestros proyectos. Aquí, podrás organizar, supervisar y colaborar en todos los aspectos de tus proyectos de manera centralizada y efectiva.
+
+    Para comenzar, te invitamos a identificarte. Por favor, ingresa tus credenciales para acceder a todas las funciones y herramientas que desutoGes tiene para ofrecer. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
+    
+    <div >
+    <a href="{% url 'empleado_create' %}">Responsable</a>
+    <a href="{% url 'empleado_create' %}">Empleado</a>
+    <a href="{% url 'introduccion_cliente' %}">Cliente</a>
+    </div>
+    
+{% endblock %}

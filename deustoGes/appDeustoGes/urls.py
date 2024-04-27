@@ -20,7 +20,8 @@ from . import views
 from .views import EmpleadoCreateView
 
 urlpatterns = [
-    path('', views.index, name='request'),
+    path('', views.index, name='login'),
+    path("/introduccion_cliente", views.introduccion_cliente, name='introduccion_cliente'),
     path("/empleados", views.index_empleados, name='empleados_index'),
     path("/empleados/<int:id_empleado>", views.show_empleado, name='empleado_detail'),
     #path("/empleados/new", views.new_empleado, name='empleados_new'),

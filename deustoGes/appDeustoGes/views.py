@@ -3,6 +3,7 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
+from sqlparse.filters import output
 
 from .forms import EmpleadoForm
 from .models import Empleado, Proyecto, Cliente, Tarea
@@ -11,8 +12,10 @@ from .models import Empleado, Proyecto, Cliente, Tarea
 # from appEmpresaDjango.models import Empleado, Departamento, Habilidad
 
 def index(request):
-    return HttpResponse("Hello World")
+    return render(request, 'appDeustoGes/login.html')
 
+def introduccion_cliente(request):
+    return render(request, 'appDeustoGes/introduccion_cliente.html')
 
 # Función para crear un nuevo empleado.
 class EmpleadoCreateView(View):

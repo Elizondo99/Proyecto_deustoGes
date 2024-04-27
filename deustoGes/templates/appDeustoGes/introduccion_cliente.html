@@ -1,0 +1,24 @@
+ <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <h2>Area cliente</h2>
+    <p> Bienvenido al area cliente, aqui podra realizar un seguimiento a todos sus proyectos, ver todos los detalles de cada proyecto y crear nueva solicitudes para llevar acabo un nuevo proyecto. </p>
+</div>
+
+<div>
+    <h3>¿QUE DESEA HACER?</h3>
+    <a href="{% url 'empleado_create' %}">Ver mis proyectos</a>
+    <a href="{% url 'empleado_create' %}">Solicitar un nuevo proyecto</a>
+</div>    
+
+
+</body>
+</html>
