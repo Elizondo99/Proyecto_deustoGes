@@ -17,22 +17,33 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import EmpleadoCreateView
+from .views import EmpleadoCreateView, ProyectoCreateView
 
 urlpatterns = [
-    path('', views.index, name='login'),
+
+    # URL DE LOGIN
+    path('/', views.index, name='login'),
+
+    # URL DE INICIO DE CADA ROL
     path("/introduccion_cliente", views.introduccion_cliente, name='introduccion_cliente'),
+    path("/introduccion_empleado", views.introduccion_empleado, name='introduccion_empleado'),
+
+    # URL PARA LISTAR
     path("/empleados", views.index_empleados, name='empleados_index'),
-    path("/empleados/<int:id_empleado>", views.show_empleado, name='empleado_detail'),
-    #path("/empleados/new", views.new_empleado, name='empleados_new'),
-    path('/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
-
     path("/proyectos", views.index_proyectos, name='proyectos_index'),
-    path("/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
-    path("/proyectos/new", views.new_proyecto, name='proyectos_new'),
-
     path("/clientes", views.index_clientes, name='clientes_index'),
+    # path("/clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente'),
+
+    # URL PARA OBTENER DETALLES
+    path("/empleados/<int:id_empleado>", views.show_empleado, name='empleado_detail'),
+    path("/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
     path("/clientes/<int:id_cliente>", views.show_cliente, name='cliente_detail'),
+
+    # URL DE FORMULARIOS PARA CREAR
+    path('/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
+    path('/proyectos/create', ProyectoCreateView.as_view(), name="proyecto_create"),
+    # path("/empleados/new", views.new_empleado, name='empleados_new'),
+    #path("/proyectos/new", views.new_proyecto, name='proyectos_new'),
     path("/clientes/new", views.new_cliente, name='clientes_new'),
-    path("/clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente')
+
 ]

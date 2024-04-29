@@ -5,17 +5,21 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 from sqlparse.filters import output
 
-from .forms import EmpleadoForm
+from .forms import EmpleadoForm, ProyectoForm
 from .models import Empleado, Proyecto, Cliente, Tarea
 
-
-# from appEmpresaDjango.models import Empleado, Departamento, Habilidad
 
 def index(request):
     return render(request, 'appDeustoGes/login.html')
 
+
 def introduccion_cliente(request):
     return render(request, 'appDeustoGes/introduccion_cliente.html')
+
+
+def introduccion_empleado(request):
+    return render(request, 'appDeustoGes/introduccion_empleado.html')
+
 
 # Función para crear un nuevo empleado.
 class EmpleadoCreateView(View):
@@ -45,14 +49,18 @@ def show_empleado(request, id_empleado):
 
 
 # Función para crear un nuevo proyecto
-def new_proyecto(nombre, descripcion, fecha_inicio, fecha_fin, presupuesto, tareas, responsable, cliente):
-    created = datetime.now()
-    updated = datetime.now()
-    proyecto = Proyecto(nombre=nombre, descripcion=descripcion, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin,
-                        presupuesto=presupuesto, tareas=tareas, responsable=responsable, cliente=cliente,
-                        created=created, updated=updated)
-    proyecto.save()
-    return HttpResponse("index.html")
+class ProyectoCreateView(View):
+    def get(self, request):
+        formulario = ProyectoForm()
+        context = {'formulario': formulario}
+        return render(request, 'appDeustoGes/proyecto_create.html', context)
+
+    def post(self, request):
+        formulario = ProyectoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('proyecto_create')
+        return render(request, 'appDeustoGes/proyecto_create.html', {'formulario': formulario})
 
 
 # Función para obtener una lista de proyectos.
@@ -65,6 +73,7 @@ def index_proyectos(request):
 def show_proyecto(request, id_proyecto):
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
     return render(request, "appDeustoGes/proyecto_detail.html", {"proyecto": proyecto})
+
 
 # Función para crear un nuevo cliente
 def new_cliente(nombre, telefono, email, direccion):
@@ -90,7 +99,7 @@ def show_cliente(request, id_cliente):
 # Función para mostrar los proyectos de un cliente
 def index_proyectos_del_cliente(request, cliente_id):
     proyectos = Proyecto.objects.get(cliente=cliente_id)
-    return render(request, 'appDeustoGes/proyectos_del_cliente.html', {"proyectos":proyectos})
+    return render(request, 'appDeustoGes/proyectos_del_cliente.html', {"proyectos": proyectos})
 
 
 # Función para crear una nueva tarea.
