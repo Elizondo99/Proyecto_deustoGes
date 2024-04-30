@@ -2,10 +2,10 @@ from datetime import datetime
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View
+from django.views.generic import View, UpdateView
 from sqlparse.filters import output
 
-from .forms import EmpleadoForm, ProyectoForm
+from .forms import EmpleadoForm, ProyectoForm, ClienteForm
 from .models import Empleado, Proyecto, Cliente, Tarea
 
 
@@ -138,3 +138,25 @@ def index_tareas(request):
 def show_tareas(request, id_tarea):
     tarea = get_object_or_404(Proyecto, id_tarea=id_tarea)
     return HttpResponse('tareas_show.html')
+
+
+class ClienteUpdateView(UpdateView):
+    model = Cliente
+    def get(self, request, pk):
+        cliente = Cliente.objects.get(id=pk)
+        formulario = ClienteForm( instance=cliente)
+        context = {
+            'formulario': formulario,
+            'cliente': cliente
+        }
+        return render(request, 'appDeustoGes/cliente_update.html', context)
+    # Llamada para procesar la actualización del departamento
+    def post(self, request, pk):
+        cliente = Cliente.objects.get(id= pk)
+        formulario = ClienteForm(request.POST, instance=cliente)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('clientes_index', cliente.id)
+        else:
+            formulario= ClienteForm(instance=cliente)
+        return render(request, 'appDeustoGes/cliente_update.html', {'formulario': formulario})

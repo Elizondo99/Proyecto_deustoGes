@@ -14,7 +14,11 @@
         <ul>
             {% for proyecto in proyectos %}
                 {% if cliente.id == proyecto.cliente_id %}
-                    <li><a href="{% url 'proyecto_detail' proyecto.id %}">{{proyecto.nombre}}</a></li>
+                    <li>
+                        <a href="{% url 'proyecto_detail' proyecto.id %}">{{proyecto.nombre}}</a>
+                        <a href="{% url 'cliente_update' cliente.id %}">Actualizar</a>
+
+                    </li>
                 {% endif %}
             {% endfor %}
         </ul>

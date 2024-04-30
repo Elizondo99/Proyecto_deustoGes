@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import EmpleadoCreateView, ProyectoCreateView
+from .views import EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView
 
 urlpatterns = [
 
@@ -47,4 +47,6 @@ urlpatterns = [
     #path("/proyectos/new", views.new_proyecto, name='proyectos_new'),
     path("/clientes/new", views.new_cliente, name='clientes_new'),
 
+    # Update
+    path('/clientes/update/<int:pk>', ClienteUpdateView.as_view(), name="cliente_update")
 ]

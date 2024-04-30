@@ -10,7 +10,9 @@
         {% if empleados %}
             <ul>
                 {% for empleado in empleados %}
-                    <li><a href="{% url 'empleado_detail' empleado.id %}">{{ empleado.nombre }}</a></li>
+                    <li>
+                        <a href="{% url 'empleado_detail' empleado.id %}">{{ empleado.nombre }}</a>
+                    </li>
                 {% endfor %}
             </ul>
         {% else  %}
