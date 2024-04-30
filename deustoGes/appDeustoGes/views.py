@@ -15,16 +15,18 @@ def index(request):
     return render(request, 'appDeustoGes/login.html', {'clientes': clientes, 'empleados': empleados})
 
 
-def introduccion_cliente(request, id_cliente):
+def pantalla_cliente(request, id_cliente):
     cliente = get_object_or_404(Cliente, id=id_cliente)
     proyectos = Proyecto.objects.all()
-    return render(request, 'appDeustoGes/introduccion_cliente.html', {'proyectos': proyectos,
+    return render(request, 'appDeustoGes/pantalla_cliente.html', {'proyectos': proyectos,
                                                                       'cliente': cliente}, )
 
 
-def introduccion_empleado(request, id_empleado):
+def pantalla_empleado(request, id_empleado):
     empleado = get_object_or_404(Empleado, id=id_empleado)
-    return render(request, 'appDeustoGes/introduccion_empleado.html')
+    tareas = Tarea.objects.all()
+    return render(request, 'appDeustoGes/pantalla_empleado.html', {'tareas': tareas,
+                                                                       'empleado': empleado})
 
 
 def pantalla_responsable(request, id_empleado):

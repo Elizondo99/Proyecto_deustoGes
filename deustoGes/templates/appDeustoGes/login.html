@@ -9,7 +9,7 @@
     Para comenzar, te invitamos a identificarte. Por favor, ingresa tus credenciales para acceder a todas las funciones y herramientas que desutoGes tiene para ofrecer. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
     
     <div >
-    <p>Responsables</p>
+    <h3>Responsables</h3>
     <ul>
         {% for empleado in empleados %}
             {% if empleado.responsable == 1 %}
@@ -17,11 +17,18 @@
             {% endif %}
         {% endfor %}
     </ul>
-    <p>Empleados</p>
-    <p>Clientes</p>
+    <h3>Empleados</h3>
+     <ul>
+        {% for empleado in empleados %}
+            {% if empleado.responsable == 0 %}
+                <li><a href="{% url 'pantalla_empleado' empleado.id %}">{{ empleado.nombre }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <h3>Clientes</h3>
     <ul>
         {% for cliente in clientes %}
-            <li><a href="{% url 'introduccion_cliente' cliente.id %}">{{ cliente.nombre }}</a></li>
+            <li><a href="{% url 'pantalla_cliente' cliente.id %}">{{ cliente.nombre }}</a></li>
         {% endfor %}
     </ul>
     </div>

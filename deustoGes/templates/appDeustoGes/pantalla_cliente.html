@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block main_contenido %}
+    <div>
+        <h2>Area cliente</h2>
+        <h3>Hola {{ cliente.nombre }}👋</h3>
+        <p> Bienvenido al area cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de 
+        cada proyecto y crear nueva solicitudes para llevar acabo un nuevo proyecto. </p>
+    </div>
+    <div>
+        <h3>MIS PROYECTOS</h3>
+        <p>Aqui tiene sus proyectos, si quieres mas informacion haga click en cualquiera de ellos y
+            vera toodos los detalles</p>
+        <ul>
+            {% for proyecto in proyectos %}
+                {% if cliente.id == proyecto.cliente_id %}
+                    <li><a href="{% url 'proyecto_detail' proyecto.id %}">{{proyecto.nombre}}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h3>SOLICITUD NUEVO PROYECTO</h3>
+        <p>Quiere crear un nuevo proyecto con nosotros? Si es asi completa el siguiente formulario 
+        como petición de un proyecto. Te contestaremos lo ántes posible!</p>
+        <form action="{% url 'proyecto_create' %}" method="post">
+        {% csrf_token %}
+        {{ formulario.errors }}
+        {{ formulario.as_ul }}
+        <input type="submit" value="Nuevo proyecto">
+    </form>
+    
+    </div>
+
+
+{% endblock %}
