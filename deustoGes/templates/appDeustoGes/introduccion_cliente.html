@@ -5,15 +5,15 @@
     <p> Bienvenido al area cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de cada proyecto y crear nueva solicitudes para llevar acabo un nuevo proyecto. </p>
 
 <div>
-    <h3>¿QUE DESEA HACER?</h3>
-    {% for proyecto in proyectos %}
-        <ul>
+    <h3>¿QUÉ DESEA HACER?</h3>
+    <ul>
+        {% for proyecto in proyectos %}
             {% if cliente.id == proyecto.cliente_id %}
                 <li><h>Nombre: </h>{{ proyecto.nombre }}</li>
             {% endif %}
-        </ul>
-    	
-    {% endfor %}
+        {% endfor %}
+    </ul>
+
     <a href="{% url 'empleado_create' %}">Ver mis proyectos</a>
     <a href="{% url 'empleado_create' %}">Solicitar un nuevo proyecto</a>
 </div>    

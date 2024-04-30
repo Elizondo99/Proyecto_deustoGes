@@ -40,6 +40,30 @@ class Empleado(models.Model):
         verbose_name_plural = "empleados"
 
 
+class Tarea(models.Model):
+    nombre = models.CharField(max_length=15)
+    descripcion = models.TextField()
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    prioridad = models.CharField(max_length=10, choices=(('alta', 'Alta'), ('media', 'Media'), ('baja', 'Baja')))
+    estado = models.CharField(max_length=20, choices=(
+        ('abierta', 'Abierta'), ('asignada', 'Asignada'), ('en_proceso', 'En proceso'), ('finalizada', 'Finalizada')))
+    notas_adicionales = models.TextField()
+
+    #proyecto = models.ManyToManyField(Proyecto, on_delete=models.CASCADE)
+    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.nombre) + " (prioridad: " + str(self.prioridad) + ")"
+
+    class Meta:
+        verbose_name = 'tarea'
+        verbose_name_plural = 'tareas'
+
+
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField()
@@ -47,8 +71,10 @@ class Proyecto(models.Model):
     fecha_fin = models.DateField(default=date(2020, 1, 1))
     presupuesto = models.IntegerField()
     #tareas = models.TextField(
-    #   blank=True)  # AQUI PONEMOS LO DE blank=True ? significa que en el formulario de django se puede
+    #   blank=True)
+    # AQUI PONEMOS LO DE blank=True ? significa que en el formulario de django se puede
     # quedar "tareas" vacio
+    tareas = models.ManyToManyField(Tarea, blank=False)
 
     # miembros = models.ManyToManyField(Empleado, blank=True)
     responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
@@ -65,25 +91,4 @@ class Proyecto(models.Model):
         verbose_name_plural = "proyectos"
 
 
-class Tarea(models.Model):
-    nombre = models.CharField(max_length=15)
-    descripcion = models.TextField()
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    prioridad = models.CharField(max_length=10, choices=(('alta', 'Alta'), ('media', 'Media'), ('baja', 'Baja')))
-    estado = models.CharField(max_length=20, choices=(
-        ('abierta', 'Abierta'), ('asignada', 'Asignada'), ('en_proceso', 'En proceso'), ('finalizada', 'Finalizada')))
-    notas_adicionales = models.TextField()
 
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
-    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
-
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return str(self.nombre) + " (prioridad: " + str(self.prioridad) + ")"
-
-    class Meta:
-        verbose_name = 'tarea'
-        verbose_name_plural = 'tareas'

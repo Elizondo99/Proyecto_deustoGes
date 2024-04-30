@@ -11,18 +11,30 @@ from .models import Empleado, Proyecto, Cliente, Tarea
 
 def index(request):
     clientes = Cliente.objects.all()
-    return render(request, 'appDeustoGes/login.html', {'clientes': clientes})
+    empleados = Empleado.objects.all()
+    return render(request, 'appDeustoGes/login.html', {'clientes': clientes, 'empleados': empleados})
 
 
 def introduccion_cliente(request, id_cliente):
     cliente = get_object_or_404(Cliente, id=id_cliente)
     proyectos = Proyecto.objects.all()
     return render(request, 'appDeustoGes/introduccion_cliente.html', {'proyectos': proyectos,
-                                                                      'cliente': cliente},)
+                                                                      'cliente': cliente}, )
 
 
-def introduccion_empleado(request):
+def introduccion_empleado(request, id_empleado):
+    empleado = get_object_or_404(Empleado, id=id_empleado)
     return render(request, 'appDeustoGes/introduccion_empleado.html')
+
+
+def pantalla_responsable(request, id_empleado):
+    empleado = get_object_or_404(Empleado, id=id_empleado)
+    empleados = Empleado.objects.all()
+    proyectos = Proyecto.objects.all()
+    clientes = Cliente.objects.all()
+    return render(request, 'appDeustoGes/pantalla_responsable.html', {'empleados': empleados,
+                                                                      'empleado': empleado, 'proyectos': proyectos,
+                                                                      'clientes': clientes})
 
 
 # Función para crear un nuevo empleado.

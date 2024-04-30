@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block main_contenido %}
+    <h2>Area responsable</h2>
+    <p>Bienvenido al area responsable....</p>
+
+    <div>
+        <h3>Empleados</h3>
+        <ul>
+            {% for empleado in empleados %}
+                {% if empleado.responsable == 0 %}
+                    <li><a href="{% url 'empleado_detail' empleado.id %}">{{ empleado.nombre }}{{empleado.apellido}}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h3>Mis proyectos</h3>
+        <ul>
+            {% for proyecto in proyectos %}
+                {% if empleado.id == proyecto.responsable_id %}
+                    <li><a href="{% url 'proyecto_detail' proyecto.id %}">{{proyecto.nombre}}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h3>Clientes</h3>
+        <ul>
+            {% for cliente in clientes %}
+                <li><a href="{% url 'cliente_detail' cliente.id %}">{{cliente.nombre}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

@@ -9,8 +9,15 @@
     Para comenzar, te invitamos a identificarte. Por favor, ingresa tus credenciales para acceder a todas las funciones y herramientas que desutoGes tiene para ofrecer. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
     
     <div >
-    <a href="{% url 'empleado_create' %}">Responsable</a>
-    <a href="{% url 'introduccion_empleado' %}">Empleado</a>
+    <p>Responsables</p>
+    <ul>
+        {% for empleado in empleados %}
+            {% if empleado.responsable == 1 %}
+                <li><a href="{% url 'pantalla_responsable' empleado.id %}">{{ empleado.nombre }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <p>Empleados</p>
     <p>Clientes</p>
     <ul>
         {% for cliente in clientes %}

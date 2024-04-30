@@ -25,8 +25,9 @@ urlpatterns = [
     path('/', views.index, name='login'),
 
     # URL DE INICIO DE CADA ROL
-    path("/<int:id_cliente>", views.introduccion_cliente, name='introduccion_cliente'),
+    path("/clientes/<int:id_cliente>", views.introduccion_cliente, name='introduccion_cliente'),
     path("/introduccion_empleado", views.introduccion_empleado, name='introduccion_empleado'),
+    path("/responsables/<int:id_empleado>", views.pantalla_responsable, name='pantalla_responsable'),
 
     # URL PARA LISTAR
     path("/empleados", views.index_empleados, name='empleados_index'),
