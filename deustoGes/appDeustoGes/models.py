@@ -46,8 +46,8 @@ class Proyecto(models.Model):
     fecha_inicio = models.DateField(default=date(2020, 1, 1))
     fecha_fin = models.DateField(default=date(2020, 1, 1))
     presupuesto = models.IntegerField()
-    tareas = models.TextField(
-        blank=True)  # AQUI PONEMOS LO DE blank=True ? significa que en el formulario de django se puede
+    #tareas = models.TextField(
+    #   blank=True)  # AQUI PONEMOS LO DE blank=True ? significa que en el formulario de django se puede
     # quedar "tareas" vacio
 
     # miembros = models.ManyToManyField(Empleado, blank=True)

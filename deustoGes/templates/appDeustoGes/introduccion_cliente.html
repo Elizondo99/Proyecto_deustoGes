@@ -6,6 +6,14 @@
 
 <div>
     <h3>¿QUE DESEA HACER?</h3>
+    {% for proyecto in proyectos %}
+        <ul>
+            {% if cliente.id == proyecto.cliente_id %}
+                <li><h>Nombre: </h>{{ proyecto.nombre }}</li>
+            {% endif %}
+        </ul>
+    	
+    {% endfor %}
     <a href="{% url 'empleado_create' %}">Ver mis proyectos</a>
     <a href="{% url 'empleado_create' %}">Solicitar un nuevo proyecto</a>
 </div>    

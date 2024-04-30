@@ -10,11 +10,15 @@ from .models import Empleado, Proyecto, Cliente, Tarea
 
 
 def index(request):
-    return render(request, 'appDeustoGes/login.html')
+    clientes = Cliente.objects.all()
+    return render(request, 'appDeustoGes/login.html', {'clientes': clientes})
 
 
-def introduccion_cliente(request):
-    return render(request, 'appDeustoGes/introduccion_cliente.html')
+def introduccion_cliente(request, id_cliente):
+    cliente = get_object_or_404(Cliente, id=id_cliente)
+    proyectos = Proyecto.objects.all()
+    return render(request, 'appDeustoGes/introduccion_cliente.html', {'proyectos': proyectos,
+                                                                      'cliente': cliente},)
 
 
 def introduccion_empleado(request):

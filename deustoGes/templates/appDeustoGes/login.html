@@ -11,7 +11,12 @@
     <div >
     <a href="{% url 'empleado_create' %}">Responsable</a>
     <a href="{% url 'introduccion_empleado' %}">Empleado</a>
-    <a href="{% url 'introduccion_cliente' %}">Cliente</a>
+    <p>Clientes</p>
+    <ul>
+        {% for cliente in clientes %}
+            <li><a href="{% url 'introduccion_cliente' cliente.id %}">{{ cliente.nombre }}</a></li>
+        {% endfor %}
+    </ul>
     </div>
     
 {% endblock %}
