@@ -7,10 +7,9 @@
       y marcar las tareas como realizadas. </p>
   <ul>
     {% for tarea in tareas %}
-        {% if empleado_id == tarea.empleado_id %}
+        {% if empleado.id == tarea.empleado_id %}
             <li>{{tarea.nombre}}</li>
         {% endif %}
-    	
     {% endfor %}
     
   </ul>  

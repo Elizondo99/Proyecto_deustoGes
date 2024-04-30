@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
 {% block main_contenido %}
+    <h2>Solicitudes pendientes de aprobar</h2>
+    <p>Aquí tienes las solicitudes pendientes de aprobar de tus clientes!</p>
+    {% for solicitud in solicitudes %}
+        <div>
+            <h3>{{solicitud.titulo}}</h3>
+            <p>{{solicitud.descripcion}}</p>
+        </div>
+    {% endfor %}
 
-<h2>Nuevo proyecto</h2>
+    <h2>Crear un nuevo proyecto</h2>
     <form action="{% url 'proyecto_create' %}" method="post">
         {% csrf_token %}
         {{ formulario.errors }}

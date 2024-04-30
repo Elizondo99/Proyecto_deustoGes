@@ -1,6 +1,7 @@
 from django import forms
 
-from appDeustoGes.models import Tarea, Empleado, Cliente, Proyecto
+from appDeustoGes.models import Tarea, Empleado, Cliente, Proyecto, Solicitud
+
 
 
 class EmpleadoForm(forms.ModelForm):
@@ -15,7 +16,20 @@ class ProyectoForm(forms.ModelForm):
         model = Proyecto
         fields = '__all__'
 
+
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
+        fields = '__all__'
+
+
+class TareaForm(forms.ModelForm):
+    class Meta:
+        model = Tarea
+        fields = '__all__'
+
+
+class SolicitudForm(forms.ModelForm):
+    class Meta:
+        model = Solicitud
         fields = '__all__'

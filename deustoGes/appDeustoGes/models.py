@@ -21,6 +21,7 @@ class Cliente(models.Model):
         verbose_name_plural = "clientes"
 
 
+
 class Empleado(models.Model):
     dni = models.CharField(max_length=9)
     nombre = models.CharField(max_length=15)
@@ -91,4 +92,19 @@ class Proyecto(models.Model):
         verbose_name_plural = "proyectos"
 
 
+class Solicitud(models.Model):
+    titulo = models.CharField(max_length=30)
+    descripcion = models.TextField()
+
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.titulo)
+
+    class Meta:
+        verbose_name = "solicitud"
+        verbose_name_plural = "solicitudes"
 

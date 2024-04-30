@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView
+from .views import EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView, ClienteCreateView, SolicitudCreateView
 
 urlpatterns = [
 
@@ -26,7 +26,7 @@ urlpatterns = [
 
     # URL DE INICIO DE CADA ROL
     path("/clientes/<int:id_cliente>", views.pantalla_cliente, name='pantalla_cliente'),
-    path("/introduccion_empleado/<int:id_empleado>", views.pantalla_empleado, name='pantalla_empleado'),
+    path("/empleados/<int:id_empleado>", views.pantalla_empleado, name='pantalla_empleado'),
     path("/responsables/<int:id_empleado>", views.pantalla_responsable, name='pantalla_responsable'),
 
     # URL PARA LISTAR
@@ -43,10 +43,12 @@ urlpatterns = [
     # URL DE FORMULARIOS PARA CREAR
     path('/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
     path('/proyectos/create', ProyectoCreateView.as_view(), name="proyecto_create"),
+    path('/clientes/create', ClienteCreateView.as_view(), name="cliente_create"),
+    path('/clientes/solicitud', SolicitudCreateView.as_view(), name="solicitud_create"),
     # path("/empleados/new", views.new_empleado, name='empleados_new'),
     #path("/proyectos/new", views.new_proyecto, name='proyectos_new'),
-    path("/clientes/new", views.new_cliente, name='clientes_new'),
+    #path("/clientes/new", views.new_cliente, name='clientes_new'),
 
-    # Update
+    # URL DE UPDATE
     path('/clientes/update/<int:pk>', ClienteUpdateView.as_view(), name="cliente_update")
 ]

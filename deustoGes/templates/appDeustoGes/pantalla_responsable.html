@@ -2,6 +2,7 @@
 
 {% block main_contenido %}
     <h2>Area responsable</h2>
+    <h3>Hola {{ empleado.nombre }} 👋</h3>
     <p>Bienvenido al area responsable....</p>
 
     <div>
@@ -13,6 +14,9 @@
                 {% endif %}
             {% endfor %}
         </ul>
+    </div>
+    <div>
+        <a href="{% url 'empleado_create' %}">Crear un nuevo empleado</a>
     </div>
 
     <div>
@@ -27,12 +31,20 @@
     </div>
 
     <div>
+        <a href="{% url 'proyecto_create' %}">Solicitudes de proyectos pendientes de crear</a>
+    </div>
+
+    <div>
         <h3>Clientes</h3>
         <ul>
             {% for cliente in clientes %}
                 <li><a href="{% url 'cliente_detail' cliente.id %}">{{cliente.nombre}}</a></li>
             {% endfor %}
         </ul>
+    </div>
+
+    <div>
+        <a href="{% url 'cliente_create' %}">Añadir un nuevo cliente</a>
     </div>
 
 {% endblock %}

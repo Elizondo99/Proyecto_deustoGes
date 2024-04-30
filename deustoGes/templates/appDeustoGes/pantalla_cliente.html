@@ -27,11 +27,11 @@
         <h3>SOLICITUD NUEVO PROYECTO</h3>
         <p>Quiere crear un nuevo proyecto con nosotros? Si es asi completa el siguiente formulario 
         como petición de un proyecto. Te contestaremos lo ántes posible!</p>
-        <form action="{% url 'proyecto_create' %}" method="post">
-        {% csrf_token %}
-        {{ formulario.errors }}
-        {{ formulario.as_ul }}
-        <input type="submit" value="Nuevo proyecto">
+        <form action="{% url 'solicitud_create' %}" method="post">
+            {% csrf_token %}
+            {{ formulario.errors }}
+            {{ formulario.as_p }}
+        <input type="submit" value="Nueva solicitud"/>
     </form>
     
     </div>

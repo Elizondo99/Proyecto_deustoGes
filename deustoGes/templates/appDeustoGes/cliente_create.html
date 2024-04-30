@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block main_contenido %}
+    <h2>Añadir nuevo cliente</h2>
+    <form action="{% url 'cliente_create' %}" method="post">
+        {% csrf_token %}
+        {{ formulario.errors }}
+        {{ formulario.as_p }}
+        <input type="submit" value="Nuevo cliente"/>
+    </form>
+
+{% endblock %}
