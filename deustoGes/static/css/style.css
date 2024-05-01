@@ -105,3 +105,30 @@ h4{
     margin-block: 1rem;
     border-radius: 1rem;
 }
+/* Estilo para la tabla */
+.estilos-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.estilos-table th {
+  background-color: rgba(252, 140, 24, 0.91);
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.estilos-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.estilos-table tr:nth-child(odd) {
+  background-color: rgba(216, 136, 24, 0.27);
+}
+
+.estilos-table td a {
+  text-decoration: none;
+  color: black;
+}

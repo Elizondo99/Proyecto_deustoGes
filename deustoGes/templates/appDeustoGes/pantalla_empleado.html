@@ -7,17 +7,29 @@
   <h2>Area empleado</h2>
   <h3>Hola {{ empleado.nombre }} 👋</h3>  
   <p> Bienvenido/a al area empleado, aquí podrá realizar un seguimiento de todas sus tareas, ver nuevas tareas encomendadas
-      y marcar las tareas como realizadas. </p>
-  <ul>
+      y marcar las tareas como realizadas. </p>  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha de inicio</th>
+        <th>Fecha de finalización</th>
+        <th>Estado</th>
+        <th>Detalles</th>
+          
+      </tr>
+    </thead>
+    <tbody>
     {% for tarea in tareas %}
         {% if empleado.id == tarea.empleado_id %}
-            <li>{{tarea.nombre}}</li>
+            <tr>
+                <td>{{ tarea.nombre }}</td>
+                <td>{{ tarea.fecha_inicio }}</td>
+                <td>{{ tarea.fecha_fin }}</td>
+                <td>{{ tarea.estado }}</td>
+                <td><a href="{% url 'tarea_detail' tarea.id %}">Ver detalles</a></td>
+            </tr>
         {% endif %}
     {% endfor %}
-    
-  </ul>  
-    
-
-
-
+    </tbody>
+  </table>  
 {% endblock %}

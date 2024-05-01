@@ -34,15 +34,28 @@
         <h3>MIS PROYECTOS</h3>
         <p>Aqui tiene sus proyectos, si quieres mas informacion haga click en cualquiera de ellos y
             vera toodos los detalles</p>
-        <ul>
-            {% for proyecto in proyectos %}
-                {% if cliente.id == proyecto.cliente_id %}
-                    <li>
-                        <a href="{% url 'proyecto_detail' proyecto.id %}">{{proyecto.nombre}}</a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    <table class="estilos-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha de inicio</th>
+          <th>Fecha de finalización</th>
+          <th>Detalles</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for proyecto in proyectos %}
+          {% if cliente.id == proyecto.cliente_id %}
+            <tr>
+              <td>{{ proyecto.nombre }}</td>
+              <td>{{ proyecto.fecha_inicio }}</td>
+              <td>{{ proyecto.fecha_fin }}</td>
+              <td><a href="{% url 'proyecto_detail_cliente' proyecto.id %}">Ver detalles</a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
     </div>
     <div class="contenido_interno">
         <h3>SOLICITUD NUEVO PROYECTO</h3>

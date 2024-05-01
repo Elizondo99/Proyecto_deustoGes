@@ -94,6 +94,10 @@ def show_proyecto(request, id_proyecto):
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
     return render(request, "appDeustoGes/proyecto_detail.html", {"proyecto": proyecto})
 
+def show_proyecto_cliente(request, id_proyecto):
+    proyecto = get_object_or_404(Proyecto, id=id_proyecto)
+    return render(request, "appDeustoGes/proyecto_detail_cliente.html", {"proyecto": proyecto})
+
 
 # Función para crear un nuevo cliente
 class ClienteCreateView(View):
@@ -148,9 +152,9 @@ def index_tareas(request):
     return HttpResponse('tareas_index.html')
 
 
-def show_tareas(request, id_tarea):
+def show_tarea(request, id_tarea):
     tarea = get_object_or_404(Proyecto, id_tarea=id_tarea)
-    return HttpResponse('tareas_show.html')
+    return render(request, "appDeustoGes/tarea_detail.html", {"tarea": tarea})
 
 
 class ClienteUpdateView(UpdateView):

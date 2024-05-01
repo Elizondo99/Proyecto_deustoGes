@@ -93,7 +93,7 @@ class Proyecto(models.Model):
 
 
 class Solicitud(models.Model):
-    titulo = models.CharField(max_length=30)
+    titulo = models.CharField(max_length=31)
     descripcion = models.TextField()
 
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

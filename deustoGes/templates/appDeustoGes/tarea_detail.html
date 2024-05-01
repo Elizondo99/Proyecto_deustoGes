@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="content">
+    <h2>Detalle de la tarea</h2>
+
+    {% if  tarea %}
+        <ul>
+            <li><h>Nombre: </h>{{ tarea.nombre }}</li>
+            <li><h>Descripccion: </h>{{ tarea.descripcion }}</li>
+            <li><h>Fecha de inicio: </h>{{ tarea.fecha_inicio }}</li>
+            <li><h>Fecha de fin: </h>{{ tarea.fecha_fin }}</li>
+            <li><h>Prioridad: </h>{{ tarea.prioridad}}</li>
+            <li><h>Estado: </h>{{ tarea.estado }}</li>
+            <li><h>Notas adicionales: </h>{{ tarea.notas_adicionales }}</li>
+        </ul>
+    {% endif %}
+
+    </div>
+</body>
+</html>

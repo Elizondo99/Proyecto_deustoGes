@@ -1,10 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
 
-</body>
-</html>
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="">Pantalla principal</a></li>
+                <li><a href="">Nueva solicitud de proyecto</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block main_contenido %}
+    <h2>Area cliente</h2>
+    <div class="contenido">
+        <p>Aquí esta la información sobre el proyecto {{ proyecto.nombre }}:</p>
+    {% if  proyecto %}
+        <table class="estilos-table">
+    <tr>
+        <td><h>Nombre: </h></td>
+        <td>{{ proyecto.nombre }}</td>
+    </tr>
+    <tr>
+        <td><h>Descripción: </h></td>
+        <td>{{ proyecto.descripcion }}</td>
+    </tr>
+    <tr>
+        <td><h>Fecha de inicio: </h></td>
+        <td>{{ proyecto.fecha_inicio }}</td>
+    </tr>
+    <tr>
+        <td><h>Fecha de finalización: </h></td>
+        <td>{{ proyecto.fecha_fin }}</td>
+    </tr>
+    <tr>
+        <td><h>Presupuesto: </h></td>
+        <td>{{ proyecto.presupuesto }}</td>
+    </tr>
+    <tr>
+        <td><h>Tareas: </h></td>
+        <td>{{ proyecto.tareas }}</td>
+    </tr>
+    <tr>
+        <td><h>El responsable del proyecto es: </h></td>
+        <td>{{ proyecto.responsable }}</td>
+    </tr>
+    <tr>
+        <td><h>El cliente es: </h></td>
+        <td>{{ proyecto.cliente }}</td>
+    </tr>
+</table>
+    {% endif %}
+    </div>
+    
+    
+{% endblock %}
