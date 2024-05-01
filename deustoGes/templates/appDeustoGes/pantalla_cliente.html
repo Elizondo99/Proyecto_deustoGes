@@ -6,6 +6,8 @@
         <h3>Hola {{ cliente.nombre }}👋</h3>
         <p> Bienvenido al area cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de 
         cada proyecto y crear nueva solicitudes para llevar acabo un nuevo proyecto. </p>
+        <a href="{% url 'cliente_update' cliente.id %}">Actualizar</a>
+
     </div>
     <div>
         <h3>MIS PROYECTOS</h3>
@@ -16,8 +18,6 @@
                 {% if cliente.id == proyecto.cliente_id %}
                     <li>
                         <a href="{% url 'proyecto_detail' proyecto.id %}">{{proyecto.nombre}}</a>
-                        <a href="{% url 'cliente_update' cliente.id %}">Actualizar</a>
-
                     </li>
                 {% endif %}
             {% endfor %}

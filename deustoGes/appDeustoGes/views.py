@@ -2,7 +2,8 @@ from datetime import datetime
 
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import View, UpdateView, DeleteView
 from sqlparse.filters import output
 
 from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm
@@ -187,3 +188,7 @@ class SolicitudCreateView(View):
             formulario.save()
             return redirect('solicitud_create')
         return render(request, 'appDeustoGes/pantalla_cliente.html', {'formulario': formulario})
+
+class EmpleadoDeleteView(DeleteView):
+    model = Empleado
+    success_url = reverse_lazy('empleados_index')

@@ -17,7 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView, ClienteCreateView, SolicitudCreateView
+from .views import EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView, ClienteCreateView, SolicitudCreateView, \
+    EmpleadoDeleteView
+
+
+class DepartamentoDeleteView:
+    pass
+
 
 urlpatterns = [
 
@@ -50,5 +56,9 @@ urlpatterns = [
     #path("/clientes/new", views.new_cliente, name='clientes_new'),
 
     # URL DE UPDATE
-    path('/clientes/update/<int:pk>', ClienteUpdateView.as_view(), name="cliente_update")
+    path('/clientes/update/<int:pk>', ClienteUpdateView.as_view(), name="cliente_update"),
+
+    # URL DE UPDATE
+    path('/empleados/delete/<int:pk>', EmpleadoDeleteView.as_view(), name='empleado_delete'),
+
 ]

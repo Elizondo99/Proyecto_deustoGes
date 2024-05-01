@@ -12,6 +12,10 @@
                 {% for empleado in empleados %}
                     <li>
                         <a href="{% url 'empleado_detail' empleado.id %}">{{ empleado.nombre }}</a>
+                        <form method="POST" action="{% url "empleado_delete" empleado.id%}">
+                            {% csrf_token %}
+                            <input type="submit" value="Eliminar">
+                        </form>
                     </li>
                 {% endfor %}
             </ul>
