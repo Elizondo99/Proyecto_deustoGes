@@ -156,7 +156,7 @@ def index_tareas(request):
 
 
 def show_tarea(request, id_tarea):
-    tarea = get_object_or_404(Proyecto, id=id_tarea)
+    tarea = get_object_or_404(Tarea, id=id_tarea)
     return render(request, "appDeustoGes/tarea_detail.html", {"tarea": tarea})
 
 

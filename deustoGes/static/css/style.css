@@ -142,6 +142,12 @@ h4{
     border-radius: 1rem;
 }
 
+.responsable-overflow{
+    height: 35rem;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
 
 .introduccion{
     margin-inline: 2rem;
@@ -181,7 +187,7 @@ h4{
   text-decoration: none;
   color: black;
 }
-.empleado-button {
+.añadir-button {
     background-color: rgba(252, 140, 24, 0.91);
     text-align: center;
     border: none;
@@ -190,11 +196,11 @@ h4{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 6px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
 }
 
-.empleado-button:hover {
+.añadir-button:hover {
     background-color: #FFD700;
 }

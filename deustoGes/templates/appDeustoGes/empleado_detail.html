@@ -1,16 +1,26 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<div id="content">
-    <hi>Gestor de empleados</hi>
-    <h2>Detalle del empleado</h2>
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="{% url 'pantalla_responsable' empleado.id %}">Pantalla principal</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+{% block main_contenido %}
+    <h2>Area responsable</h2>
 
     {% if  empleado %}
         <ul>
@@ -23,6 +33,4 @@
         </ul>
     {% endif %}
 
-    </div>
-</body>
-</html>
+{% endblock %}

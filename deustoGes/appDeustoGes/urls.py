@@ -43,7 +43,7 @@ urlpatterns = [
     # path("/clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente'),
 
     # URL PARA OBTENER DETALLES
-    path("/empleados/<int:id_empleado>", views.show_empleado, name='empleado_detail'),
+    path("/empleados/<int:id_empleado>/detalle", views.show_empleado, name='empleado_detail'),
     path("/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
     path("/clientes/<int:id_cliente>/proyectos/<int:id_proyecto>", views.show_proyecto_cliente, name='proyecto_detail_cliente'),
     path("/clientes/<int:id_cliente>", views.show_cliente, name='cliente_detail'),
