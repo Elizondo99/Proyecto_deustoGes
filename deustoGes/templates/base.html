@@ -6,29 +6,33 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block css %}
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    {% endblock %}
     <title>DeustoGes</title>
 </head>
 
 
-<body>
-
-    <header>
-        <h1>DeustoGes</h1>
-        <nav>
+<body class="flex">
+    <div>
         {% block nav_header %}{% endblock %}
-        </nav>
-    </header>
+    </div>
+    <div class="flex2">
+        <header>
+            <h1>DeustoGes</h1>
+        </header>
 
-    <main>
-        {% block main_contenido %}{% endblock %}
-    </main>
-        
-    <footer>
-        <nav>
-        {% block nav_footer %}{% endblock %}
-        </nav>
-    </footer>
+        <main>
+            {% block main_contenido %}{% endblock %}
+        </main>
+
+        <footer>
+            <nav>
+            {% block nav_footer %}{% endblock %}
+            </nav>
+        </footer>
+    </div>
+
 </body>
 </html>

@@ -1,15 +1,36 @@
 {% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="">Pantalla principal</a></li>
+                <li><a href="">Nueva solicitud de proyecto</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
 
 {% block main_contenido %}
-    <div>
-        <h2>Area cliente</h2>
+    <h2>Area cliente</h2>
+<div class="contenido">
+    <div class="introduccion">
         <h3>Hola {{ cliente.nombre }}👋</h3>
-        <p> Bienvenido al area cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de 
+        <p> Bienvenido al area cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de
         cada proyecto y crear nueva solicitudes para llevar acabo un nuevo proyecto. </p>
         <a href="{% url 'cliente_update' cliente.id %}">Actualizar</a>
-
     </div>
-    <div>
+    <div class="contenido_interno">
         <h3>MIS PROYECTOS</h3>
         <p>Aqui tiene sus proyectos, si quieres mas informacion haga click en cualquiera de ellos y
             vera toodos los detalles</p>
@@ -23,9 +44,9 @@
             {% endfor %}
         </ul>
     </div>
-    <div>
+    <div class="contenido_interno">
         <h3>SOLICITUD NUEVO PROYECTO</h3>
-        <p>Quiere crear un nuevo proyecto con nosotros? Si es asi completa el siguiente formulario 
+        <p>Quiere crear un nuevo proyecto con nosotros? Si es asi completa el siguiente formulario
         como petición de un proyecto. Te contestaremos lo ántes posible!</p>
         <form action="{% url 'solicitud_create' %}" method="post">
             {% csrf_token %}
@@ -33,8 +54,10 @@
             {{ formulario.as_p }}
         <input type="submit" value="Nueva solicitud"/>
     </form>
-    
+
     </div>
+</div>
+
 
 
 {% endblock %}

@@ -88,4 +88,19 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'tareas',
             },
         ),
+        migrations.CreateModel(
+            name='Solicitud',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('titulo', models.CharField(max_length=15)),
+                ('descripcion', models.TextField()),
+                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='appDeustoGes.cliente')),
+                ('created', models.DateTimeField(auto_now_add=True)),
+                ('updated', models.DateTimeField(auto_now=True)),
+            ],
+            options={
+                'verbose_name': 'solicitud',
+                'verbose_name_plural': 'solicitudes',
+            },
+        ),
     ]
