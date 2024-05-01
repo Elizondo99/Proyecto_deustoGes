@@ -3,29 +3,63 @@
     <link rel="stylesheet" href="/../static/css/normalize.css">
     <link rel="stylesheet" href="/../static/css/style.css">
 {% endblock %}
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="#">Pantalla principal</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
+            </div>
 
+        </ul>
+    </nav>
+{% endblock %}
 
 {% block main_contenido %}
     <h2>Area responsable</h2>
-<div>
+<div class="contenido">
     <h3>Hola {{ empleado.nombre }} 👋</h3>
     <p>Bienvenido al area responsable....</p>
 
-    <div>
+    <div class="contenido_interno">
         <h3>Empleados</h3>
-        <ul>
-            {% for empleado in empleados %}
-                {% if empleado.responsable == 0 %}
-                    <li><a href="{% url 'empleado_detail' empleado.id %}">{{ empleado.nombre }}{{empleado.apellido}}</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <a href="{% url 'empleado_create' %}">Crear un nuevo empleado</a>
+        <p>Aqui puedes ver a todos tus empleados y crear nuevos empleados</p>
+        <table class="estilos-table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Detalles</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for empleado in empleados %}
+            {% if empleado.responsable == 0 %}
+                <tr>
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.apellidos }}</td>
+                    <td>{{ empleado.email }}</td>
+                    <td>{{ empleado.telefono }}</td>
+                    <td><a href="{% url 'empleado_detail' empleado.id %}">Ver detalles</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+        
+            <button class="empleado-button">
+                <a href="{% url 'empleado_create' %}">Crear un nuevo empleado</a>
+            </button>
     </div>
 
-    <div>
+
+    <div class="contenido_interno">
         <h3>Mis proyectos</h3>
         <ul>
             {% for proyecto in proyectos %}
@@ -40,18 +74,16 @@
         <a href="{% url 'proyecto_create' %}">Solicitudes de proyectos pendientes de crear</a>
     </div>
 
-    <div>
+    <div class="contenido_interno">
         <h3>Clientes</h3>
         <ul>
             {% for cliente in clientes %}
                 <li><a href="{% url 'cliente_detail' cliente.id %}">{{cliente.nombre}}</a></li>
             {% endfor %}
         </ul>
-    </div>
-
-    <div>
         <a href="{% url 'cliente_create' %}">Añadir un nuevo cliente</a>
     </div>
+
 </div>
 
 

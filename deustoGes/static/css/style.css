@@ -154,7 +154,7 @@ h4{
     margin-block: 1rem;
     border-radius: 1rem;
 }
-/* Estilo para la tabla */
+
 .estilos-table {
   width: 100%;
   border-collapse: collapse;
@@ -180,4 +180,21 @@ h4{
 .estilos-table td a {
   text-decoration: none;
   color: black;
+}
+.empleado-button {
+    background-color: rgba(252, 140, 24, 0.91);
+    text-align: center;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.empleado-button:hover {
+    background-color: #FFD700;
 }

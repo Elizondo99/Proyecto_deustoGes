@@ -39,6 +39,7 @@ urlpatterns = [
     path("/empleados", views.index_empleados, name='empleados_index'),
     path("/proyectos", views.index_proyectos, name='proyectos_index'),
     path("/clientes", views.index_clientes, name='clientes_index'),
+
     # path("/clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente'),
 
     # URL PARA OBTENER DETALLES

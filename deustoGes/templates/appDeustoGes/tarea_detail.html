@@ -1,28 +1,64 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<div id="content">
-    <h2>Detalle de la tarea</h2>
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="{% url 'pantalla_empleado' tarea.id %}">Mis tareas</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block main_contenido %}
+    <h2>Area empleado</h2>
+    <div class="contenido">
+    <p>Aquí esta la informaión sobre su tarea {{ tarea.nombre }}:</p>
 
     {% if tarea %}
-        <ul>
-            <li><h>Nombre: </h>{{ tarea.nombre }}</li>
-            <li><h>Descripccion: </h>{{ tarea.descripcion }}</li>
-            <li><h>Fecha de inicio: </h>{{ tarea.fecha_inicio }}</li>
-            <li><h>Fecha de fin: </h>{{ tarea.fecha_fin }}</li>
-            <li><h>Prioridad: </h>{{ tarea.prioridad}}</li>
-            <li><h>Estado: </h>{{ tarea.estado }}</li>
-            <li><h>Notas adicionales: </h>{{ tarea.notas_adicionales }}</li>
-        </ul>
+        <table class="estilos-table">
+    <tr>
+        <td><h>Nombre </h></td>
+        <td>{{ tarea.nombre }}</td>
+    </tr>
+    <tr>
+        <td><h>Descripción </h></td>
+        <td>{{ tarea.descripcion }}</td>
+    </tr>
+    <tr>
+        <td><h>Fecha de inicio </h></td>
+        <td>{{ tarea.fecha_inicio }}</td>
+    </tr>
+    <tr>
+        <td><h>Fecha de finalización </h></td>
+        <td>{{ tarea.fecha_fin }}</td>
+    </tr>
+    <tr>
+        <td><h>Prioridad </h></td>
+        <td>{{ proyecto.prioridad }}</td>
+    </tr>
+    <tr>
+        <td><h>Estado </h></td>
+        <td>{{ proyecto.estado }}</td>
+    </tr>
+    <tr>
+        <td><h>Notas adicionales </h></td>
+        <td>{{ tarea.notas_adicionales }}</td>
+    </tr>
+</table>
     {% endif %}
 
     </div>
-</body>
-</html>
+    
+    
+{% endblock %}
