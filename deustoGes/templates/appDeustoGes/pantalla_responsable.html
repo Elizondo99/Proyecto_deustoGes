@@ -4,25 +4,10 @@
     <link rel="stylesheet" href="/../static/css/style.css">
 {% endblock %}
 
-{% block nav_header %}
-    <nav class="barra-lateral">
-        <ul class="listado-barra-lateral">
-            <div>
-                <li><a href="#">Pantalla principal</a></li>
-            </div>
-            <div>
-                <li><a href="">Dudas y preguntas</a></li>
-                <li><a href="">Contacto</a></li>
-                <li><a href="{% url 'login' %}">Salir</a></li>
-            </div>
-
-        </ul>
-    </nav>
-{% endblock %}
 
 {% block main_contenido %}
     <h2>Area responsable</h2>
-<div class="contenido">
+<div>
     <h3>Hola {{ empleado.nombre }} 👋</h3>
     <p>Bienvenido al area responsable....</p>
 
