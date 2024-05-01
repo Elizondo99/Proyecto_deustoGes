@@ -8,13 +8,13 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral">
             <div>
-                <li><a href="">Pantalla principal</a></li>
+                <li><a href="#">Pantalla principal</a></li>
                 <li><a href="">Nueva solicitud de proyecto</a></li>
             </div>
             <div>
                 <li><a href="">Dudas y preguntas</a></li>
                 <li><a href="">Contacto</a></li>
-                <li><a href="">Salir</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
             </div>
 
         </ul>
@@ -34,28 +34,28 @@
         <h3>MIS PROYECTOS</h3>
         <p>Aqui tiene sus proyectos, si quieres mas informacion haga click en cualquiera de ellos y
             vera toodos los detalles</p>
-    <table class="estilos-table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Fecha de inicio</th>
-          <th>Fecha de finalización</th>
-          <th>Detalles</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for proyecto in proyectos %}
-          {% if cliente.id == proyecto.cliente_id %}
+        <table class="estilos-table">
+          <thead>
             <tr>
-              <td>{{ proyecto.nombre }}</td>
-              <td>{{ proyecto.fecha_inicio }}</td>
-              <td>{{ proyecto.fecha_fin }}</td>
-              <td><a href="{% url 'proyecto_detail_cliente' proyecto.id %}">Ver detalles</a></td>
+              <th>Nombre</th>
+              <th>Fecha de inicio</th>
+              <th>Fecha de finalización</th>
+              <th>Detalles</th>
             </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            {% for proyecto in proyectos %}
+              {% if cliente.id == proyecto.cliente_id %}
+                <tr>
+                  <td>{{ proyecto.nombre }}</td>
+                  <td>{{ proyecto.fecha_inicio }}</td>
+                  <td>{{ proyecto.fecha_fin }}</td>
+                  <td><a href="{% url 'proyecto_detail_cliente' cliente.id proyecto.id  %}">Ver detalles</a></td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
     </div>
     <div class="contenido_interno">
         <h3>SOLICITUD NUEVO PROYECTO</h3>

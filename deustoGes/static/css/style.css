@@ -61,11 +61,57 @@ h4{
     font-size: 2rem;
 }
 
+.titulo-login{
+    margin-inline: 22rem;
+}
+
+.cuadrado-login{
+    background-color: rgba(255, 149, 0, 0.49);
+    margin-inline: 20rem;
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    border-radius: 2rem;
+}
+
+
+.cuadrado-login p{
+    font-size: 1.2rem;
+}
+
+.flex-login{
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-login h3{
+    font-size: 2rem;
+}
+
+.flex-login a{
+    font-size: 1.5rem;
+    display: block;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 1rem;
+}
+
+.flex-login a:hover{
+    background-color: rgba(255, 148, 0, 0.87);
+    color: white;
+}
+
+.flex-login li{
+    background-color: rgba(216, 136, 24, 0.27);
+    width: 20rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+}
+
 
 
 .barra-lateral{
     max-width: 15rem;
-    background-color: rgba(252, 140, 24, 0.91);
+    background-color: rgba(252, 140, 24, 0.82);
     height: 100vh;
 }
 
@@ -74,14 +120,17 @@ h4{
     grid-template-rows: 80vh 20vh;
 }
 
-.listado-barra-lateral li{
-    padding-block: 1rem;
-    margin-inline: 1rem;
-}
 
 .listado-barra-lateral a{
     font-size: 1.5rem;
     color: white;
+    display: block;
+    padding: 1rem;
+}
+
+.listado-barra-lateral a:hover{
+    background-color: rgb(255, 130, 0);
+
 }
 
 .contenido{

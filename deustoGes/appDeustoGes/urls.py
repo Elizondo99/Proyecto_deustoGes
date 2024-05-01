@@ -44,7 +44,7 @@ urlpatterns = [
     # URL PARA OBTENER DETALLES
     path("/empleados/<int:id_empleado>", views.show_empleado, name='empleado_detail'),
     path("/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
-    path("/proyectos/cliente/<int:id_proyecto>", views.show_proyecto_cliente, name='proyecto_detail_cliente'),
+    path("/clientes/<int:id_cliente>/proyectos/<int:id_proyecto>", views.show_proyecto_cliente, name='proyecto_detail_cliente'),
     path("/clientes/<int:id_cliente>", views.show_cliente, name='cliente_detail'),
     path("/tareas/<int:id_tarea>", views.show_tarea, name='tarea_detail'),
 

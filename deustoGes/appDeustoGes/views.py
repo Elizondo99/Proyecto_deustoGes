@@ -94,9 +94,12 @@ def show_proyecto(request, id_proyecto):
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
     return render(request, "appDeustoGes/proyecto_detail.html", {"proyecto": proyecto})
 
-def show_proyecto_cliente(request, id_proyecto):
+
+def show_proyecto_cliente(request, id_proyecto, id_cliente):
+    cliente = get_object_or_404(Cliente, id=id_cliente)
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
-    return render(request, "appDeustoGes/proyecto_detail_cliente.html", {"proyecto": proyecto})
+    return render(request, "appDeustoGes/proyecto_detail_cliente.html", {"proyecto": proyecto,
+                                                                         'cliente': cliente})
 
 
 # Función para crear un nuevo cliente
@@ -153,7 +156,7 @@ def index_tareas(request):
 
 
 def show_tarea(request, id_tarea):
-    tarea = get_object_or_404(Proyecto, id_tarea=id_tarea)
+    tarea = get_object_or_404(Proyecto, id=id_tarea)
     return render(request, "appDeustoGes/tarea_detail.html", {"tarea": tarea})
 
 
@@ -192,6 +195,7 @@ class SolicitudCreateView(View):
             formulario.save()
             return redirect('solicitud_create')
         return render(request, 'appDeustoGes/pantalla_cliente.html', {'formulario': formulario})
+
 
 class EmpleadoDeleteView(DeleteView):
     model = Empleado

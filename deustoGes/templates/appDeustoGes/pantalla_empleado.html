@@ -3,33 +3,62 @@
     <link rel="stylesheet" href="/../static/css/normalize.css">
     <link rel="stylesheet" href="/../static/css/style.css">
 {% endblock %}
+
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="#">Pantalla principal</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+
+
 {% block main_contenido %}
   <h2>Area empleado</h2>
-  <h3>Hola {{ empleado.nombre }} 👋</h3>  
-  <p> Bienvenido/a al area empleado, aquí podrá realizar un seguimiento de todas sus tareas, ver nuevas tareas encomendadas
-      y marcar las tareas como realizadas. </p>  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Fecha de inicio</th>
-        <th>Fecha de finalización</th>
-        <th>Estado</th>
-        <th>Detalles</th>
-          
-      </tr>
-    </thead>
-    <tbody>
-    {% for tarea in tareas %}
-        {% if empleado.id == tarea.empleado_id %}
-            <tr>
-                <td>{{ tarea.nombre }}</td>
-                <td>{{ tarea.fecha_inicio }}</td>
-                <td>{{ tarea.fecha_fin }}</td>
-                <td>{{ tarea.estado }}</td>
-                <td><a href="{% url 'tarea_detail' tarea.id %}">Ver detalles</a></td>
-            </tr>
-        {% endif %}
-    {% endfor %}
-    </tbody>
-  </table>  
+<div class="contenido">
+    <div class="introduccion">
+        <h3>Hola {{ empleado.nombre }} 👋</h3>
+        <p> Bienvenido/a al area empleado, aquí podrá realizar un seguimiento de todas sus tareas, ver nuevas tareas encomendadas
+        y marcar las tareas como realizadas. </p>
+    </div>
+    <div class="contenido_interno">
+        <h3>MIS TAREAS</h3>
+        <p>Aquí podrá observar sus tareas pendientes y completadas, la fecha de inicio y fin de cada una y el estado
+        en el que se encuentra actualmente. Si quiere saber más sobre alguna de sus tareas haga click en "Ver detalles".</p>
+        <table class="estilos-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de finalización</th>
+                <th>Estado</th>
+                <th>Detalles</th>
+
+              </tr>
+            </thead>
+            <tbody>
+            {% for tarea in tareas %}
+                {% if empleado.id == tarea.empleado_id %}
+                    <tr>
+                        <td>{{ tarea.nombre }}</td>
+                        <td>{{ tarea.fecha_inicio }}</td>
+                        <td>{{ tarea.fecha_fin }}</td>
+                        <td>{{ tarea.estado }}</td>
+                        <td><a href="{% url 'tarea_detail' tarea.id %}">Ver detalles</a></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
 {% endblock %}
