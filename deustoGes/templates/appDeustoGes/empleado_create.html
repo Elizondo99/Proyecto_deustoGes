@@ -8,10 +8,10 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral">
             <div>
-                <li><a href="{% url 'pantalla_responsable' empleado.id %}">Pantalla principal</a></li>
-                <li><a href="{% url 'empleado_create' empleado.id %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyecto_create' empleado.id %}">Gestionar solicitudes de proyectos</a></li>
-                <li><a href="{% url 'cliente_create' empleado.id %}">Añadir un nuevo cliente</a></li>
+                <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
+                <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
                 <li><a href="">Dudas y preguntas</a></li>
@@ -30,7 +30,7 @@
     <div class="contenido_interno">
         <p>Introduzca los datos para añadir un nuevo empleado:</p>
         <div class="formulario">
-            <form action="{% url 'empleado_create' empleado.id %}" method="post">
+            <form action="{% url 'empleado_create' responsable.id %}" method="post">
         {% csrf_token %}
         {{ formulario.errors }}
         {{ formulario.as_p }}
