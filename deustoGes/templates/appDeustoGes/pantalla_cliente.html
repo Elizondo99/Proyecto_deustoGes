@@ -28,7 +28,6 @@
         <h3>Hola {{ cliente.nombre }}👋</h3>
         <p> Bienvenido al area cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de
         cada proyecto y crear nueva solicitudes para llevar acabo un nuevo proyecto. </p>
-        <a href="{% url 'cliente_update' cliente.id %}">Actualizar</a>
     </div>
     <div class="contenido_interno">
         <h3>MIS PROYECTOS</h3>
@@ -66,8 +65,34 @@
             {{ formulario.errors }}
             {{ formulario.as_p }}
         <input type="submit" value="Nueva solicitud"/>
-    </form>
+        </form>
 
+    </div>
+    <div class="contenido_interno">
+        <h3>MIS DATOS</h3>
+        <p>Aqui puede ver cuales son los datos registrados por su empresa, en caso de haver cambabiado alguno de ellos 
+            no dudes a actualizarlo!</p>
+        <table class="estilos-table">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Direccion</th>
+            </tr>
+            </thead>
+            <tbody>
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.telefono }}</td>
+                  <td>{{ cliente.email }}</td>
+                  <td>{{ cliente.direccion }}</td>
+            </tbody>
+            
+        </table>
+        <button class="añadir-button">
+            <a href="{% url 'cliente_update' cliente.id %}">Actualizar</a>
+        </button>
+    
     </div>
 </div>
 

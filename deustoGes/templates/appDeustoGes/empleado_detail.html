@@ -24,16 +24,41 @@
 {% endblock %}
 {% block main_contenido %}
     <h2>Area responsable</h2>
-
-    {% if  empleado %}
-        <ul>
-            <li><h>Nombre: </h>{{ empleado.nombre }}</li>
-            <li><h>Apellidos: </h>{{ empleado.apellidos }}</li>
-            <li><h>DNI: </h>{{ empleado.dni }}</li>
-            <li><h>Telefono: </h>{{ empleado.telefono }}</li>
-            <li><h>email: </h>{{ empleado.email}}</li>
-            <li><h>¿Responsable?: </h>{{ empleado.responsable }}</li>
-        </ul>
+    <div class="contenido">
+        {% if  empleado %}
+        <table class="estilos-table">
+    <tr>
+        <td>Nombre:</td>
+        <td>{{ empleado.nombre }}</td>
+    </tr>
+    <tr>
+        <td>Apellidos:</td>
+        <td>{{ empleado.apellidos }}</td>
+    </tr>
+    <tr>
+        <td>DNI:</td>
+        <td>{{ empleado.dni }}</td>
+    </tr>
+    <tr>
+        <td>Telefono:</td>
+        <td>{{ empleado.telefono }}</td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>{{ empleado.email }}</td>
+    </tr>
+    <tr>
+        <td>Responsable:</td>
+        <td>{% if empleado.responsable == 1 %}
+                <p>Si</p>
+            {% else %}
+                <p>No</p>
+            {% endif %}
+        </td>
+    </tr>
+</table>
     {% endif %}
+    </div>
+   
 
 {% endblock %}

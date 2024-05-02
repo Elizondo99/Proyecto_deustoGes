@@ -44,14 +44,14 @@ urlpatterns = [
 
     # URL PARA OBTENER DETALLES
     path("/responsables/<int:id_empleado_responsable>/empleados/<int:id_empleado>/detalle", views.show_empleado, name='empleado_detail'),
-    path("/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
+    path("/responsables/<int:id_empleado_responsable>/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
     path("/clientes/<int:id_cliente>/proyectos/<int:id_proyecto>", views.show_proyecto_cliente, name='proyecto_detail_cliente'),
     path("/clientes/<int:id_cliente>", views.show_cliente, name='cliente_detail'),
     path("/empleados/<int:id_empleado>/tareas/<int:id_tarea>", views.show_tarea, name='tarea_detail'),
 
 
     # URL DE FORMULARIOS PARA CREAR
-    path('/responsables/<int:id_empleado>/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
+    path('/responsables/<int:id_empleado_responsable>/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
     path('/responsables/<int:id_empleado>/proyectos/create', ProyectoCreateView.as_view(), name="proyecto_create"),
     path('/responsables/<int:id_empleado>/clientes/create', ClienteCreateView.as_view(), name="cliente_create"),
     path('/clientes/solicitud', SolicitudCreateView.as_view(), name="solicitud_create"),

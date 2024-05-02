@@ -1,30 +1,66 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<div id="content">
-    <h1>Gestor de proyectos</h1>
-    <h2>Detalle del proyecto</h2>
-    <p>Aquí esta la información sobre su proyecto:</p>
-    {% if  proyecto %}
-        <ul>
-            <li><h>Nombre: </h>{{ proyecto.nombre }}</li>
-            <li><h>Descripción: </h>{{ proyecto.descripcion }}</li>
-            <li><h>Fecha de inicio: </h>{{ proyecto.fecha_inicio }}</li>
-            <li><h>Fecha de finalización: </h>{{ proyecto.fecha_fin }}</li>
-            <li><h>Presupuesto: </h>{{ proyecto.presupuesto}}</li>
-            <li><h>Tareas: </h>{{ proyecto.tareas }}</li>
-            <li><h>El responsable del proyecto es: </h>{{ proyecto.responsable }}</li>
-            <li><h>El cliente es: </h>{{ proyecto.cliente }}</li>
-        </ul>
-    {% endif %}
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
 
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block main_contenido %}
+    <h2>Area responsable</h2>
+    <div class="contenido">
+        <p>Aquí esta la información sobre su proyecto:</p>
+    {% if  proyecto %}
+        <table class="estilos-table">
+    <tr>
+        <td>Nombre:</td>
+        <td>{{ proyecto.nombre }}</td>
+    </tr>
+    <tr>
+        <td>Descripción:</td>
+        <td>{{ proyecto.descripcion }}</td>
+    </tr>
+    <tr>
+        <td>Fecha de inicio:</td>
+        <td>{{ proyecto.fecha_inicio }}</td>
+    </tr>
+    <tr>
+        <td>Fecha de finalización:</td>
+        <td>{{ proyecto.fecha_fin }}</td>
+    </tr>
+    <tr>
+        <td>Presupuesto:</td>
+        <td>{{ proyecto.presupuesto }}</td>
+    </tr>
+    <tr>
+        <td><b>Tareas:</b></td>
+        <td>{{ proyecto.tareas }}</td>
+    </tr>
+    <tr>
+        <td>El responsable del proyecto es:</td>
+        <td>{{ proyecto.responsable }}</td>
+    </tr>
+    <tr>
+        <td>El cliente es:</td>
+        <td>{{ proyecto.cliente }}</td>
+    </tr>
+</table>
+    {% endif %}
     </div>
-</body>
-</html>
+    
+    
+{% endblock %}

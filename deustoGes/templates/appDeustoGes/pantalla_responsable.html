@@ -42,6 +42,7 @@
                         <th>Email</th>
                         <th>Teléfono</th>
                         <th>Detalles</th>
+                        <th>Actualizar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,15 +87,12 @@
                                 <td>{{ proyecto.fecha_inicio }}</td>
                                 <td>{{ proyecto.fecha_fin }}</td>
                                 <td>{{ proyecto.presupuesto }}</td>
-                                <td><a href="{% url 'proyecto_detail' proyecto.id %}">Ver detalles</a></td>
+                                <td><a href="{% url 'proyecto_detail' responsable.id proyecto.id %}">Ver detalles</a></td>
                             </tr>
                         {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
-            <button class="añadir-button">
-            <a href="{% url 'proyecto_create' responsable.id %}">Solicitudes de proyectos pendientes de crear</a>
-            </button>
         </div>
 
 
@@ -127,9 +125,32 @@
                 <a href="{% url 'cliente_create' responsable.id %}" class="boton-añadir">Añadir un nuevo cliente</a>
             </button>
         </div>
+        <div class="contenido_interno">
+            <h3>Solicitudes</h3>
+            <table class="estilos-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Cliente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for solicitud in solicitudes %}
+                        <tr>
+                            <td>{{ solicitud.titulo }}</td>
+                            <td>{{ solicitud.descripcion }}</td>
+                            <td>{{ solicitud.cliente }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button class="añadir-button">
+                <a href="{% url 'proyecto_create' responsable.id %}">Crear proyecto</a>
+            </button>
+        </div>
     </div>
-
-
+    </div>
 </div>
 
 

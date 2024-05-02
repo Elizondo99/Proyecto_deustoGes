@@ -29,9 +29,10 @@ def pantalla_responsable(request, id_empleado_responsable):
     empleados = Empleado.objects.all()
     proyectos = Proyecto.objects.all()
     clientes = Cliente.objects.all()
+    solicitudes = Solicitud.objects.all()
     return render(request, 'appDeustoGes/pantalla_responsable.html', {'empleados': empleados,
                                                                       'responsable': responsable, 'proyectos': proyectos,
-                                                                      'clientes': clientes})
+                                                                      'clientes': clientes, 'solicitudes':solicitudes})
 
 
 #------------------------------------------------------INDEX---------------------------------------------------
@@ -62,6 +63,12 @@ def index_tareas(request):
     tareas = Tarea.objects.all()
     return HttpResponse('tareas_index.html')
 
+def index_solicitud(request, id_responsable, id_solicitud):
+    responsable = get_object_or_404(Empleado, id=id_responsable)
+    solicitud = get_object_or_404(Empleado, id=id_solicitud)
+    context = {'responsable': responsable, 'solicitud': solicitud}
+    return render(request, "appDeustoGes/solicitud_index.html", context)
+
 
 #------------------------------------------------------SHOW---------------------------------------------------
 
@@ -71,9 +78,11 @@ def show_empleado(request, id_empleado_responsable, id_empleado):
     return render(request, "appDeustoGes/empleado_detail.html", {'responsable': responsable,
                                                                  "empleado": empleado})
 
-def show_proyecto(request, id_proyecto):
+def show_proyecto(request, id_responsable, id_proyecto):
+    responsable = get_object_or_404(Empleado, id=id_responsable)
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
-    return render(request, "appDeustoGes/proyecto_detail.html", {"proyecto": proyecto})
+    return render(request, "appDeustoGes/proyecto_detail.html", {"responsable": responsable,
+                                                                 "proyecto": proyecto})
 
 
 def show_proyecto_cliente(request, id_proyecto, id_cliente):
