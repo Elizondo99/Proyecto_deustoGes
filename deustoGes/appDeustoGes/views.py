@@ -30,21 +30,22 @@ def pantalla_empleado(request, id_empleado):
                                                                    'empleado': empleado})
 
 
-def pantalla_responsable(request, id_empleado):
-    empleado = get_object_or_404(Empleado, id=id_empleado)
+def pantalla_responsable(request, id_empleado_responsable):
+    responsable = get_object_or_404(Empleado, id=id_empleado_responsable)
     empleados = Empleado.objects.all()
     proyectos = Proyecto.objects.all()
     clientes = Cliente.objects.all()
     return render(request, 'appDeustoGes/pantalla_responsable.html', {'empleados': empleados,
-                                                                      'empleado': empleado, 'proyectos': proyectos,
+                                                                      'responsable': responsable, 'proyectos': proyectos,
                                                                       'clientes': clientes})
 
 
 # Función para crear un nuevo empleado.
 class EmpleadoCreateView(View):
-    def get(self, request):
+    def get(self, request, id_empleado):
         formulario = EmpleadoForm()
-        context = {'formulario': formulario}
+        empleado = get_object_or_404(Empleado, id=id_empleado)
+        context = {'formulario': formulario, 'empleado': empleado}
         return render(request, 'appDeustoGes/empleado_create.html', context)
 
     def post(self, request):
@@ -62,17 +63,20 @@ def index_empleados(request):
 
 
 # Función para obtener la información de un empleado
-def show_empleado(request, id_empleado):
+def show_empleado(request, id_empleado_responsable, id_empleado):
+    responsable = get_object_or_404(Empleado,id=id_empleado_responsable)
     empleado = get_object_or_404(Empleado, id=id_empleado)
-    return render(request, "appDeustoGes/empleado_detail.html", {"empleado": empleado})
+    return render(request, "appDeustoGes/empleado_detail.html", {'responsable': responsable,
+                                                                 "empleado": empleado})
 
 
 # Función para crear un nuevo proyecto
 class ProyectoCreateView(View):
-    def get(self, request):
+    def get(self, request, id_empleado):
         formulario = ProyectoForm()
+        empleado = get_object_or_404(Empleado, id=id_empleado)
         solicitudes = Solicitud.objects.all()
-        context = {'formulario': formulario, 'solicitudes': solicitudes}
+        context = {'formulario': formulario,'empleado': empleado, 'solicitudes': solicitudes}
         return render(request, 'appDeustoGes/proyecto_create.html', context)
 
     def post(self, request):
@@ -104,9 +108,10 @@ def show_proyecto_cliente(request, id_proyecto, id_cliente):
 
 # Función para crear un nuevo cliente
 class ClienteCreateView(View):
-    def get(self, request):
+    def get(self, request, id_empleado):
         formulario = ClienteForm()
-        context = {'formulario': formulario}
+        empleado = get_object_or_404(Empleado, id=id_empleado)
+        context = {'formulario': formulario, 'empleado': empleado}
         return render(request, 'appDeustoGes/cliente_create.html', context)
 
     def post(self, request):
@@ -155,9 +160,11 @@ def index_tareas(request):
     return HttpResponse('tareas_index.html')
 
 
-def show_tarea(request, id_tarea):
+def show_tarea(request, id_tarea, id_empleado):
     tarea = get_object_or_404(Tarea, id=id_tarea)
-    return render(request, "appDeustoGes/tarea_detail.html", {"tarea": tarea})
+    empleado = get_object_or_404(Empleado, id=id_empleado)
+    context = {'tarea': tarea, 'empleado': empleado}
+    return render(request, "appDeustoGes/tarea_detail.html", context)
 
 
 class ClienteUpdateView(UpdateView):

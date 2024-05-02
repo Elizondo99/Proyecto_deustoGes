@@ -8,7 +8,10 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral">
             <div>
-                <li><a href="{% url 'pantalla_responsable' empleado.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'empleado_create' empleado.id %}">Crear nuevo empleado</a></li>
+                <li><a href="{% url 'proyecto_create' empleado.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'cliente_create' empleado.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
                 <li><a href="">Dudas y preguntas</a></li>

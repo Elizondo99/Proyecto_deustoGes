@@ -7,10 +7,10 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral">
             <div>
-                <li><a href="#">Pantalla principal</a></li>
-                <li><a href="{% url 'empleado_create' %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyecto_create' %}">Gestionar solicitudes de proyectos</a></li>
-                <li><a href="{% url 'cliente_create' %}">Añadir un nuevo cliente</a></li>
+                <li><a href="">Pantalla principal</a></li>
+                <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
+                <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
                 <li><a href="">Dudas y preguntas</a></li>
@@ -25,8 +25,11 @@
 {% block main_contenido %}
     <h2>Area responsable</h2>
 <div class="contenido">
-    <h3>Hola {{ empleado.nombre }} 👋</h3>
+    <div class="introduccion">
+        <h3>Hola {{ responsable.nombre }} 👋</h3>
     <p>Bienvenido al area responsable....</p>
+    </div>
+
     <div class="responsable-overflow">
         <div class="contenido_interno">
             <h3>Empleados</h3>
@@ -49,7 +52,7 @@
                                 <td>{{ empleado.apellidos }}</td>
                                 <td>{{ empleado.email }}</td>
                                 <td>{{ empleado.telefono }}</td>
-                                <td><a href="{% url 'empleado_detail' empleado.id %}">Ver detalles</a></td>
+                                <td><a href="{% url 'empleado_detail' responsable.id empleado.id %}">Ver detalles</a></td>
                             </tr>
                         {% endif %}
                     {% endfor %}
@@ -57,22 +60,39 @@
             </table>
 
             <button class="añadir-button">
-                <a href="{% url 'empleado_create' %}">Crear un nuevo empleado</a>
+                <a href="{% url 'empleado_create' responsable.id %}">Crear un nuevo empleado</a>
             </button>
         </div>
 
 
         <div class="contenido_interno">
             <h3>Mis proyectos</h3>
-            <ul>
-                {% for proyecto in proyectos %}
-                    {% if empleado.id == proyecto.responsable_id %}
-                        <li><a href="{% url 'proyecto_detail' proyecto.id %}">{{proyecto.nombre}}</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+            <table class="estilos-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha_inicio</th>
+                        <th>Fecha_fin</th>
+                        <th>Presupuesto</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for proyecto in proyectos %}
+                        {% if responsable.id == proyecto.responsable_id %}
+                            <tr>
+                                <td>{{ proyecto.nombre }}</td>
+                                <td>{{ proyecto.fecha_inicio }}</td>
+                                <td>{{ proyecto.fecha_fin }}</td>
+                                <td>{{ proyecto.presupuesto }}</td>
+                                <td><a href="{% url 'proyecto_detail' proyecto.id %}">Ver detalles</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
             <button class="añadir-button">
-            <a href="{% url 'proyecto_create' %}">Solicitudes de proyectos pendientes de crear</a>
+            <a href="{% url 'proyecto_create' responsable.id %}">Solicitudes de proyectos pendientes de crear</a>
             </button>
         </div>
 
@@ -103,7 +123,7 @@
                 </tbody>
             </table>
             <button class="añadir-button">
-                <a href="{% url 'cliente_create' %}" class="boton-añadir">Añadir un nuevo cliente</a>
+                <a href="{% url 'cliente_create' responsable.id %}" class="boton-añadir">Añadir un nuevo cliente</a>
             </button>
         </div>
     </div>

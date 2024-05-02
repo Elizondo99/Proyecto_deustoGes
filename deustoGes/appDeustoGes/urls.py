@@ -33,7 +33,7 @@ urlpatterns = [
     # URL DE INICIO DE CADA ROL
     path("/clientes/<int:id_cliente>", views.pantalla_cliente, name='pantalla_cliente'),
     path("/empleados/<int:id_empleado>", views.pantalla_empleado, name='pantalla_empleado'),
-    path("/responsables/<int:id_empleado>", views.pantalla_responsable, name='pantalla_responsable'),
+    path("/responsables/<int:id_empleado_responsable>", views.pantalla_responsable, name='pantalla_responsable'),
 
     # URL PARA LISTAR
     path("/empleados", views.index_empleados, name='empleados_index'),
@@ -43,17 +43,17 @@ urlpatterns = [
     # path("/clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente'),
 
     # URL PARA OBTENER DETALLES
-    path("/empleados/<int:id_empleado>/detalle", views.show_empleado, name='empleado_detail'),
+    path("/responsables/<int:id_empleado_responsable>/empleados/<int:id_empleado>/detalle", views.show_empleado, name='empleado_detail'),
     path("/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
     path("/clientes/<int:id_cliente>/proyectos/<int:id_proyecto>", views.show_proyecto_cliente, name='proyecto_detail_cliente'),
     path("/clientes/<int:id_cliente>", views.show_cliente, name='cliente_detail'),
-    path("/tareas/<int:id_tarea>", views.show_tarea, name='tarea_detail'),
+    path("/empleados/<int:id_empleado>/tareas/<int:id_tarea>", views.show_tarea, name='tarea_detail'),
 
 
     # URL DE FORMULARIOS PARA CREAR
-    path('/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
-    path('/proyectos/create', ProyectoCreateView.as_view(), name="proyecto_create"),
-    path('/clientes/create', ClienteCreateView.as_view(), name="cliente_create"),
+    path('/responsables/<int:id_empleado>/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
+    path('/responsables/<int:id_empleado>/proyectos/create', ProyectoCreateView.as_view(), name="proyecto_create"),
+    path('/responsables/<int:id_empleado>/clientes/create', ClienteCreateView.as_view(), name="cliente_create"),
     path('/clientes/solicitud', SolicitudCreateView.as_view(), name="solicitud_create"),
     # path("/empleados/new", views.new_empleado, name='empleados_new'),
     #path("/proyectos/new", views.new_proyecto, name='proyectos_new'),
@@ -62,7 +62,7 @@ urlpatterns = [
     # URL DE UPDATE
     path('/clientes/update/<int:pk>', ClienteUpdateView.as_view(), name="cliente_update"),
 
-    # URL DE UPDATE
+    # URL DE DELETE
     path('/empleados/delete/<int:pk>', EmpleadoDeleteView.as_view(), name='empleado_delete'),
 
 ]

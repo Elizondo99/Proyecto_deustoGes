@@ -1,12 +1,41 @@
 {% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="{% url 'pantalla_responsable' empleado.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'empleado_create' empleado.id %}">Crear nuevo empleado</a></li>
+                <li><a href="{% url 'proyecto_create' empleado.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'cliente_create' empleado.id %}">Añadir un nuevo cliente</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
+            </div>
 
+        </ul>
+    </nav>
+{% endblock %}
 {% block main_contenido %}
-    <h2>Añadir nuevo cliente</h2>
-    <form action="{% url 'cliente_create' %}" method="post">
+    <h2>Area responsable</h2>
+<div class="contenido">
+    <h3 class="introduccion">AÑADIR NUEVO CLIENTE</h3>
+    <div class="contenido_interno">
+        <p>Introduzca los datos para añadir un nuevo nuevo cliente:</p>
+    <form action="{% url 'cliente_create' empleado.id %}" method="post">
         {% csrf_token %}
         {{ formulario.errors }}
         {{ formulario.as_p }}
-        <input type="submit" value="Nuevo cliente"/>
+        <input type="submit" class="añadir-button" value="Nuevo cliente"/>
     </form>
+    </div>
+
+</div>
+
 
 {% endblock %}
