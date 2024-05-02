@@ -11,11 +11,14 @@
     {% endfor %}
 
     <h2>Crear un nuevo proyecto</h2>
-    <form action="{% url 'proyecto_create' %}" method="post">
+    <div class="formulario">
+        <form action="{% url 'proyecto_create' %}" method="post">
         {% csrf_token %}
         {{ formulario.errors }}
         {{ formulario.as_p }}
         <input type="submit" value="Nuevo proyecto"/>
     </form>
+    </div>
+
 
 {% endblock %}

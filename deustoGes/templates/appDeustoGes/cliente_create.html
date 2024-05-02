@@ -27,12 +27,15 @@
     <h3 class="introduccion">AÑADIR NUEVO CLIENTE</h3>
     <div class="contenido_interno">
         <p>Introduzca los datos para añadir un nuevo nuevo cliente:</p>
-    <form action="{% url 'cliente_create' empleado.id %}" method="post">
+        <div class="formulario">
+            <form action="{% url 'cliente_create' empleado.id %}" method="post">
         {% csrf_token %}
         {{ formulario.errors }}
         {{ formulario.as_p }}
         <input type="submit" class="añadir-button" value="Nuevo cliente"/>
     </form>
+        </div>
+
     </div>
 
 </div>

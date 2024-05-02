@@ -206,4 +206,14 @@ h4{
 }
 
 .formulario{
+    margin-left: 5rem;
+    font-size: 1.2rem;
+}
+
+.formulario label{
+    display: block;
+}
+
+.formulario input{
+    width: 20rem;
 }
