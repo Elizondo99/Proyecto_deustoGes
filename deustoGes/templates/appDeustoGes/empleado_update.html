@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Editar empleado</h2>
+    <form action="{% url 'empleado_update'  responsable.id empleado.id %}" method="post">
+        {% csrf_token %}
+        {{ formulario.errors }}
+        {{ formulario.as_ul }}
+        <input type="submit" value="Editar empleado"/>
+    </form>
+
+</body>
+</html>

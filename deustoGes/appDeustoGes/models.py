@@ -30,8 +30,8 @@ class Empleado(models.Model):
     telefono = models.PositiveIntegerField()
     responsable = models.BooleanField(default=False)
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return str(self.nombre) + " " + str(self.apellidos)
@@ -54,8 +54,8 @@ class Tarea(models.Model):
     #proyecto = models.ManyToManyField(Proyecto, on_delete=models.CASCADE)
     empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True,blank=True, null=True)
 
     def __str__(self):
         return str(self.nombre) + " (prioridad: " + str(self.prioridad) + ")"
@@ -81,8 +81,8 @@ class Proyecto(models.Model):
     responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True,blank=True, null=True)
 
     def __str__(self):
         return str(self.nombre) + " (Responsable: " + str(self.responsable) + ")"
@@ -98,8 +98,8 @@ class Solicitud(models.Model):
 
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True,blank=True, null=True)
 
     def __str__(self):
         return str(self.titulo)

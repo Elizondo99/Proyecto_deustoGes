@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from .views import EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView, ClienteCreateView, SolicitudCreateView, \
-    EmpleadoDeleteView
+    EmpleadoDeleteView, EmpleadoUpdateView
 
 
 class DepartamentoDeleteView:
@@ -61,6 +61,7 @@ urlpatterns = [
 
     # URL DE UPDATE
     path('/clientes/update/<int:pk>', ClienteUpdateView.as_view(), name="cliente_update"),
+    path('/empleados/<int:id_empleado>/update/<int:pk>', EmpleadoUpdateView.as_view(), name="empleado_update"),
 
     # URL DE DELETE
     path('/empleados/delete/<int:pk>', EmpleadoDeleteView.as_view(), name='empleado_delete'),
