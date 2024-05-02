@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block main_contenido %}
+    
+    <hi>Gestor de clientes</hi>
+    <h2>Listado de clientes</h2>
+
+        {% if clientes %}
+            <ul>
+                {% for cliente in clientes %}
+                    <li><a href="{% url 'cliente_detail' cliente.id %}">{{ cliente.nombre }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else  %}
+            <p>no  hay proyectos metidos en la base de datos</p>
+        {% endif %}
+    
+    
+    
+    
+{% endblock %}

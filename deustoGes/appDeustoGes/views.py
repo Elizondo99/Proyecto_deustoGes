@@ -124,8 +124,8 @@ class ClienteCreateView(View):
 
 # Función para obtener una lista de clientes
 def index_clientes(request):
-    cliente = Cliente.objects.all()
-    return HttpResponse("clientes_index.html")
+    clientes = Cliente.objects.all()
+    return render(request, 'appDeustoGes/clientes_index.html', {'clientes': clientes})
 
 
 # Función para mostrar los detailes de un cliente
@@ -184,7 +184,7 @@ class ClienteUpdateView(UpdateView):
         formulario = ClienteForm(request.POST, instance=cliente)
         if formulario.is_valid():
             formulario.save()
-            return redirect('clientes_index', cliente.id)
+            return redirect('clientes_index')
         else:
             formulario = ClienteForm(instance=cliente)
         return render(request, 'appDeustoGes/cliente_update.html', {'formulario': formulario})
