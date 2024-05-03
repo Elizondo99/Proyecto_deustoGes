@@ -9,6 +9,9 @@
         <ul class="listado-barra-lateral">
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
+                <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
                 <li><a href="">Dudas y preguntas</a></li>
@@ -24,42 +27,42 @@
     <h2>Area responsable</h2>
     <div class="contenido">
         <p>Aquí esta la información sobre su proyecto:</p>
-    {% if  proyecto %}
-        <table class="estilos-table">
-    <tr>
-        <td>Nombre:</td>
-        <td>{{ proyecto.nombre }}</td>
-    </tr>
-    <tr>
-        <td>Descripción:</td>
-        <td>{{ proyecto.descripcion }}</td>
-    </tr>
-    <tr>
-        <td>Fecha de inicio:</td>
-        <td>{{ proyecto.fecha_inicio }}</td>
-    </tr>
-    <tr>
-        <td>Fecha de finalización:</td>
-        <td>{{ proyecto.fecha_fin }}</td>
-    </tr>
-    <tr>
-        <td>Presupuesto:</td>
-        <td>{{ proyecto.presupuesto }}</td>
-    </tr>
-    <tr>
-        <td><b>Tareas:</b></td>
-        <td>{{ proyecto.tareas }}</td>
-    </tr>
-    <tr>
-        <td>El responsable del proyecto es:</td>
-        <td>{{ proyecto.responsable }}</td>
-    </tr>
-    <tr>
-        <td>El cliente es:</td>
-        <td>{{ proyecto.cliente }}</td>
-    </tr>
-</table>
-    {% endif %}
+        {% if  proyecto %}
+            <table class="estilos-table">
+                <tr>
+                    <td>Nombre:</td>
+                    <td>{{ proyecto.nombre }}</td>
+                </tr>
+                <tr>
+                    <td>Descripción:</td>
+                    <td>{{ proyecto.descripcion }}</td>
+                </tr>
+                <tr>
+                    <td>Fecha de inicio:</td>
+                    <td>{{ proyecto.fecha_inicio }}</td>
+                </tr>
+                <tr>
+                    <td>Fecha de finalización:</td>
+                    <td>{{ proyecto.fecha_fin }}</td>
+                </tr>
+                <tr>
+                    <td>Presupuesto:</td>
+                    <td>{{ proyecto.presupuesto }}</td>
+                </tr>
+                <tr>
+                    <td><b>Tareas:</b></td>
+                    <td>{{ proyecto.tareas }}</td>
+                </tr>
+                <tr>
+                    <td>El responsable del proyecto es:</td>
+                    <td>{{ proyecto.responsable }}</td>
+                </tr>
+                <tr>
+                    <td>El cliente es:</td>
+                    <td>{{ proyecto.cliente }}</td>
+                </tr>
+            </table>
+        {% endif %}
     </div>
     
     

@@ -7,7 +7,7 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral">
             <div>
-                <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
+                <li><a href="">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
                 <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
@@ -21,24 +21,13 @@
         </ul>
     </nav>
 {% endblock %}
+
 {% block main_contenido %}
     <h2>Area responsable</h2>
 <div class="contenido">
-    <h3 class="introduccion">AÑADIR NUEVO CLIENTE</h3>
-    <div class="contenido_interno">
-        <p>Introduzca los datos para añadir un nuevo nuevo cliente:</p>
-        <div class="formulario">
-            <form action="{% url 'cliente_create' responsable.id %}" method="post">
-        {% csrf_token %}
-        {{ formulario.errors }}
-        {{ formulario.as_p }}
-        <input type="submit" class="añadir-button" value="Nuevo cliente"/>
-    </form>
-        </div>
-
+    <div class="introduccion">
+        <h3>¡BORRADO CON ÉXITO!</h3>
+        <a href="{% url 'pantalla_responsable' responsable.id %}" class="añadir-button">Volver</a>
     </div>
-
 </div>
-
-
 {% endblock %}

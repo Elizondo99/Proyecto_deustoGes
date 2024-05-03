@@ -148,7 +148,6 @@ h4{
     overflow-x: hidden;
 }
 
-
 .introduccion{
     margin-inline: 2rem;
 }
@@ -204,6 +203,8 @@ h4{
 .añadir-button:hover {
     background-color: #FFD700;
 }
+
+
 
 .formulario{
     margin-left: 5rem;

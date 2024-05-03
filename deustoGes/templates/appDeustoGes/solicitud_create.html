@@ -9,7 +9,7 @@
         <ul class="listado-barra-lateral">
             <div>
                 <li><a href="{% url 'pantalla_cliente' cliente.id %}">Pantalla principal</a></li>
-                <li><a href="{% url 'solicitud_create' cliente.id %}">Nueva solicitud de proyecto</a></li>
+                <li><a href="">Nueva solicitud de proyecto</a></li>
                 <li><a href="{% url 'cliente_update' cliente.id %}">Actualizar mis datos</a></li>
             </div>
             <div>
@@ -23,21 +23,23 @@
 {% endblock %}
 
 {% block main_contenido %}
-<h2>Area cliente</h2>
+    <h2>Area cliente</h2>
 <div class="contenido">
     <div class="introduccion">
-        <h2>Editar mis datos</h2>
-        <p>En este apartado es posible actualizar vuestros datos. Para ello actualiza el siguiente formulario y pulse
-        en "Actualizar"</p>
-        <div class="contenido_interno">
-            <form class="formulario" action="{% url 'cliente_update' cliente.id%}" method="post">
-                {% csrf_token %}
-                {{ formulario.errors }}
-                {{ formulario.as_ul }}
-                <input type="submit" class="añadir-button" value="Actualizar"/>
-            </form>
-        </div>
-
+        <h3>Hola {{ cliente.nombre }}👋</h3>
+        <p>Rellene el siguiente formulario para crear una solicitud para un nuevo proyecto:</p>
+    </div>
+    <div class="contenido_interno">
+        <h3>FORMULARIO SOLICITUD NUEVO PROYECTO:</h3>
+        <form class="formulario" action="{% url 'solicitud_create' cliente.id %}" method="post">
+            {% csrf_token %}
+            {{ formulario.errors }}
+            {{ formulario.as_p }}
+        <input type="submit" class="añadir-button" value="Enviar solicitud"/>
+        </form>
     </div>
 </div>
+
+
+
 {% endblock %}

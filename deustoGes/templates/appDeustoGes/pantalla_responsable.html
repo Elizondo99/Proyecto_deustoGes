@@ -55,6 +55,8 @@
                                 <td>{{ empleado.telefono }}</td>
                                 <td><a href="{% url 'empleado_detail' responsable.id empleado.id %}">Ver detalles</a></td>
                                 <td><a href="{% url 'empleado_update' responsable.id empleado.id %}">Actualizar empleado</a></td>
+                                <td><a href="{% url 'delete_empleado' responsable.id empleado.id %}"
+                                       class="añadir-button">Borrar empleado</a></td>
                             </tr>
                         {% endif %}
                     {% endfor %}
