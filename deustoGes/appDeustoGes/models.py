@@ -3,7 +3,7 @@ from django.db import models
 
 
 # Create your models here.
-
+# Modelo de la entidad Cliente.
 class Cliente(models.Model):
     nombre = models.CharField(max_length=15)
     telefono = models.IntegerField()
@@ -21,7 +21,7 @@ class Cliente(models.Model):
         verbose_name_plural = "clientes"
 
 
-
+# Modelo de la entidad Empleado.
 class Empleado(models.Model):
     dni = models.CharField(max_length=9)
     nombre = models.CharField(max_length=15)
@@ -41,6 +41,7 @@ class Empleado(models.Model):
         verbose_name_plural = "empleados"
 
 
+# Modelo de la entidad Tarea.
 class Tarea(models.Model):
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField()
@@ -64,6 +65,7 @@ class Tarea(models.Model):
         verbose_name_plural = 'tareas'
 
 
+# Modelo de la entidad Proyecto.
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=15)
     descripcion = models.TextField()
@@ -87,6 +89,7 @@ class Proyecto(models.Model):
         verbose_name_plural = "proyectos"
 
 
+# Modelo de la entidad Solicitud.
 class Solicitud(models.Model):
     titulo = models.CharField(max_length=31)
     descripcion = models.TextField()

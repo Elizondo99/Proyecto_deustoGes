@@ -9,7 +9,7 @@ from sqlparse.filters import output
 from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm, TareaUpdateForm
 from .models import Empleado, Proyecto, Cliente, Tarea, Solicitud
 
-
+# Función para obtener la pantalla principal del rol cliente.
 def pantalla_cliente(request, id_cliente):
     cliente = get_object_or_404(Cliente, id=id_cliente)
     proyectos = Proyecto.objects.all()
@@ -17,13 +17,14 @@ def pantalla_cliente(request, id_cliente):
                                                                   'cliente': cliente}, )
 
 
+# Función para obtener la pantalla principal del rol empleado.
 def pantalla_empleado(request, id_empleado):
     empleado = get_object_or_404(Empleado, id=id_empleado)
     tareas = Tarea.objects.all()
     return render(request, 'appDeustoGes/pantalla_empleado.html', {'tareas': tareas,
                                                                    'empleado': empleado})
 
-
+# Función para obtener la pantalla principal del rol responsable.
 def pantalla_responsable(request, id_responsable):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     empleados = Empleado.objects.all()
@@ -37,17 +38,14 @@ def pantalla_responsable(request, id_responsable):
 
 
 # ------------------------------------------------------INDEX---------------------------------------------------
+# Función para obtener la pantalla login.
 def index(request):
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
     return render(request, 'appDeustoGes/login.html', {'clientes': clientes, 'empleados': empleados})
 
 
-def index_empleados(request):
-    empleados = Empleado.objects.all()
-    return render(request, "appDeustoGes/empleados_index.html", {"empleados": empleados})
-
-
+# Función para obtener el listado de proyectos.
 def index_proyectos(request, id_responsable):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     proyectos = Proyecto.objects.all()
@@ -55,21 +53,13 @@ def index_proyectos(request, id_responsable):
                                                                  "responsable": responsable})
 
 
-def index_clientes(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'appDeustoGes/clientes_index.html', {'clientes': clientes})
-
-
+# Función para obtener los proyectos del cliente.
 def index_proyectos_del_cliente(request, cliente_id):
     proyectos = Proyecto.objects.get(cliente=cliente_id)
     return render(request, 'appDeustoGes/proyectos_del_cliente.html', {"proyectos": proyectos})
 
 
-def index_tareas(request):
-    tareas = Tarea.objects.all()
-    return HttpResponse('tareas_index.html')
-
-
+# Función para obtener las solicitudes generadas por el cliente.
 def index_solicitud(request, id_responsable, id_solicitud):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     solicitud = get_object_or_404(Empleado, id=id_solicitud)
@@ -78,7 +68,7 @@ def index_solicitud(request, id_responsable, id_solicitud):
 
 
 # ------------------------------------------------------SHOW---------------------------------------------------
-
+# Función para obtener los detalles de un empleado.
 def show_empleado(request, id_responsable, id_empleado):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     empleado = get_object_or_404(Empleado, id=id_empleado)
@@ -86,6 +76,7 @@ def show_empleado(request, id_responsable, id_empleado):
                                                                  "empleado": empleado})
 
 
+# Función para obtener los detalles de un proyecto.
 def show_proyecto(request, id_responsable, id_proyecto):
     tabla_intermedia = Proyecto.tareas.through.objects.all()
     responsable = get_object_or_404(Empleado, id=id_responsable)
@@ -95,6 +86,7 @@ def show_proyecto(request, id_responsable, id_proyecto):
                                                                  'tabla_intermedia': tabla_intermedia})
 
 
+# Función para obtener los detalles de un proyecto de un cliente.
 def show_proyecto_cliente(request, id_proyecto, id_cliente):
     cliente = get_object_or_404(Cliente, id=id_cliente)
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
@@ -102,11 +94,7 @@ def show_proyecto_cliente(request, id_proyecto, id_cliente):
                                                                          'cliente': cliente})
 
 
-def show_cliente(request, id_cliente):
-    cliente = get_object_or_404(Proyecto, id=id_cliente)
-    return HttpResponse("show_cliente.html")
-
-
+# Función para obtener los detalles de una tarea.
 def show_tarea(request, id_tarea, id_empleado):
     tarea = get_object_or_404(Tarea, id=id_tarea)
     empleado = get_object_or_404(Empleado, id=id_empleado)
@@ -115,7 +103,7 @@ def show_tarea(request, id_tarea, id_empleado):
 
 
 # ------------------------------------------------------CREATE---------------------------------------------------
-
+# Función para crear un nuevo empleado.
 class EmpleadoCreateView(View):
     def get(self, request, id_responsable):
         formulario = EmpleadoForm()
@@ -132,6 +120,7 @@ class EmpleadoCreateView(View):
         return render(request, 'appDeustoGes/empleado_create.html', {'formulario': formulario})
 
 
+# Función para crear un nuevo proyecto.
 class ProyectoCreateView(View):
     def get(self, request, id_responsable, id_solicitud):
         formulario = ProyectoForm()
@@ -153,6 +142,7 @@ class ProyectoCreateView(View):
                                                                      'solicitud': solicitud})
 
 
+# Función para crear un nuevo cliente.
 class ClienteCreateView(View):
     def get(self, request, id_responsable):
         formulario = ClienteForm()
@@ -169,6 +159,7 @@ class ClienteCreateView(View):
         return render(request, 'appDeustoGes/cliente_create.html', {'formulario': formulario})
 
 
+# Función para crear una nueva tarea.
 class TareaCreateView(View):
     def get(self, request, id_responsable):
         responsable = get_object_or_404(Empleado, id=id_responsable)
@@ -185,6 +176,7 @@ class TareaCreateView(View):
         return render(request, 'appDeustoGes/tarea_create.html', {'formulario': formulario})
 
 
+# Función para crear una nueva solicitud.
 class SolicitudCreateView(View):
     def get(self, request, id_cliente):
         cliente = Cliente.objects.get(id=id_cliente)
@@ -202,7 +194,7 @@ class SolicitudCreateView(View):
 
 
 # ------------------------------------------------------UPDATE---------------------------------------------------
-
+# Función para editar los datos de un cliente.
 class ClienteUpdateView(UpdateView):
     model = Cliente
 
@@ -226,6 +218,7 @@ class ClienteUpdateView(UpdateView):
         return render(request, 'appDeustoGes/cliente_update.html', {'formulario': formulario})
 
 
+# Función para editar los datos de un empleado.
 class EmpleadoUpdateView(UpdateView):
     model = Empleado
 
@@ -253,6 +246,7 @@ class EmpleadoUpdateView(UpdateView):
                                                                      'responsable': responsable})
 
 
+# Función para editar los datos de una tarea.
 class TareaUpdateView(UpdateView):
     model = Tarea
 
@@ -281,7 +275,7 @@ class TareaUpdateView(UpdateView):
 
 
 # ------------------------------------------------------DELETE---------------------------------------------------
-
+# Función para borrar un empleado.
 def delete_empleado(request, id_responsable, id_empleado):
     empleado = get_object_or_404(Empleado, id=id_empleado)
     responsable = get_object_or_404(Empleado, id=id_responsable)
@@ -290,6 +284,7 @@ def delete_empleado(request, id_responsable, id_empleado):
                       {'responsable': responsable})
 
 
+# Función para borrar un proyecto.
 def delete_proyecto(request, id_responsable, id_proyecto):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
@@ -298,6 +293,7 @@ def delete_proyecto(request, id_responsable, id_proyecto):
                       {'responsable': responsable})
 
 
+# Función para borrar un cliente.
 def delete_cliente(request, id_responsable, id_cliente):
     cliente = get_object_or_404(Proyecto, id=id_cliente)
     responsable = get_object_or_404(Empleado, id=id_responsable)

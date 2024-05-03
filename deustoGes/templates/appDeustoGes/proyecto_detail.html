@@ -26,6 +26,7 @@
 {% block main_contenido %}
     <h2>Area responsable</h2>
     <div class="contenido">
+        <h3>DETALLE DEL PROYECTO:</h3>
         <p>Aquí esta la información sobre su proyecto:</p>
         {% if  proyecto %}
             <table class="estilos-table">
@@ -50,7 +51,7 @@
                     <td>{{ proyecto.presupuesto }}</td>
                 </tr>
                 <tr>
-                    <td><b>Tareas:</b></td>
+                    <td>Tareas:</td>
                     <td>
                     {% if proyecto.id == tabla_intermedia.proyecto_id %}
                     <p>hola</p>

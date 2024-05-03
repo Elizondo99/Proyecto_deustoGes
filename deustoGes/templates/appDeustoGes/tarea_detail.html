@@ -23,41 +23,44 @@
 {% block main_contenido %}
     <h2>Area empleado</h2>
     <div class="contenido">
+        <h3>DETALLES DE LA TAREA:</h3>
     <p>Aquí esta la informaión sobre su tarea {{ tarea.nombre }}:</p>
 
     {% if tarea %}
         <table class="estilos-table">
     <tr>
-        <td><h>Nombre </h></td>
+        <td>Nombre</td>
         <td>{{ tarea.nombre }}</td>
     </tr>
     <tr>
-        <td><h>Descripción </h></td>
+        <td>Descripción</td>
         <td>{{ tarea.descripcion }}</td>
     </tr>
     <tr>
-        <td><h>Fecha de inicio </h></td>
+        <td>Fecha de inicio</td>
         <td>{{ tarea.fecha_inicio }}</td>
     </tr>
     <tr>
-        <td><h>Fecha de finalización </h></td>
+        <td>Fecha de finalización</td>
         <td>{{ tarea.fecha_fin }}</td>
     </tr>
     <tr>
-        <td><h>Prioridad </h></td>
+        <td>Prioridad</td>
         <td>{{ tarea.prioridad }}</td>
     </tr>
     <tr>
-        <td><h>Estado </h></td>
+        <td>Estado</td>
         <td>{{ tarea.estado }}</td>
     </tr>
     <tr>
-        <td><h>Notas adicionales </h></td>
-        <td>{{ tarea.notas_adicionales }}</td>
+        <td>Notas adicionales</td>
+        <td>{{tarea.notas_adicionales}}</td>
     </tr>
 </table>
     {% endif %}
-        <a href="{% url 'tarea_update' empleado.id tarea.id %}" class="añadir-button">Actualizar estado de la tarea</a>
+        <button class="añadir-button">
+        <a href="{% url 'tarea_update' empleado.id tarea.id %}">Actualizar estado de la tarea</a>
+        </button>
 
     </div>
 {% endblock %}

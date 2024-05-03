@@ -10,7 +10,7 @@
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
@@ -23,12 +23,11 @@
     </nav>
 {% endblock %}
 
-
 {% block main_contenido %}
-<h2>Area empleadp</h2>
+<h2>Area empleado</h2>
 <div class="contenido">
     <div class="introduccion">
-        <h2>Editar datos del empleadp</h2>
+        <h3>EDITAR DATOS DEL EMPLEADO</h3>
         <p>En este apartado es posible actualizar los datos del empleado. Para ello actualiza el siguiente formulario y pulse
         en "Actualizar"</p>
         <div class="contenido_interno">

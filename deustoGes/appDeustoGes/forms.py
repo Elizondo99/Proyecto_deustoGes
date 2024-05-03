@@ -3,7 +3,6 @@ from django import forms
 from appDeustoGes.models import Tarea, Empleado, Cliente, Proyecto, Solicitud
 
 
-
 class EmpleadoForm(forms.ModelForm):
     class Meta:
         model = Empleado
@@ -27,6 +26,7 @@ class TareaForm(forms.ModelForm):
     class Meta:
         model = Tarea
         fields = '__all__'
+
 
 class TareaUpdateForm(forms.ModelForm):
     class Meta:

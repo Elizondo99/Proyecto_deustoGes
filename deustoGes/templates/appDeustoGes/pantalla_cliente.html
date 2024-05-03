@@ -27,14 +27,14 @@
 <div class="contenido">
     <div class="introduccion">
         <h3>Hola {{ cliente.nombre }}👋</h3>
-        <p> Bienvenido al area cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de
-        cada proyecto y crear nueva solicitudes para llevar acabo un nuevo proyecto. </p>
+        <p> Bienvenido al área cliente, aquí podrá realizar un seguimiento a todos sus proyectos, ver todos los detalles de
+        cada proyecto y crear nuevas solicitudes para llevar a cabo un nuevo proyecto. </p>
     </div>
     <div class="responsable-overflow">
         <div class="contenido_interno">
         <h3>MIS PROYECTOS</h3>
-        <p>Aqui tiene sus proyectos, si quieres mas informacion haga click en cualquiera de ellos y
-            vera toodos los detalles</p>
+        <p>Aquí tiene sus proyectos, si quieres más información haga click en "Ver detalles" de cualquiera de ellos y
+            verá todos los detalles</p>
         <table class="estilos-table">
           <thead>
             <tr>
@@ -60,21 +60,21 @@
     </div>
     <div class="contenido_interno">
         <h3>SOLICITUD NUEVO PROYECTO</h3>
-        <p>Quiere crear un nuevo proyecto con nosotros? Si es asi completa el siguiente formulario
-        como petición de un proyecto. Te contestaremos lo ántes posible!</p>
+        <p>¿Quiere crear un nuevo proyecto con nosotros? Si es así completa el siguiente formulario
+        como petición de un proyecto. ¡Te contestaremos lo ántes posible!</p>
         <button class="añadir-button"><a href="{% url 'solicitud_create' cliente.id %}">Nueva solicitud</a></button>
 
 
     </div>
     <div class="contenido_interno">
         <h3>MIS DATOS</h3>
-        <p>Aqui puede ver cuales son los datos registrados por su empresa, en caso de haver cambabiado alguno de ellos
-            no dudes a actualizarlo!</p>
+        <p>Aquí puede ver cuáles son los datos registrados por su empresa, en caso de haber cambiado alguno de ellos,
+            ¡no dudes a actualizarlo!</p>
         <table class="estilos-table">
             <thead>
             <tr>
               <th>Nombre</th>
-              <th>Telefono</th>
+              <th>Teléfono</th>
               <th>Email</th>
               <th>Direccion</th>
             </tr>

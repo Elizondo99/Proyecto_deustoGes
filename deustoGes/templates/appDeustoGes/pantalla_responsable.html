@@ -27,13 +27,17 @@
 <div class="contenido">
     <div class="introduccion">
         <h3>Hola {{ responsable.nombre }} 👋</h3>
-    <p>Bienvenido al area responsable....</p>
+    <p>Bienvenido al área responsable, aquí podrá observar el listado de empleados y gestionarlos,
+    ir al apartado de sus proyectos, gestionar los clientes y observar las solicitudes pendientes
+    que tiene de proyectos para posteriormente crear nuevos proyectos.</p>
     </div>
 
     <div class="responsable-overflow">
         <div class="contenido_interno">
             <h3>EMPLEADOS</h3>
-            <p>Aqui puedes ver a todos tus empleados y crear nuevos empleados</p>
+            <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
+            empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
+            en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
             <table class="estilos-table">
                 <thead>
                     <tr>
@@ -56,7 +60,7 @@
                                 <td><a href="{% url 'empleado_detail' responsable.id empleado.id %}">Ver detalles</a></td>
                                 <td><a href="{% url 'empleado_update' responsable.id empleado.id %}">Actualizar empleado</a></td>
                                 <td><a href="{% url 'delete_empleado' responsable.id empleado.id %}"
-                                       class="añadir-button">Borrar empleado</a></td>
+                                       class="añadir-button">Dar de baja empleado</a></td>
                             </tr>
                         {% endif %}
                     {% endfor %}
@@ -64,7 +68,7 @@
             </table>
 
             <button class="añadir-button">
-                <a href="{% url 'empleado_create' responsable.id %}">Crear un nuevo empleado</a>
+                <a href="{% url 'empleado_create' responsable.id %}">Añadir un nuevo empleado</a>
             </button>
         </div>
 
@@ -81,6 +85,9 @@
 
         <div class="contenido_interno">
             <h3>CLIENTES</h3>
+            <p>Aquí podrá observar el listado de clientes actuales de la empresa. En caso de querer dar de baja algún
+            cliente, pulse el botón "Dar de baja". En caso de querer añadir algún cliente, pulse en "Añadir un nuevo
+            cliente".</p>
             <table class="estilos-table">
                 <thead>
                     <tr>
@@ -109,6 +116,8 @@
         </div>
         <div class="contenido_interno">
             <h3>SOLICITUDES</h3>
+            <p>Aquí podrá observar las solicitudes generadas por sus clientes. En caso que querer crear un proyecto
+            a partir de una solicitud, pulse en "Crear proyecto".</p>
             <table class="estilos-table">
                 <thead>
                     <tr>

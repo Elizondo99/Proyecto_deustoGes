@@ -10,7 +10,7 @@
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
@@ -25,6 +25,7 @@
 {% block main_contenido %}
     <h2>Area responsable</h2>
     <div class="contenido">
+        <h3>DETALLES DEL EMPLEADO:</h3>
         {% if  empleado %}
         <table class="estilos-table">
     <tr>
