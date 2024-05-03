@@ -49,10 +49,10 @@ def index_empleados(request):
 
 
 def index_proyectos(request, id_responsable):
-    responsable = get_object_or_404(Empleado,id=id_responsable)
+    responsable = get_object_or_404(Empleado, id=id_responsable)
     proyectos = Proyecto.objects.all()
     return render(request, "appDeustoGes/proyectos_index.html", {"proyectos": proyectos,
-                                                                 "responsable":responsable})
+                                                                 "responsable": responsable})
 
 
 def index_clientes(request):
@@ -87,10 +87,12 @@ def show_empleado(request, id_responsable, id_empleado):
 
 
 def show_proyecto(request, id_responsable, id_proyecto):
+    tabla_intermedia = Proyecto.tareas.through.objects.all()
     responsable = get_object_or_404(Empleado, id=id_responsable)
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
     return render(request, "appDeustoGes/proyecto_detail.html", {"responsable": responsable,
-                                                                 "proyecto": proyecto})
+                                                                 "proyecto": proyecto,
+                                                                 'tabla_intermedia': tabla_intermedia})
 
 
 def show_proyecto_cliente(request, id_proyecto, id_cliente):
@@ -147,7 +149,8 @@ class ProyectoCreateView(View):
             solicitud.delete()
             return HttpResponseRedirect(reverse_lazy('pantalla_responsable', args=[responsable.id]))
         return render(request, 'appDeustoGes/proyecto_create.html', {'formulario': formulario,
-                                                                     'responsable': responsable, 'solicitud': solicitud})
+                                                                     'responsable': responsable,
+                                                                     'solicitud': solicitud})
 
 
 class ClienteCreateView(View):
@@ -249,6 +252,7 @@ class EmpleadoUpdateView(UpdateView):
         return render(request, 'appDeustoGes/empleado_update.html', {'formulario': formulario,
                                                                      'responsable': responsable})
 
+
 class TareaUpdateView(UpdateView):
     model = Tarea
 
@@ -273,14 +277,10 @@ class TareaUpdateView(UpdateView):
         else:
             formulario = TareaForm(instance=empleado)
         return render(request, 'appDeustoGes/tarea_update.html', {'formulario': formulario,
-                                                                     'empleado': empleado})
+                                                                  'empleado': empleado})
 
 
 # ------------------------------------------------------DELETE---------------------------------------------------
-
-#class EmpleadoDeleteView(DeleteView):
-#    model = Empleado
-#    success_url = reverse_lazy('pantalla_responsable')
 
 def delete_empleado(request, id_responsable, id_empleado):
     empleado = get_object_or_404(Empleado, id=id_empleado)
@@ -297,9 +297,10 @@ def delete_proyecto(request, id_responsable, id_proyecto):
         return render(request, 'appDeustoGes/pantalla_borrado_exitoso.html',
                       {'responsable': responsable})
 
+
 def delete_cliente(request, id_responsable, id_cliente):
-    responsable = get_object_or_404(Empleado, id=id_responsable)
     cliente = get_object_or_404(Proyecto, id=id_cliente)
+    responsable = get_object_or_404(Empleado, id=id_responsable)
     if cliente.delete():
         return render(request, 'appDeustoGes/pantalla_borrado_exitoso.html',
                       {'responsable': responsable})

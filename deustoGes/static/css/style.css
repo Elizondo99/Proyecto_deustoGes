@@ -223,3 +223,6 @@ h2{
     width: 20rem;
 }
 
+.formulario ul, .formulario ol {
+    list-style-type: none;
+}

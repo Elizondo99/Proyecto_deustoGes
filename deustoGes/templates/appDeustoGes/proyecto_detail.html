@@ -10,7 +10,7 @@
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
@@ -51,8 +51,12 @@
                 </tr>
                 <tr>
                     <td><b>Tareas:</b></td>
-                    <td>{{ proyecto.tareas }}</td>
-                    <td>  <a href="{% url 'tarea_create'  responsable.id  %}" class="añadir-button">Nueva Tarea</a></td>
+                    <td>
+                    {% if proyecto.id == tabla_intermedia.proyecto_id %}
+                    <p>hola</p>
+                    {% endif %}
+                    </td>
+                    <td><a href="{% url 'tarea_create'  responsable.id  %}" class="añadir-button">Nueva Tarea</a></td>
                 </tr>
                 <tr>
                     <td>El responsable del proyecto es:</td>

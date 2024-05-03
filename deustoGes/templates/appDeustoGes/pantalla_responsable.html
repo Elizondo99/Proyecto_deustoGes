@@ -9,7 +9,6 @@
             <div>
                 <li><a href="">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="">Gestionar solicitudes de proyectos</a></li>
                 <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
@@ -98,6 +97,8 @@
                             <td>{{ cliente.direccion }}</td>
                             <td>{{ cliente.telefono }}</td>
                             <td>{{ cliente.email }}</td>
+                            <td><a href="{% url 'delete_cliente' responsable.id cliente.id %}"
+                                       class="añadir-button">Dar de baja</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

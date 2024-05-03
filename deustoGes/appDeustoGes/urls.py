@@ -36,8 +36,6 @@ urlpatterns = [
     path("/responsables/<int:id_responsable>/proyectos/", views.index_proyectos, name='proyectos_index'),
     path("/clientes", views.index_clientes, name='clientes_index'),
 
-    # path("/clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente'),
-
     # URL PARA OBTENER DETALLES
     path("/responsables/<int:id_responsable>/empleados/<int:id_empleado>/detalle", views.show_empleado, name='empleado_detail'),
     path("/responsables/<int:id_responsable>/proyectos/<int:id_proyecto>", views.show_proyecto, name='proyecto_detail'),
@@ -64,6 +62,6 @@ urlpatterns = [
     # URL DE DELETE
     #path('/empleados/delete/<int:pk>', EmpleadoDeleteView.as_view(), name='empleado_delete'),
     path('/responsables/<int:id_responsable>/deleted/empleado/<int:id_empleado>', views.delete_empleado, name="delete_empleado"),
-    path('/responsables/<int:id_responsable>/deleted/proyecto/int:id_proyecto', views.delete_proyecto, name="delete_proyecto"),
-    path('/responsables/<int:id_responsable>/deleted/cliente/int:id_cliente', views.delete_cliente, name="delete_cliente")
+    path('/responsables/<int:id_responsable>/deleted/proyecto/<int:id_proyecto>', views.delete_proyecto, name="delete_proyecto"),
+    path('/responsables/<int:id_responsable>/deleted/cliente/<int:id_cliente>', views.delete_cliente, name="delete_cliente")
 ]

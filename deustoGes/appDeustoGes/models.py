@@ -51,7 +51,6 @@ class Tarea(models.Model):
         ('abierta', 'Abierta'), ('asignada', 'Asignada'), ('en_proceso', 'En proceso'), ('finalizada', 'Finalizada')))
     notas_adicionales = models.TextField()
 
-    #proyecto = models.ManyToManyField(Proyecto, on_delete=models.CASCADE)
     empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
 
     created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
@@ -71,10 +70,6 @@ class Proyecto(models.Model):
     fecha_inicio = models.DateField(default=date(2020, 1, 1))
     fecha_fin = models.DateField(default=date(2020, 1, 1))
     presupuesto = models.IntegerField()
-    #tareas = models.TextField(
-    #   blank=True)
-    # AQUI PONEMOS LO DE blank=True ? significa que en el formulario de django se puede
-    # quedar "tareas" vacio
     tareas = models.ManyToManyField(Tarea, blank=False)
 
     # miembros = models.ManyToManyField(Empleado, blank=True)
