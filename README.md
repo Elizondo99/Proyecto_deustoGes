@@ -1,11 +1,17 @@
 ENLACE REPOSITORIO GITHUB
+
 https://github.com/Elizondo99/Proyecto_deustoGes.git
+
 FUNCIONALIDADES EXTRA
 
-Como funcionalidades extra...
+Como funcionalidades extra se pueden destacar los diferentes roles con los que puedes acceder a la aplicación, viendo diferentes pantallas y teniendo diferentes funcionalidades, y la funcionalidad extra de cliente y empleado.
+
 FUNCIONALIDAD NO OPERATIVA
 
+En la aplicacción en estos momentos no funciona perfectamente la visiualización de las tareas en los detalles de los proyectos, mientras que visiualizar la tarea y sus detalles funcioname perfectamente.
+
 DOCUMENTACIÓN ADICIONAL(Manual de usuario para navegar por la aplicación)
+
 La primera pantalla que nos encontramos al iniciar la aplicación es la pantalla login en ella deberemos de pinchar encima de nuestro nombre en caso de ser empleado(puedes ser responsable o empleado común) o encima del nombre de la empresa en caso de ser un cliente. 
 
 En caso de loguearse como cliente entramos al área cliente donde tenemos varios apartados, el primero será un apartado de proyectos donde en la tabla aparecerán los datos más importantes del proyecto y en la última columna de la tabla podremos clicar en "Ver detalles" para ver todos los detalles del proyecto. El segundo apartado será para solicitar un nuevo proyecto mediante el botón de nueva solicitud accederás a un formulario el cual al rellenar y enviar le aparecerá a los responsables de la empresa para poder crearlo. En el último apartado podremos ver los datos sobre nuestra empresa y en caso de querer actualizar algún dato se deberá pulsar el botón de actualizar y rellenar el formulario. 
