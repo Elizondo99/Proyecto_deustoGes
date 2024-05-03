@@ -52,6 +52,8 @@
                 <tr>
                     <td><b>Tareas:</b></td>
                     <td>{{ proyecto.tareas }}</td>
+                    <td>  <a href="{% url 'tarea_create'  responsable.id  %}" class="añadir-button">Nueva Tarea</a>
+</td>
                 </tr>
                 <tr>
                     <td>El responsable del proyecto es:</td>

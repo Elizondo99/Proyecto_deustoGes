@@ -45,11 +45,11 @@
     </tr>
     <tr>
         <td><h>Prioridad </h></td>
-        <td>{{ proyecto.prioridad }}</td>
+        <td>{{ tarea.prioridad }}</td>
     </tr>
     <tr>
         <td><h>Estado </h></td>
-        <td>{{ proyecto.estado }}</td>
+        <td>{{ tarea.estado }}</td>
     </tr>
     <tr>
         <td><h>Notas adicionales </h></td>
@@ -57,8 +57,7 @@
     </tr>
 </table>
     {% endif %}
+        <a href="{% url 'tarea_update' empleado.id tarea.id %}">Actualizar los datos</a>
 
     </div>
-    
-    
 {% endblock %}

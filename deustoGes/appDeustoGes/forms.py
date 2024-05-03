@@ -28,6 +28,11 @@ class TareaForm(forms.ModelForm):
         model = Tarea
         fields = '__all__'
 
+class TareaUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Tarea
+        fields = ['estado', 'notas_adicionales']
+
 
 class SolicitudForm(forms.ModelForm):
     class Meta:

@@ -18,11 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from .views import (EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView, ClienteCreateView, SolicitudCreateView,
-                    EmpleadoUpdateView)
-
-
-class DepartamentoDeleteView:
-    pass
+                    EmpleadoUpdateView, TareaCreateView, TareaUpdateView)
 
 
 urlpatterns = [
@@ -55,6 +51,7 @@ urlpatterns = [
     path('/responsables/<int:id_responsable>/proyectos/create', ProyectoCreateView.as_view(), name="proyecto_create"),
     path('/responsables/<int:id_responsable>/clientes/create', ClienteCreateView.as_view(), name="cliente_create"),
     path('/clientes/<int:id_cliente>/solicitud', SolicitudCreateView.as_view(), name="solicitud_create"),
+    path('/responsables/<int:id_responsable>/tareas/create', TareaCreateView.as_view(), name="tarea_create"),
     # path("/empleados/new", views.new_empleado, name='empleados_new'),
     #path("/proyectos/new", views.new_proyecto, name='proyectos_new'),
     #path("/clientes/new", views.new_cliente, name='clientes_new'),
@@ -62,6 +59,7 @@ urlpatterns = [
     # URL DE UPDATE
     path('/clientes/<int:id_cliente>/update', ClienteUpdateView.as_view(), name="cliente_update"),
     path('/responsables/<int:id_responsable>/empleados/<int:id_empleado>/update', EmpleadoUpdateView.as_view(), name="empleado_update"),
+    path('/empleados/<int:id_empleado>/tareas/<int:id_tarea>/update', TareaUpdateView.as_view(), name="tarea_update"),
 
     # URL DE DELETE
     #path('/empleados/delete/<int:pk>', EmpleadoDeleteView.as_view(), name='empleado_delete'),

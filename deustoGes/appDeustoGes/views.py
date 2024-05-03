@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, DeleteView
 from sqlparse.filters import output
 
-from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm
+from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm, TareaUpdateForm
 from .models import Empleado, Proyecto, Cliente, Tarea, Solicitud
 
 
@@ -165,7 +165,7 @@ class TareaCreateView(View):
     def get(self, request, id_responsable):
         responsable = get_object_or_404(Empleado, id=id_responsable)
         formulario = TareaForm()
-        context = {'formulario': formulario}
+        context = {'formulario': formulario, 'responsable': responsable}
         return render(request, 'appDeustoGes/tarea_create.html', context)
 
     def post(self, request, id_responsable):
@@ -243,6 +243,32 @@ class EmpleadoUpdateView(UpdateView):
             formulario = ClienteForm(instance=empleado)
         return render(request, 'appDeustoGes/empleado_update.html', {'formulario': formulario,
                                                                      'responsable': responsable})
+
+class TareaUpdateView(UpdateView):
+    model = Tarea
+
+    def get(self, request, id_empleado, id_tarea):
+        tarea = get_object_or_404(Tarea, id=id_tarea)
+        empleado = get_object_or_404(Empleado, id=id_empleado)
+        formulario = TareaUpdateForm(instance=tarea)
+        context = {
+            'formulario': formulario,
+            'empleado': empleado,
+            'tarea': tarea
+        }
+        return render(request, 'appDeustoGes/tarea_update.html', context)
+
+    def post(self, request, id_empleado, id_tarea):
+        tarea = get_object_or_404(Tarea, id=id_tarea)
+        empleado = get_object_or_404(Empleado, id=id_empleado)
+        formulario = TareaUpdateForm(request.POST, instance=tarea)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect(reverse_lazy('pantalla_empleado', args=[empleado.id]))
+        else:
+            formulario = TareaForm(instance=empleado)
+        return render(request, 'appDeustoGes/tarea_update.html', {'formulario': formulario,
+                                                                     'empleado': empleado})
 
 
 # ------------------------------------------------------DELETE---------------------------------------------------
