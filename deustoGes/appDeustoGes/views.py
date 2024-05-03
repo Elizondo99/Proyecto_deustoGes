@@ -48,9 +48,11 @@ def index_empleados(request):
     return render(request, "appDeustoGes/empleados_index.html", {"empleados": empleados})
 
 
-def index_proyectos(request):
+def index_proyectos(request, id_responsable):
+    responsable = get_object_or_404(Empleado,id=id_responsable)
     proyectos = Proyecto.objects.all()
-    return render(request, "appDeustoGes/proyectos_index.html", {"proyectos": proyectos})
+    return render(request, "appDeustoGes/proyectos_index.html", {"proyectos": proyectos,
+                                                                 "responsable":responsable})
 
 
 def index_clientes(request):
@@ -129,20 +131,23 @@ class EmpleadoCreateView(View):
 
 
 class ProyectoCreateView(View):
-    def get(self, request, id_responsable):
+    def get(self, request, id_responsable, id_solicitud):
         formulario = ProyectoForm()
         responsable = get_object_or_404(Empleado, id=id_responsable)
-        solicitudes = Solicitud.objects.all()
-        context = {'formulario': formulario, 'responsable': responsable, 'solicitudes': solicitudes}
+        solicitud = get_object_or_404(Solicitud, id=id_solicitud)
+        context = {'formulario': formulario, 'responsable': responsable, 'solicitud': solicitud}
         return render(request, 'appDeustoGes/proyecto_create.html', context)
 
-    def post(self, request, id_responsable):
+    def post(self, request, id_responsable, id_solicitud):
         responsable = get_object_or_404(Empleado, id=id_responsable)
         formulario = ProyectoForm(data=request.POST)
+        solicitud = get_object_or_404(Solicitud, id=id_solicitud)
         if formulario.is_valid():
             formulario.save()
+            solicitud.delete()
             return HttpResponseRedirect(reverse_lazy('pantalla_responsable', args=[responsable.id]))
-        return render(request, 'appDeustoGes/proyecto_create.html', {'formulario': formulario})
+        return render(request, 'appDeustoGes/proyecto_create.html', {'formulario': formulario,
+                                                                     'responsable': responsable, 'solicitud': solicitud})
 
 
 class ClienteCreateView(View):

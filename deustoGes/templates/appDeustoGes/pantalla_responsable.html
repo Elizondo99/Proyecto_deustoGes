@@ -9,7 +9,8 @@
             <div>
                 <li><a href="">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
@@ -32,7 +33,7 @@
 
     <div class="responsable-overflow">
         <div class="contenido_interno">
-            <h3>Empleados</h3>
+            <h3>EMPLEADOS</h3>
             <p>Aqui puedes ver a todos tus empleados y crear nuevos empleados</p>
             <table class="estilos-table">
                 <thead>
@@ -70,37 +71,17 @@
 
 
         <div class="contenido_interno">
-            <h3>Mis proyectos</h3>
-            <table class="estilos-table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Fecha_inicio</th>
-                        <th>Fecha_fin</th>
-                        <th>Presupuesto</th>
-                        <th>Detalles</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for proyecto in proyectos %}
-                        {% if responsable.id == proyecto.responsable_id %}
-                            <tr>
-                                <td>{{ proyecto.nombre }}</td>
-                                <td>{{ proyecto.fecha_inicio }}</td>
-                                <td>{{ proyecto.fecha_fin }}</td>
-                                <td>{{ proyecto.presupuesto }}</td>
-                                <td><a href="{% url 'proyecto_detail' responsable.id proyecto.id %}">Ver detalles</a></td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
+            <h3>MIS PROYECTOS</h3>
+            <p>Para gestionar tus proyectos ve al siguiente enlace:</p>
+            <button class="añadir-button">
+            <a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a>
+            </button>
         </div>
 
 
 
         <div class="contenido_interno">
-            <h3>Clientes</h3>
+            <h3>CLIENTES</h3>
             <table class="estilos-table">
                 <thead>
                     <tr>
@@ -126,7 +107,7 @@
             </button>
         </div>
         <div class="contenido_interno">
-            <h3>Solicitudes</h3>
+            <h3>SOLICITUDES</h3>
             <table class="estilos-table">
                 <thead>
                     <tr>
@@ -141,13 +122,13 @@
                             <td>{{ solicitud.titulo }}</td>
                             <td>{{ solicitud.descripcion }}</td>
                             <td>{{ solicitud.cliente }}</td>
+                            <td><a href="{% url 'proyecto_create' responsable.id solicitud.id %}" class="añadir-button">
+                                Crear proyecto</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <button class="añadir-button">
-                <a href="{% url 'proyecto_create' responsable.id %}">Crear proyecto</a>
-            </button>
+
         </div>
     </div>
     </div>

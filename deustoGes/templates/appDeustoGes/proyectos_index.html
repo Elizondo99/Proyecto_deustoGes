@@ -1,21 +1,61 @@
 {% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
+                <li><a href="">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="">Ir a mis proyectos</a></li>
+                <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
+            </div>
+            <div>
+                <li><a href="">Dudas y preguntas</a></li>
+                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'login' %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
 
 {% block main_contenido %}
-    
-    <hi>Gestor de Proyectos</hi>
-    <h2>Listado de proyectos</h2>
+    <h2>Area responsable</h2>
+<div class="contenido">
+    <div class="introduccion">
+        <h3>Mis proyectos</h3>
+        <p>Aquí podrás observar una tabla con todos tus proyectos. Para ver los detalles de cada uno, pulsa en "Ver detalles".</p>
+        <div class="contenido_interno">
+            <table class="estilos-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha_inicio</th>
+                        <th>Fecha_fin</th>
+                        <th>Presupuesto</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for proyecto in proyectos %}
+                        {% if responsable.id == proyecto.responsable_id %}
+                            <tr>
+                                <td>{{ proyecto.nombre }}</td>
+                                <td>{{ proyecto.fecha_inicio }}</td>
+                                <td>{{ proyecto.fecha_fin }}</td>
+                                <td>{{ proyecto.presupuesto }}</td>
+                                <td><a href="{% url 'proyecto_detail' responsable.id proyecto.id %}">Ver detalles</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-        {% if proyectos %}
-            <ul>
-                {% for proyecto in proyectos %}
-                    <li><a href="{% url 'proyecto_detail' proyecto.id %}">{{ proyecto.nombre }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else  %}
-            <p>no  hay proyectos metidos en la base de datos</p>
-        {% endif %}
-    
-    
-    
-    
 {% endblock %}

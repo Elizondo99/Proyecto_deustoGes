@@ -8,9 +8,8 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral">
             <div>
-                <li><a href="">Pantalla principal</a></li>
-                <li><a href="">Nueva solicitud de proyecto</a></li>
-                <li><a href="{% url 'tarea_update' empleado.id tarea.id %}">Actualizar mis datos</a></li>
+                <li><a href="{% url 'pantalla_empleado' empleado.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'tarea_detail' empleado.id tarea.id %}">Volver</a></li>
             </div>
             <div>
                 <li><a href="">Dudas y preguntas</a></li>
@@ -22,13 +21,14 @@
     </nav>
 {% endblock %}
 
+
 {% block main_contenido %}
-<h2>Area empleadp</h2>
+<h2>Area empleado</h2>
 <div class="contenido">
     <div class="introduccion">
-        <h2>Editar datos del tarea</h2>
-        <p>En este apartado es posible actualizar los datos de la tarea. Para ello actualiza el siguiente formulario y pulse
-        en "Actualizar"</p>
+        <h3>ACTUALIZAR ESTADO DE LA TAREA</h3>
+        <p>En este apartado es posible actualizar el estado de la tarea y añadir notas.
+            Para ello actualiza el siguiente formulario y pulse en "Actualizar"</p>
         <div class="contenido_interno">
             <form class="formulario" action="{% url 'tarea_update'  empleado.id tarea.id %}" method="post">
                 {% csrf_token %}

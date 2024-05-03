@@ -10,7 +10,7 @@
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="">Gestionar solicitudes de proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
@@ -52,8 +52,7 @@
                 <tr>
                     <td><b>Tareas:</b></td>
                     <td>{{ proyecto.tareas }}</td>
-                    <td>  <a href="{% url 'tarea_create'  responsable.id  %}" class="añadir-button">Nueva Tarea</a>
-</td>
+                    <td>  <a href="{% url 'tarea_create'  responsable.id  %}" class="añadir-button">Nueva Tarea</a></td>
                 </tr>
                 <tr>
                     <td>El responsable del proyecto es:</td>

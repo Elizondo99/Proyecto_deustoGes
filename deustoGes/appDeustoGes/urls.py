@@ -33,7 +33,7 @@ urlpatterns = [
 
     # URL PARA LISTAR
     path("/empleados", views.index_empleados, name='empleados_index'),
-    path("/proyectos", views.index_proyectos, name='proyectos_index'),
+    path("/responsables/<int:id_responsable>/proyectos/", views.index_proyectos, name='proyectos_index'),
     path("/clientes", views.index_clientes, name='clientes_index'),
 
     # path("/clientes/<int:id_cliente>/proyectos", views.index_proyectos_del_cliente, name='proyectos_del_cliente'),
@@ -48,7 +48,7 @@ urlpatterns = [
 
     # URL DE FORMULARIOS PARA CREAR
     path('/responsables/<int:id_responsable>/empleados/create', EmpleadoCreateView.as_view(), name="empleado_create"),
-    path('/responsables/<int:id_responsable>/proyectos/create', ProyectoCreateView.as_view(), name="proyecto_create"),
+    path('/responsables/<int:id_responsable>/proyectos/<int:id_solicitud>/create', ProyectoCreateView.as_view(), name="proyecto_create"),
     path('/responsables/<int:id_responsable>/clientes/create', ClienteCreateView.as_view(), name="cliente_create"),
     path('/clientes/<int:id_cliente>/solicitud', SolicitudCreateView.as_view(), name="solicitud_create"),
     path('/responsables/<int:id_responsable>/tareas/create', TareaCreateView.as_view(), name="tarea_create"),

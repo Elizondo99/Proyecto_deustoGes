@@ -9,7 +9,7 @@
         <ul class="listado-barra-lateral">
             <div>
                 <li><a href="">Pantalla principal</a></li>
-                <li><a href="">Nueva solicitud de proyecto</a></li>
+                <li><a href="{% url 'solicitud_create' cliente.id %}">Nueva solicitud de proyecto</a></li>
                 <li><a href="{% url 'cliente_update' cliente.id %}">Actualizar mis datos</a></li>
             </div>
             <div>

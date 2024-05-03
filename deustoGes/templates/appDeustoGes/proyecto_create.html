@@ -10,7 +10,8 @@
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
                 <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyecto_create' responsable.id %}">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="">Gestionar solicitudes de proyectos</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
@@ -27,23 +28,18 @@
 <h2>Area responsable</h2>
 <div class="contenido">
     <div class="introduccion">
-        <h3>Solicitudes pendientes de aprobar</h3>
-        <p>Aquí tienes las solicitudes pendientes de aprobar de tus clientes!</p>
-    </div>
-    <div class="responsable-overflow">
-        <div class="contenido_interno">
-            {% for solicitud in solicitudes %}
-                <div>
-                    <h3>{{solicitud.titulo}}</h3>
-                    <p>{{solicitud.descripcion}}</p>
-                </div>
-            {% endfor %}
+        <div>
+            <p>Aquí tienes la solicitud realizada por {{solicitud.cliente}}. Más abajo puedes crear un nuevo
+            proyecto con los datos de dicha solicitud.</p>
+            <h3>Título del proyecto: {{solicitud.titulo}}</h3>
+            <p><b>Descripción del proyecto:</b> {{solicitud.descripcion}}</p>
         </div>
-
-        <div class="contenido_interno">
+    </div>
+    <div class="contenido_interno">
+        <div class="createproyecto-overflow">
             <h3>Crear un nuevo proyecto</h3>
             <div class="formulario">
-                <form action="{% url 'proyecto_create' responsable.id %}" method="post">
+                <form action="{% url 'proyecto_create' responsable.id solicitud.id %}" method="post">
                     {% csrf_token %}
                     {{ formulario.errors }}
                     {{ formulario.as_p }}
