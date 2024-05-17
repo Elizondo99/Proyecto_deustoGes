@@ -9,9 +9,12 @@ class Cliente(models.Model):
     telefono = models.IntegerField()
     email = models.EmailField()
     direccion = models.CharField(max_length=50)
+    usuario = models.CharField(max_length=50, default="", blank=False)
+    contraseña = models.CharField(max_length=50, default="deustoges", blank=False)
 
     created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+
 
     def __str__(self):
         return str(self.nombre) + " (" + str(self.direccion) + ")"
@@ -29,9 +32,12 @@ class Empleado(models.Model):
     email = models.EmailField()
     telefono = models.PositiveIntegerField()
     responsable = models.BooleanField(default=False)
+    usuario = models.CharField(max_length=50, default="", blank=False)
+    contraseña = models.CharField(max_length=50, default="deustoges", blank=False)
 
     created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+
 
     def __str__(self):
         return str(self.nombre) + " " + str(self.apellidos)

@@ -1,9 +1,11 @@
 from datetime import datetime
 
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, DeleteView
+from pyexpat.errors import messages
 from sqlparse.filters import output
 
 from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm, TareaUpdateForm
@@ -39,11 +41,41 @@ def pantalla_responsable(request, id_responsable):
 
 # ------------------------------------------------------INDEX---------------------------------------------------
 # Función para obtener la pantalla login.
-def index(request):
+def login(request):
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
     return render(request, 'appDeustoGes/login.html', {'clientes': clientes, 'empleados': empleados})
 
+
+def autenticacion(request, username, password):
+    clientes = Cliente.objects.all()
+    empleados = Empleado.objects.all()
+    if request.method == 'POST':
+        formulario = AuthenticationForm(data=request.POST)
+        if formulario.is_valid():
+            username = formulario.cleaned_data.get('username')
+            password = formulario.cleaned_data.get('password')
+            anteultimo_caracter = len(username) - 4
+            if username[anteultimo_caracter:] == '.cl':
+                for cliente in clientes:
+                    if cliente.username == username:
+                        if cliente.password == password:
+                            id_cliente = cliente.id
+                            return request('appDeustoGes/bienvenida.html', {'es': 'cliente', 'id': id_cliente})
+                        else:
+                            messages.error(request, 'Contraseña incorrecta.')
+                else:
+                    messages.error(request, 'Usuario incorrecto.')
+            else:
+                for empleado in empleados:
+                    if empleado.username == username:
+                        if empleado.password == password:
+                            id_empleado = empleado.id
+                            return request('appDeustoGes/bienvenida.html', {'es': 'empleado', 'id': id_empleado})
+                        else:
+                            messages.error(request, 'Contraseña incorrecta.')
+                else:
+                    messages.error(request, 'Usuario incorrecto.')
 
 # Función para obtener el listado de proyectos.
 def index_proyectos(request, id_responsable):

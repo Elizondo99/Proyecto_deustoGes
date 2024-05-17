@@ -25,21 +25,18 @@
 {% block main_contenido %}
     <h2>Area responsable</h2>
 <div class="contenido">
-<h3 class="introduccion">CREAR NUEVO EMPLEADO</h3>
-    <div class="contenido_interno">
+    <h3 class="introduccion">CREAR NUEVO EMPLEADO</h3>
+    <div class="contenido_interno responsable-overflow">
         <p>Introduzca los datos para añadir un nuevo empleado:</p>
         <div class="formulario">
             <form action="{% url 'empleado_create' responsable.id %}" method="post">
-        {% csrf_token %}
-        {{ formulario.errors }}
-        {{ formulario.as_p }}
-        <input type="submit" class="añadir-button" value="Nuevo empleado"/>
-    </form>
+                {% csrf_token %}
+                {{ formulario.errors }}
+                {{ formulario.as_p }}
+                <input type="submit" class="añadir-button" value="Nuevo empleado"/>
+            </form>
         </div>
-
     </div>
-
-
 </div>
 
 {% endblock %}

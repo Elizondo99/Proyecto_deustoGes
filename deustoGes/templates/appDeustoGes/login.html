@@ -9,6 +9,22 @@
     Estamos encantados de darte la bienvenida a bordo de deustoGes, donde la eficiencia y la colaboración se unen para impulsar el éxito de nuestros proyectos. Aquí, podrás organizar, supervisar y colaborar en todos los aspectos de tus proyectos de manera centralizada y efectiva.
 
     Para comenzar, te invitamos a identificarte. Por favor, ingresa tus credenciales para acceder a todas las funciones y herramientas que desutoGes tiene para ofrecer. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
+    <form action="" method="post" class="formulario">
+        {% csrf_token %}
+        {{ formulario.errors }}
+        <div>
+            <label for="id_usuario">Usuario:</label>
+            <input type="text" id="id_usuario" name="usuario">
+        </div>
+        <div>
+            <label for="id_contraseña">Contraseña:</label>
+            <input type="password" id="id_contraseña" name="contraseña">
+        </div>
+        <button type="submit" class="añadir-button">Entrar</button>
+    </form>
+
+
+
     <div class="flex-login">
         <div class="cuadrado-interno-login">
             <h3>Responsables</h3>

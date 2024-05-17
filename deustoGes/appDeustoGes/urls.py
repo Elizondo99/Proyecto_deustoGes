@@ -24,7 +24,7 @@ from .views import (EmpleadoCreateView, ProyectoCreateView, ClienteUpdateView, C
 urlpatterns = [
 
     # URL DE LOGIN
-    path('/', views.index, name='login'),
+    path('/', views.login, name='login'),
 
     # URL DE INICIO DE CADA ROL
     path("/clientes/<int:id_cliente>", views.pantalla_cliente, name='pantalla_cliente'),
