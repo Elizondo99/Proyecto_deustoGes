@@ -34,11 +34,44 @@
             <form class="formulario" action="{% url 'empleado_update' responsable.id empleado.id %}" method="post">
                 {% csrf_token %}
                 {{ formulario.errors }}
-                {{ formulario.as_ul }}
+                <div>
+                    {{ formulario.dni.label_tag }}
+                    {{ formulario.dni }}
+                </div>
+                <div>
+                    {{ formulario.nombre.label_tag }}
+                    {{ formulario.nombre }}
+                </div>
+                <div>
+                    {{ formulario.apellidos.label_tag }}
+                    {{ formulario.apellidos }}
+                </div>
+                <div>
+                    {{ formulario.email.label_tag}}
+                    {{ formulario.email }}
+                </div>
+                <div>
+                    {{ formulario.telefono.label_tag}}
+                    {{ formulario.telefono }}
+                    <div id="error_telefono"></div>
+                </div>
+                <div>
+                    {{ formulario.responsable.label_tag }}
+                    {{ formulario.responsable }}
+                </div>
+                <div>
+                    {{ formulario.usuario.label_tag }}
+                    {{ formulario.usuario }}
+                </div>
+                <div>
+                    {{ formulario.contraseña.label_tag }}
+                    {{ formulario.contraseña }}
+                </div>
                 <input type="submit" class="añadir-button" value="Actualizar"/>
             </form>
         </div>
 
     </div>
 </div>
+<script src="/../static/js/script.js"></script>
 {% endblock %}

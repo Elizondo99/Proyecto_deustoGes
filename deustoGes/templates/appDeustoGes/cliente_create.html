@@ -27,11 +27,36 @@
     <div class="contenido_interno">
         <p>Introduzca los datos para añadir un nuevo nuevo cliente:</p>
         <div class="formulario">
-            <form action="{% url 'cliente_create' responsable.id %}" method="post">
-        {% csrf_token %}
-        {{ formulario.errors }}
-        {{ formulario.as_p }}
-        <input type="submit" class="añadir-button" value="Nuevo cliente"/>
+            <form id="formulario" action="{% url 'cliente_create' responsable.id %}" method="post">
+                {% csrf_token %}
+                {{ formulario.errors }}
+                <div>
+                    {{ formulario.nombre.label_tag }}
+                    {{ formulario.nombre }}
+                </div>
+                <div>
+                    {{ formulario.telefono.label_tag }}
+                    {{ formulario.telefono }}
+                    <div id="error_telefono"></div>
+                </div>
+                <div>
+                    {{ formulario.email.label_tag }}
+                    {{ formulario.email }}
+                </div>
+                <div>
+                    {{ formulario.direccion.label_tag }}
+                    {{ formulario.direccion }}
+                </div>
+                <div>
+                    {{ formulario.usuario.label_tag }}
+                    {{ formulario.usuario }}
+                </div>
+                <div>
+                    {{ formulario.contraseña.label_tag }}
+                    {{ formulario.contraseña }}
+                </div>
+
+        <input id="boton-enviar" type="submit" class="añadir-button" value="Nuevo cliente"/>
     </form>
         </div>
 
@@ -39,5 +64,5 @@
 
 </div>
 
-
+<script src="/../static/js/script.js"></script>
 {% endblock %}
