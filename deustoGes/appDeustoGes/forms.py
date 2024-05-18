@@ -38,3 +38,9 @@ class SolicitudForm(forms.ModelForm):
     class Meta:
         model = Solicitud
         fields = '__all__'
+
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=100, label='Título')
+    email = forms.EmailField(label='Email')
+    message = forms.CharField(widget=forms.Textarea, label='Descripción')

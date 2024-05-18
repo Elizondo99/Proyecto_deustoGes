@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="{% url 'pantalla_cliente' cliente.id %}">Pantalla principal</a></li>
+            </div>
+            <div>
+                <li><a href="{% url 'login'  %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block main_contenido %}
+    <h2>Preguntas frecuentes</h2>
+<div class="contenido">
+    <div class="introduccion">
+    <p>Bienvenido al área de preguntas frecuentes, aqui podras encontrar las respuestas mas comunes realizadas por los usuarios.
+    En caso de no encontrar la respuesta en este apartado no dudes en contactar con nosotros.</p>
+    </div>
+
+    <div class="responsable-overflow">
+        <div class="contenido_interno">
+            <h3>Como puedo hacer esto?</h3>
+            <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
+            empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
+            en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
+        </div>
+            <h3>Como puedo hacer esto?</h3>
+            <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
+            empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
+            en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
+
+        <div class="contenido_interno">
+            <h3>Como puedo hacer esto?</h3>
+            <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
+            empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
+            en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
+        </div>
+
+
+
+        <div class="contenido_interno">
+            <h3>Como puedo hacer esto?</h3>
+            <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
+            empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
+            en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
+        </div>
+        <div class="contenido_interno">
+            <h3>Como puedo hacer esto?</h3>
+            <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
+            empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
+            en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}

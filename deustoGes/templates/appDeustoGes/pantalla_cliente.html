@@ -13,8 +13,8 @@
                 <li><a href="{% url 'cliente_update' cliente.id %}">Actualizar mis datos</a></li>
             </div>
             <div>
-                <li><a href="">Dudas y preguntas</a></li>
-                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'preguntas_frecuentes' cliente.id %}">Preguntas frecuentes</a></li>
+                <li><a href="{% url 'contacto' %}">Contacto</a></li>
                 <li><a href="{% url 'login' %}">Salir</a></li>
             </div>
 

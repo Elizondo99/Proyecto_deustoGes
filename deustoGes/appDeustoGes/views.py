@@ -7,6 +7,11 @@ from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, DeleteView
 from pyexpat.errors import messages
 from sqlparse.filters import output
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from .forms import ContactForm
+
 
 from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm, TareaUpdateForm
 from .models import Empleado, Proyecto, Cliente, Tarea, Solicitud
@@ -332,3 +337,28 @@ def delete_cliente(request, id_responsable, id_cliente):
     if cliente.delete():
         return render(request, 'appDeustoGes/pantalla_borrado_exitoso.html',
                       {'responsable': responsable})
+
+
+
+def preguntas_frecuentes(request, id_cliente):
+    cliente = get_object_or_404(Proyecto, id=id_cliente)
+
+    return render(request, 'appDeustoGes/preguntas_frecuentes.html',{'cliente': cliente})
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            send_mail(
+                subject,
+                message,
+                email,
+                ['email'],  # Reemplaza con la dirección de correo de destino
+            )
+            return HttpResponse('Gracias por tu mensaje.')
+    else:
+        form = ContactForm()
+    return render(request, 'appDeustoGes/contacto.html', {'form': form})

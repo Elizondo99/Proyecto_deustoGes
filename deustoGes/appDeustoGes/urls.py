@@ -55,5 +55,8 @@ urlpatterns = [
     # URL DE DELETE
     path('/responsables/<int:id_responsable>/deleted/empleado/<int:id_empleado>', views.delete_empleado, name="delete_empleado"),
     path('/responsables/<int:id_responsable>/deleted/proyecto/<int:id_proyecto>', views.delete_proyecto, name="delete_proyecto"),
-    path('/responsables/<int:id_responsable>/deleted/cliente/<int:id_cliente>', views.delete_cliente, name="delete_cliente")
+    path('/responsables/<int:id_responsable>/deleted/cliente/<int:id_cliente>', views.delete_cliente, name="delete_cliente"),
+
+    path("/clientes/<int:id_cliente>/preguntas_frecuentes", views.preguntas_frecuentes, name='preguntas_frecuentes'),
+    path("/contacto", views.contact_view, name='contacto')
 ]
