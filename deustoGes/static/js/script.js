@@ -28,3 +28,25 @@ function noEnviar(event){
     }
 }
 
+
+
+
+//intento de implementar funcionalidad de que se rellene automáticamente el apartado Usuario con Nombre.Apellidos
+
+let nombre = document.getElementById("id_nombre");
+let apellidos = document.getElementById("id_apellidos");
+let usuario = document.getElementById("id_usuario");
+nombre.addEventListener("input", crearNombreUsuario);
+apellidos.addEventListener("input", crearNombreUsuario);
+
+function crearNombreUsuario(){
+    let nombre_introducido = nombre.value.trim();
+    let apellido_introducido = apellidos.value.trim();
+    if(nombre_introducido && apellido_introducido){
+        usuario.value = `${nombre_introducido}.${apellido_introducido}`;
+    }else if(nombre_introducido){
+        usuario.value = nombre_introducido;
+    }else{
+        usuario.value = "";
+    }
+}
