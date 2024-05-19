@@ -25,6 +25,7 @@ urlpatterns = [
 
     # URL DE LOGIN
     path('/', views.login, name='login'),
+    path('/registro', views.registro, name='registro'),
 
     # URL DE INICIO DE CADA ROL
     path("/clientes/<int:id_cliente>", views.pantalla_cliente, name='pantalla_cliente'),

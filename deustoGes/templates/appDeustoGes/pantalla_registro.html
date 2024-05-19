@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block main_contenido %}
+ <h2 class="titulo-login">Registro de clientes</h2>
+<div class="cuadrado-login">
+    <p>¡Bienvenido a deustoGes, tu herramienta integral para la gestión de proyectos en nuestra empresa!
+
+    Estamos encantados de darte la bienvenida a bordo de deustoGes, donde la eficiencia y la colaboración se unen para impulsar el éxito de nuestros proyectos. Aquí, podrás organizar, supervisar y colaborar en todos los aspectos de tus proyectos de manera centralizada y efectiva.
+
+    Para registrarte como cliente, rellena los siguientes datos. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
+
+    <form id="formulario" class="formulario" action="{% url 'registro' %}" method="post">
+        {% csrf_token %}
+        <div>
+            {{ formulario.nombre.label_tag }}
+            {{ formulario.nombre }}
+        </div>
+        <div>
+            {{ formulario.telefono.label_tag }}
+            {{ formulario.telefono }}
+            <div id="error_telefono"></div>
+        </div>
+        <div>
+            {{ formulario.email.label_tag }}
+            {{ formulario.email }}
+        </div>
+        <div>
+            {{ formulario.direccion.label_tag }}
+            {{ formulario.direccion }}
+        </div>
+        <div>
+            {{ formulario.usuario.label_tag }}
+            {{ formulario.usuario }}
+        </div>
+        <div>
+            {{ formulario.contraseña.label_tag }}
+            {{ formulario.contraseña }}
+        </div>
+        <input type="submit" class="añadir-button" value="Registrarme"/>
+    </form>
+</div>
+<script src="/../static/js/formularios.js"></script>
+{% endblock %}

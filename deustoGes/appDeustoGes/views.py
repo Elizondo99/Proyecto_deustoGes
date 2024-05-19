@@ -1,27 +1,24 @@
-from datetime import datetime
-
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import View, UpdateView, DeleteView
+from django.views.generic import View, UpdateView
 from pyexpat.errors import messages
-from sqlparse.filters import output
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import ContactForm
 
-
 from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm, TareaUpdateForm
 from .models import Empleado, Proyecto, Cliente, Tarea, Solicitud
+
 
 # Función para obtener la pantalla principal del rol cliente.
 def pantalla_cliente(request, id_cliente):
     cliente = get_object_or_404(Cliente, id=id_cliente)
     proyectos = Proyecto.objects.all()
     return render(request, 'appDeustoGes/pantalla_cliente.html', {'proyectos': proyectos,
-                                                                  'cliente': cliente}, )
+                                                                  'cliente': cliente})
 
 
 # Función para obtener la pantalla principal del rol empleado.
@@ -30,6 +27,7 @@ def pantalla_empleado(request, id_empleado):
     tareas = Tarea.objects.all()
     return render(request, 'appDeustoGes/pantalla_empleado.html', {'tareas': tareas,
                                                                    'empleado': empleado})
+
 
 # Función para obtener la pantalla principal del rol responsable.
 def pantalla_responsable(request, id_responsable):
@@ -52,7 +50,16 @@ def login(request):
     return render(request, 'appDeustoGes/login.html', {'clientes': clientes, 'empleados': empleados})
 
 
-def autenticacion(request, username, password):
+def registro(request):
+    formulario = ClienteForm(data=request.POST)
+    if formulario.is_valid():
+        formulario.save()
+        return HttpResponseRedirect(reverse_lazy('login'))
+    return render(request, 'appDeustoGes/pantalla_registro.html', {'formulario': formulario})
+
+
+# INTENTO DE AUTENTICACIÓN DEL LOGIN, NO FUNCIONA
+def autenticacion(request):
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
     if request.method == 'POST':
@@ -66,7 +73,10 @@ def autenticacion(request, username, password):
                     if cliente.username == username:
                         if cliente.password == password:
                             id_cliente = cliente.id
-                            return request('appDeustoGes/bienvenida.html', {'es': 'cliente', 'id': id_cliente})
+                            cliente = Cliente(id=id_cliente)
+                            proyectos = Proyecto.objects.all()
+                            return render(request, 'appDeustoGes/pantalla_cliente.html',
+                                          {'proyectos': proyectos, 'cliente': cliente})
                         else:
                             messages.error(request, 'Contraseña incorrecta.')
                 else:
@@ -76,11 +86,29 @@ def autenticacion(request, username, password):
                     if empleado.username == username:
                         if empleado.password == password:
                             id_empleado = empleado.id
-                            return request('appDeustoGes/bienvenida.html', {'es': 'empleado', 'id': id_empleado})
+                            empleado = Empleado(id=id_empleado)
+                            if empleado.responsable == True:
+                                responsable = empleado
+                                empleados = Empleado.objects.all()
+                                proyectos = Proyecto.objects.all()
+                                clientes = Cliente.objects.all()
+                                solicitudes = Solicitud.objects.all()
+                                return render(request, 'appDeustoGes/pantalla_responsable.html',
+                                              {'empleados': empleados,
+                                               'responsable': responsable,
+                                               'proyectos': proyectos,
+                                               'clientes': clientes,
+                                               'solicitudes': solicitudes})
+                            else:
+                                tareas = Tarea.objects.all()
+                                return render(request, 'appDeustoGes/pantalla_empleado.html',
+                                              {'empleado': empleado, 'tareas': tareas})
                         else:
                             messages.error(request, 'Contraseña incorrecta.')
                 else:
                     messages.error(request, 'Usuario incorrecto.')
+    return render(request, 'login')
+
 
 # Función para obtener el listado de proyectos.
 def index_proyectos(request, id_responsable):
@@ -339,11 +367,11 @@ def delete_cliente(request, id_responsable, id_cliente):
                       {'responsable': responsable})
 
 
-
 def preguntas_frecuentes(request, id_cliente):
     cliente = get_object_or_404(Proyecto, id=id_cliente)
 
-    return render(request, 'appDeustoGes/preguntas_frecuentes.html',{'cliente': cliente})
+    return render(request, 'appDeustoGes/preguntas_frecuentes.html', {'cliente': cliente})
+
 
 def contact_view(request):
     if request.method == 'POST':
