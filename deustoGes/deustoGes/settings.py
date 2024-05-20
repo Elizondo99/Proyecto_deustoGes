@@ -129,4 +129,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'deustoges.contacto@gmail.com'
-EMAIL_HOST_PASSWORD = 'DeustoGes123'
+EMAIL_HOST_PASSWORD = 'tkkt dwvw vaov upkg'
