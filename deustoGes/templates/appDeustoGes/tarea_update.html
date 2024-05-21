@@ -12,8 +12,6 @@
                 <li><a href="{% url 'tarea_detail' empleado.id tarea.id %}">Volver</a></li>
             </div>
             <div>
-                <li><a href="">Dudas y preguntas</a></li>
-                <li><a href="">Contacto</a></li>
                 <li><a href="{% url 'login' %}">Salir</a></li>
             </div>
 
@@ -33,7 +31,15 @@
             <form class="formulario" action="{% url 'tarea_update'  empleado.id tarea.id %}" method="post">
                 {% csrf_token %}
                 {{ formulario.errors }}
-                {{ formulario.as_ul }}
+                <div class="contenido-formulario">
+                    {{ formulario.estado.label_tag }}
+                    {{ formulario.estado }}
+                </div>
+                <div class="contenido-formulario">
+                    {{ formulario.notas_adicionales.label_tag}}
+                    {{ formulario.notas_adicionales }}
+                </div>
+
                 <input type="submit" class="añadir-button" value="Actualizar"/>
             </form>
         </div>

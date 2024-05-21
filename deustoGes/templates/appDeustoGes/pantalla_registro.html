@@ -11,33 +11,35 @@
 
     <form id="formulario" class="formulario" action="{% url 'registro' %}" method="post">
         {% csrf_token %}
-        <div>
+        <div class="contenido-formulario">
             {{ formulario.nombre.label_tag }}
             {{ formulario.nombre }}
         </div>
-        <div>
+        <div class="contenido-formulario">
             {{ formulario.telefono.label_tag }}
             {{ formulario.telefono }}
             <div id="error_telefono"></div>
         </div>
-        <div>
+        <div class="contenido-formulario">
             {{ formulario.email.label_tag }}
             {{ formulario.email }}
         </div>
-        <div>
+        <div class="contenido-formulario">
             {{ formulario.direccion.label_tag }}
             {{ formulario.direccion }}
         </div>
-        <div>
+        <div class="contenido-formulario">
             {{ formulario.usuario.label_tag }}
             {{ formulario.usuario }}
         </div>
-        <div>
+        <div class="contenido-formulario">
             {{ formulario.contraseña.label_tag }}
             {{ formulario.contraseña }}
         </div>
         <input type="submit" class="añadir-button" value="Registrarme"/>
+        <a href="{% url 'login' %}" class="añadir-button">Volver</a>
     </form>
 </div>
-<script src="/../static/js/formularios.js"></script>
+<script src="/../static/js/validacionTLF.js"></script>
+<script src="/../static/js/registro_cliente.js"></script>
 {% endblock %}

@@ -40,7 +40,7 @@ h1{
     text-align: center;
     font-size: 6rem;
     margin-top: 1rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0;
     color: #bc6812;
 }
 
@@ -114,9 +114,12 @@ h2{
 
 .listado-barra-lateral{
     display: grid;
-    grid-template-rows: 80vh 20vh;
+    grid-template-rows: 93vh 7vh;
 }
 
+.listado-barra-lateral-cliente{
+    grid-template-rows: 80vh 20vh;
+}
 
 .listado-barra-lateral a{
     font-size: 1.5rem;
@@ -229,3 +232,6 @@ h2{
     list-style-type: none;
 }
 
+.contenido-formulario{
+    padding-block: 0.5rem;
+}

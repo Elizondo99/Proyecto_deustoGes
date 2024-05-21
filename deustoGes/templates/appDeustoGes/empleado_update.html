@@ -14,8 +14,6 @@
                 <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
             </div>
             <div>
-                <li><a href="">Dudas y preguntas</a></li>
-                <li><a href="">Contacto</a></li>
                 <li><a href="{% url 'login' %}">Salir</a></li>
             </div>
 
@@ -30,40 +28,40 @@
         <h3>EDITAR DATOS DEL EMPLEADO</h3>
         <p>En este apartado es posible actualizar los datos del empleado. Para ello actualiza el siguiente formulario y pulse
         en "Actualizar"</p>
-        <div class="contenido_interno">
+        <div class="contenido_interno responsable-overflow">
             <form id="formulario" class="formulario" action="{% url 'empleado_update' responsable.id empleado.id %}" method="post">
                 {% csrf_token %}
                 {{ formulario.errors }}
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.dni.label_tag }}
                     {{ formulario.dni }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.nombre.label_tag }}
                     {{ formulario.nombre }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.apellidos.label_tag }}
                     {{ formulario.apellidos }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.email.label_tag}}
                     {{ formulario.email }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.telefono.label_tag}}
                     {{ formulario.telefono }}
                     <div id="error_telefono"></div>
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.responsable.label_tag }}
                     {{ formulario.responsable }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.usuario.label_tag }}
                     {{ formulario.usuario }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.contraseña.label_tag }}
                     {{ formulario.contraseña }}
                 </div>
@@ -73,5 +71,5 @@
 
     </div>
 </div>
-<script src="/../static/js/formularios.js"></script>
+<script src="/../static/js/validacionTLF.js"></script>
 {% endblock %}
