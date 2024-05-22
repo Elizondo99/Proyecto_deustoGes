@@ -9,7 +9,7 @@
 
     Para registrarte como cliente, rellena los siguientes datos. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
 
-    <form id="formulario" class="formulario" action="{% url 'registro' %}" method="post">
+    <form id="formulario_registro" class="formulario" action="{% url 'registro' %}" method="post">
         {% csrf_token %}
         <div class="contenido-formulario">
             {{ formulario.nombre.label_tag }}
@@ -31,6 +31,7 @@
         <div class="contenido-formulario">
             {{ formulario.usuario.label_tag }}
             {{ formulario.usuario }}
+            <div id="error_usuario"></div>
         </div>
         <div class="contenido-formulario">
             {{ formulario.contraseña.label_tag }}
