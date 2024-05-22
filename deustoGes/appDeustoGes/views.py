@@ -360,7 +360,7 @@ def delete_proyecto(request, id_responsable, id_proyecto):
 
 # Función para borrar un cliente.
 def delete_cliente(request, id_responsable, id_cliente):
-    cliente = get_object_or_404(Proyecto, id=id_cliente)
+    cliente = get_object_or_404(Cliente, id=id_cliente)
     responsable = get_object_or_404(Empleado, id=id_responsable)
     if cliente.delete():
         return render(request, 'appDeustoGes/pantalla_borrado_exitoso.html',
@@ -384,7 +384,7 @@ def contact_view(request):
                 subject,
                 message,
                 email,
-                ['email'],  # Reemplaza con la dirección de correo de destino
+                ['deustoges.contacto@gmail.com'],
             )
             return HttpResponse('Gracias por tu mensaje.')
     else:
