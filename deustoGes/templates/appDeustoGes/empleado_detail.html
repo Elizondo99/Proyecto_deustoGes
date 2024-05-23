@@ -27,7 +27,7 @@
         {% if  empleado %}
         <table class="estilos-table">
     <tr>
-        <td>Nombre:</td>
+        <td >Nombre:</td>
         <td>{{ empleado.nombre }}</td>
     </tr>
     <tr>
@@ -55,9 +55,14 @@
             {% endif %}
         </td>
     </tr>
+        
+<button id="boton_tamano">Agrandar Letra</button>
+<button id="boton_tamano_pequeno">Volver Tamaño normal</button>
+
+        
 </table>
     {% endif %}
     </div>
-   
-
+    
+<script src="/../static/js/cambio_tamano_letra.js"></script>
 {% endblock %}
