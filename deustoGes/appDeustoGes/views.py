@@ -1,4 +1,6 @@
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -7,7 +9,7 @@ from pyexpat.errors import messages
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import ContactForm
+from .forms import ContactForm, RegistroForm
 
 from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm, TareaUpdateForm
 from .models import Empleado, Proyecto, Cliente, Tarea, Solicitud
@@ -44,70 +46,34 @@ def pantalla_responsable(request, id_responsable):
 
 # ------------------------------------------------------INDEX---------------------------------------------------
 # Función para obtener la pantalla login.
+@login_required
 def login(request):
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
-    return render(request, 'appDeustoGes/login.html', {'clientes': clientes, 'empleados': empleados})
+    return render(request, 'appDeustoGes/pantalla_inicio_app.html',
+                  {'clientes': clientes, 'empleados': empleados})
 
+
+def logout(request):
+    logout(request)
+    clientes = Cliente.objects.all()
+    empleados = Empleado.objects.all()
+    return render(request, 'appDeustoGes/pantalla_inicio_app.html',
+                  {'clientes': clientes, 'empleados': empleados})
 
 def registro(request):
-    formulario = ClienteForm(data=request.POST)
+    """formulario = ClienteForm(data=request.POST)
     if formulario.is_valid():
         formulario.save()
         return HttpResponseRedirect(reverse_lazy('login'))
-    return render(request, 'appDeustoGes/pantalla_registro.html', {'formulario': formulario})
+    """
+    formulario = RegistroForm(data=request.POST)
+    if formulario.is_valid():
+        formulario.save()
+        return HttpResponseRedirect(reverse_lazy('login'))
 
+    return render(request, 'appDeustoGes/pantalla_registro_usuario.html', {'formulario': formulario})
 
-# INTENTO DE AUTENTICACIÓN DEL LOGIN, NO FUNCIONA
-def autenticacion(request):
-    clientes = Cliente.objects.all()
-    empleados = Empleado.objects.all()
-    if request.method == 'POST':
-        formulario = AuthenticationForm(data=request.POST)
-        if formulario.is_valid():
-            username = formulario.cleaned_data.get('username')
-            password = formulario.cleaned_data.get('password')
-            anteultimo_caracter = len(username) - 4
-            if username[anteultimo_caracter:] == '.cl':
-                for cliente in clientes:
-                    if cliente.username == username:
-                        if cliente.password == password:
-                            id_cliente = cliente.id
-                            cliente = Cliente(id=id_cliente)
-                            proyectos = Proyecto.objects.all()
-                            return render(request, 'appDeustoGes/pantalla_cliente.html',
-                                          {'proyectos': proyectos, 'cliente': cliente})
-                        else:
-                            messages.error(request, 'Contraseña incorrecta.')
-                else:
-                    messages.error(request, 'Usuario incorrecto.')
-            else:
-                for empleado in empleados:
-                    if empleado.username == username:
-                        if empleado.password == password:
-                            id_empleado = empleado.id
-                            empleado = Empleado(id=id_empleado)
-                            if empleado.responsable == True:
-                                responsable = empleado
-                                empleados = Empleado.objects.all()
-                                proyectos = Proyecto.objects.all()
-                                clientes = Cliente.objects.all()
-                                solicitudes = Solicitud.objects.all()
-                                return render(request, 'appDeustoGes/pantalla_responsable.html',
-                                              {'empleados': empleados,
-                                               'responsable': responsable,
-                                               'proyectos': proyectos,
-                                               'clientes': clientes,
-                                               'solicitudes': solicitudes})
-                            else:
-                                tareas = Tarea.objects.all()
-                                return render(request, 'appDeustoGes/pantalla_empleado.html',
-                                              {'empleado': empleado, 'tareas': tareas})
-                        else:
-                            messages.error(request, 'Contraseña incorrecta.')
-                else:
-                    messages.error(request, 'Usuario incorrecto.')
-    return render(request, 'login')
 
 
 # Función para obtener el listado de proyectos.
@@ -118,13 +84,17 @@ def index_proyectos(request, id_responsable):
                                                                  "responsable": responsable})
 
 
+
 # Función para obtener los proyectos del cliente.
+@login_required
 def index_proyectos_del_cliente(request, cliente_id):
     proyectos = Proyecto.objects.get(cliente=cliente_id)
     return render(request, 'appDeustoGes/proyectos_del_cliente.html', {"proyectos": proyectos})
 
 
+
 # Función para obtener las solicitudes generadas por el cliente.
+@login_required
 def index_solicitud(request, id_responsable, id_solicitud):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     solicitud = get_object_or_404(Empleado, id=id_solicitud)
@@ -134,6 +104,7 @@ def index_solicitud(request, id_responsable, id_solicitud):
 
 # ------------------------------------------------------SHOW---------------------------------------------------
 # Función para obtener los detalles de un empleado.
+@login_required
 def show_empleado(request, id_responsable, id_empleado):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     empleado = get_object_or_404(Empleado, id=id_empleado)

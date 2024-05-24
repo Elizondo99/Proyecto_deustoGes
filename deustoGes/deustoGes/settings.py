@@ -130,3 +130,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'deustoges.contacto@gmail.com'
 EMAIL_HOST_PASSWORD = 'tkkt dwvw vaov upkg'
+
+AUTH_USER_MODEL = 'appDeustoGes.User'
+
+LOGIN_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'

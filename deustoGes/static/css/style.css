@@ -31,6 +31,24 @@ ul{
     flex-direction: column;
 }
 
+@media (max-width: 1400px){
+    .flex2{
+        max-width: 1400px;
+    }
+}
+
+@media (max-width: 1200px){
+    .flex2{
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 1000px){
+    .flex2{
+        max-width: 1000px
+    }
+}
+
 
 .fondo{
     background-color: #fcf8ea;
@@ -58,9 +76,11 @@ h2{
 }
 
 
+
 .titulo-login{
     margin-inline: 22rem;
 }
+
 
 .cuadrado-login{
     background-color: rgba(255, 149, 0, 0.49);
@@ -71,9 +91,26 @@ h2{
 }
 
 
+
+
+
 .cuadrado-login p{
     font-size: 1.2rem;
 }
+
+
+@media (max-width: 1000px){
+    h2{
+        font-size: 2rem;
+    }
+    .titulo-login{
+        margin-inline: 10rem;
+    }
+    .cuadrado-login{
+        margin-inline: 10rem;
+    }
+}
+
 
 .flex-login{
     display: flex;

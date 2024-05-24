@@ -1,10 +1,61 @@
 from datetime import date
+
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-# Create your models here.
-# Modelo de la entidad Cliente.
+class User(AbstractUser):
+    username = models.CharField(max_length=20, unique=True)
+    password = models.CharField(max_length=20)
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.username}"
+
+    class Meta:
+        verbose_name = "usuario"
+        verbose_name_plural = "usuarios"
+
+
 class Cliente(models.Model):
+    nombre = models.CharField(max_length=15)
+    telefono = models.IntegerField()
+    email = models.EmailField()
+    direccion = models.CharField(max_length=50)
+
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nombre} ({self.direccion})"
+
+    class Meta:
+        verbose_name = "cliente"
+        verbose_name_plural = "clientes"
+
+
+class Empleado(models.Model):
+    dni = models.CharField(max_length=9)
+    nombre = models.CharField(max_length=15)
+    apellidos = models.CharField(max_length=40, default="")
+    email = models.EmailField()
+    telefono = models.PositiveIntegerField()
+    responsable = models.BooleanField(default=False)
+
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellidos}"
+
+    class Meta:
+        verbose_name = "empleado"
+        verbose_name_plural = "empleados"
+
+
+# Modelo de la entidad Cliente.
+"""class Cliente(models.Model):
     nombre = models.CharField(max_length=15)
     telefono = models.IntegerField()
     email = models.EmailField()
@@ -45,6 +96,7 @@ class Empleado(models.Model):
     class Meta:
         verbose_name = "empleado"
         verbose_name_plural = "empleados"
+"""
 
 
 # Modelo de la entidad Tarea.
@@ -60,8 +112,8 @@ class Tarea(models.Model):
 
     empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True,blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return str(self.nombre) + " (prioridad: " + str(self.prioridad) + ")"
@@ -84,8 +136,8 @@ class Proyecto(models.Model):
     responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True,blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return str(self.nombre) + " (Responsable: " + str(self.responsable) + ")"
@@ -102,8 +154,8 @@ class Solicitud(models.Model):
 
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
-    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True,blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return str(self.titulo)
@@ -111,4 +163,3 @@ class Solicitud(models.Model):
     class Meta:
         verbose_name = "solicitud"
         verbose_name_plural = "solicitudes"
-

@@ -1,6 +1,7 @@
 from django import forms
 
-from appDeustoGes.models import Tarea, Empleado, Cliente, Proyecto, Solicitud
+from appDeustoGes.models import Tarea, Empleado, Cliente, Proyecto, Solicitud, User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class EmpleadoForm(forms.ModelForm):
@@ -46,6 +47,7 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea, label='Descripción')
 
 
-class AuthenticationForm(forms.Form):
-    username = forms.CharField(max_length=100, label='Usuario')
-    password = forms.CharField(max_length=100, label='Contraseña')
+class RegistroForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = '__all__'

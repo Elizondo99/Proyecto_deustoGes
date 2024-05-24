@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+{% block main_contenido %}
+
+<h2 class="titulo-login">Login</h2>
+<div class="cuadrado-login">
+    <p>¡Bienvenido a deustoGes, tu herramienta integral para la gestión de proyectos en nuestra empresa!
+
+    Estamos encantados de darte la bienvenida a bordo de deustoGes, donde la eficiencia y la colaboración se unen para impulsar el éxito de nuestros proyectos. Aquí, podrás organizar, supervisar y colaborar en todos los aspectos de tus proyectos de manera centralizada y efectiva.
+
+    Para comenzar, te invitamos a identificarte. Por favor, ingresa tus credenciales para acceder a todas las funciones y herramientas que desutoGes tiene para ofrecer. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
+    <form action="" method="post" class="formulario">
+        {% csrf_token %}
+        {{ formulario.errors }}
+        <div>
+            <label for="id_usuario">Usuario:</label>
+            <input type="text" id="id_usuario" name="username">
+        </div>
+        <div>
+            <label for="id_contraseña">Contraseña:</label>
+            <input type="password" id="id_contraseña" name="password">
+
+        </div>
+        <input type="submit" class="añadir-button" value="Entrar">
+        <a class="añadir-button" href="{% url 'registro' %}">Registrarse</a>
+    </form>
+
+{% endblock %}
