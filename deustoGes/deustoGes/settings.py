@@ -134,4 +134,4 @@ EMAIL_HOST_PASSWORD = 'tkkt dwvw vaov upkg'
 AUTH_USER_MODEL = 'appDeustoGes.User'
 
 LOGIN_REDIRECT_URL = 'login'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'pantalla_inicio'

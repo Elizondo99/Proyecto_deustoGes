@@ -61,6 +61,7 @@ def logout(request):
     return render(request, 'appDeustoGes/pantalla_inicio_app.html',
                   {'clientes': clientes, 'empleados': empleados})
 
+
 def registro(request):
     """formulario = ClienteForm(data=request.POST)
     if formulario.is_valid():
@@ -75,7 +76,6 @@ def registro(request):
     return render(request, 'appDeustoGes/pantalla_registro_usuario.html', {'formulario': formulario})
 
 
-
 # Función para obtener el listado de proyectos.
 def index_proyectos(request, id_responsable):
     responsable = get_object_or_404(Empleado, id=id_responsable)
@@ -84,13 +84,11 @@ def index_proyectos(request, id_responsable):
                                                                  "responsable": responsable})
 
 
-
 # Función para obtener los proyectos del cliente.
 @login_required
 def index_proyectos_del_cliente(request, cliente_id):
     proyectos = Proyecto.objects.get(cliente=cliente_id)
     return render(request, 'appDeustoGes/proyectos_del_cliente.html', {"proyectos": proyectos})
-
 
 
 # Función para obtener las solicitudes generadas por el cliente.
