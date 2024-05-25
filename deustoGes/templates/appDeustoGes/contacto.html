@@ -1,17 +1,62 @@
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
-</head>
-<body>
-    <h2>Contacto</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral listado-barra-lateral-cliente">
+            <div>
+                <li><a href="">Pantalla principal</a></li>
+                <li><a href="">Nueva solicitud de proyecto</a></li>
+                <li><a href="">Actualizar mis datos</a></li>
+            </div>
+            <div>
+                <li><a href="">Preguntas frecuentes</a></li>
+                <li><a href="{% url 'contacto' cliente.id%}">Contacto</a></li>
+                <li><a href="{% url 'pantalla_cliente' cliente.id %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block main_contenido %}
+    <h2>Area contacto</h2>
+<div class="contenido">
+    <div class="introduccion">
+        <h3>Hola {{ cliente.nombre }}👋</h3>
+        <p> Bienvenido al área contacto, rellenando el siguinete formulario de contacto nos enviara un email con su
+        consulta o duda especifica. La estudiaremos personalmente y nos pondremos en contacto con usted en la mayor
+        brevedad posible.</p>
+    </div>
+    <div>
+        <div class="contenido_interno">
+            <h3>CONTACTO</h3>
+            <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="añadir-button">Enviar</button>
     </form>
-</body>
-</html>
+        </div>
+    </div>
+
+    
+
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

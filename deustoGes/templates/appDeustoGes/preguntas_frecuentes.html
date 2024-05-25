@@ -7,10 +7,14 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral">
             <div>
-                <li><a href="{% url 'pantalla_cliente' cliente.id %}">Pantalla principal</a></li>
+                <li><a href="">Pantalla principal</a></li>
+                <li><a href="">Nueva solicitud de proyecto</a></li>
+                <li><a href="">Actualizar mis datos</a></li>
             </div>
             <div>
-                <li><a href="{% url 'pantalla_inicio'  %}">Salir</a></li>
+                <li><a href="">Preguntas frecuentes</a></li>
+                <li><a href="{% url 'contacto' cliente.id%}">Contacto</a></li>
+                <li><a href="{% url 'pantalla_cliente' cliente.id %}">Salir</a></li>
             </div>
 
         </ul>
@@ -44,21 +48,13 @@
             empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
             en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
         </div>
-
-
-
         <div class="contenido_interno">
             <h3>Como puedo hacer esto?</h3>
             <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
             empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
             en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
         </div>
-        <div class="contenido_interno">
-            <h3>Como puedo hacer esto?</h3>
-            <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
-            empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse
-            en "Actualizar empleado". En caso de querer dar de baja un empleado, pulse en "Dar de baja empleado".</p>
-        </div>
+
     </div>
     </div>
 </div>

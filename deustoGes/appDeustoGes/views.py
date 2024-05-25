@@ -337,12 +337,13 @@ def delete_cliente(request, id_responsable, id_cliente):
 
 
 def preguntas_frecuentes(request, id_cliente):
-    cliente = get_object_or_404(Proyecto, id=id_cliente)
+    cliente = get_object_or_404(Cliente, id=id_cliente)
 
     return render(request, 'appDeustoGes/preguntas_frecuentes.html', {'cliente': cliente})
 
 
-def contact_view(request):
+def contact_view(request, id_cliente):
+    cliente = get_object_or_404(Cliente, id=id_cliente)
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -355,7 +356,8 @@ def contact_view(request):
                 email,
                 ['deustoges.contacto@gmail.com'],
             )
-            return HttpResponse('Gracias por tu mensaje.')
+            return render(request, 'appDeustoGes/pantalla_cliente.html', {'form': form, 'cliente': cliente})
     else:
         form = ContactForm()
-    return render(request, 'appDeustoGes/contacto.html', {'form': form})
+    return render(request, 'appDeustoGes/contacto.html', {'form': form, 'cliente': cliente})
+
