@@ -8,14 +8,14 @@
     <nav class="barra-lateral">
         <ul class="listado-barra-lateral listado-barra-lateral-cliente">
             <div>
-                <li><a href="">Pantalla principal</a></li>
-                <li><a href="">Nueva solicitud de proyecto</a></li>
-                <li><a href="">Actualizar mis datos</a></li>
+                <li><a href="{% url 'pantalla_cliente' cliente.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'solicitud_create' cliente.id %}">Nueva solicitud de proyecto</a></li>
+                <li><a href="{% url 'cliente_update' cliente.id %}">Actualizar mis datos</a></li>
             </div>
             <div>
-                <li><a href="">Preguntas frecuentes</a></li>
+                <li><a href="{% url 'preguntas_frecuentes' cliente.id %}">Preguntas frecuentes</a></li>
                 <li><a href="{% url 'contacto' cliente.id%}">Contacto</a></li>
-                <li><a href="{% url 'pantalla_cliente' cliente.id %}">Salir</a></li>
+                <li><a href="{% url 'pantalla_inicio' %}">Salir</a></li>
             </div>
 
         </ul>
@@ -34,7 +34,7 @@
     <div>
         <div class="contenido_interno">
             <h3>CONTACTO</h3>
-            <form method="post">
+            <form class="formulario" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="añadir-button">Enviar</button>

@@ -13,8 +13,8 @@
                 <li><a href="{% url 'cliente_update' cliente.id %}">Actualizar mis datos</a></li>
             </div>
             <div>
-                <li><a href="">Dudas y preguntas</a></li>
-                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'preguntas_frecuentes' cliente.id %}">Preguntas frecuentes</a></li>
+                <li><a href="{% url 'contacto' cliente.id%}">Contacto</a></li>
                 <li><a href="{% url 'pantalla_inicio' %}">Salir</a></li>
             </div>
 
@@ -26,11 +26,11 @@
     <h2>Area cliente</h2>
 <div class="contenido">
     <div class="introduccion">
-        <h3>Hola {{ cliente.nombre }}👋</h3>
+        <h3>FORMULARIO SOLICITUD NUEVO PROYECTO:</h3>
         <p>Rellene el siguiente formulario para crear una solicitud para un nuevo proyecto:</p>
     </div>
     <div class="contenido_interno">
-        <h3>FORMULARIO SOLICITUD NUEVO PROYECTO:</h3>
+
         <form class="formulario" action="{% url 'solicitud_create' cliente.id %}" method="post">
             {% csrf_token %}
             {{ formulario.errors }}

@@ -29,6 +29,12 @@ ul{
     overflow-x: hidden;
 }
 
+@media (max-width: 1050px){
+    .flex{
+        flex-direction: column;
+    }
+}
+
 .flex2{
     display: flex;
     flex-wrap: wrap;
@@ -41,7 +47,7 @@ ul{
 
 h1{
     text-align: center;
-    font-size: 6rem;
+    font-size: 10vh;
     margin-top: 1rem;
     margin-bottom: 0;
     color: #bc6812;
@@ -55,7 +61,7 @@ h2{
     margin-block:0;
     padding-block: 1.5rem;
     margin-left: 2rem;
-    font-size: 3.5rem;
+    font-size: 6vh;
     width: 100%;
     color: rgba(0, 0, 0, 0.678);
 }
@@ -124,6 +130,7 @@ h2{
     grid-template-rows: 93vh 7vh;
 }
 
+
 .listado-barra-lateral-cliente{
     grid-template-rows: 78vh 22vh;
 }
@@ -135,6 +142,21 @@ h2{
     padding: 1rem;
 }
 
+@media (max-width: 1050px){
+    .barra-lateral{
+        width: 100%;
+        height: fit-content;
+    }
+    .listado-barra-lateral{
+        display: inline;
+    }
+    .listado-barra-lateral a{
+        padding: 0.75rem;
+        text-align: center;
+    }
+}
+
+
 .listado-barra-lateral a:hover{
     background-color: rgb(255, 130, 0);
 }
@@ -143,9 +165,16 @@ h2{
     padding: 1rem;
     margin-left: 1rem;
     width: 85vw;
-    height: 43rem;
+    height: 73vh;
     background-color: rgba(255, 149, 0, 0.49);
     border-radius: 1rem;
+}
+
+@media (max-width: 1050px){
+    .contenido{
+        margin-right: 1rem;
+        width: 95vw;
+    }
 }
 
 .responsable-overflow{
@@ -227,6 +256,7 @@ h2{
     font-size: 1.2rem;
 }
 
+
 .formulario label{
     display: block;
 }
@@ -241,4 +271,16 @@ h2{
 
 .contenido-formulario{
     padding-block: 0.5rem;
+}
+
+.error-contrasena{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.error-contrasena p{
+    padding-inline: 1rem;
+    flex-grow: 1;
+    width: 20vw;
 }

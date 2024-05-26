@@ -71,9 +71,11 @@ def registro(request):
     formulario = RegistroForm(data=request.POST)
     if formulario.is_valid():
         formulario.save()
-        return HttpResponseRedirect(reverse_lazy('login'))
-
+        return render(request, 'appDeustoGes/registro_exitoso.html')
+    else:
+        print(formulario.errors)
     return render(request, 'appDeustoGes/pantalla_registro_usuario.html', {'formulario': formulario})
+
 
 
 # Función para obtener el listado de proyectos.
@@ -360,4 +362,5 @@ def contact_view(request, id_cliente):
     else:
         form = ContactForm()
     return render(request, 'appDeustoGes/contacto.html', {'form': form, 'cliente': cliente})
+
 

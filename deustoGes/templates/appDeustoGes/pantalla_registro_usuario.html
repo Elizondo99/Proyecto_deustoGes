@@ -9,11 +9,15 @@
 
     Para registrarte como cliente, rellena los siguientes datos. Tu participación es fundamental para construir un entorno de trabajo más productivo y dinámico.</p>
 
-    <form action="{% url 'registro' %}">
+    <form class="formulario" action="{% url 'registro' %}" method="post">
         {% csrf_token %}
         <div>
             {{ formulario.username.label_tag }}
             {{ formulario.username }}
+        </div>
+        <div>
+            {{ formulario.email.label_tag }}
+            {{ formulario.email }}
         </div>
         <div>
             {{ formulario.password1.label_tag }}
@@ -23,10 +27,12 @@
             {{ formulario.password2.label_tag }}
             {{ formulario.password2 }}
         </div>
+        <div id="error_contrasena" class="error-contrasena"></div>
 
-        <button type="submit">Registrarse</button>
+        <input type="submit" class="añadir-button" value="Registrarse">
+        <a href="{% url 'pantalla_inicio' %}" class="añadir-button">Volver</a>
     </form>
 </div>
-<script src="/../static/js/validacionTLF.js"></script>
-<script src="/../static/js/registro_cliente.js"></script>
+
+<script src="/../static/js/validacion_contraseña.js"></script>
 {% endblock %}

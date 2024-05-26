@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block main_contenido %}
+<h2 class="titulo-login">Registro de clientes</h2>
+<div class="cuadrado-login">
+        ENHORABUENA! TU REGISTRO HA SIDO UN ÉXITO!
+    <a href="{% url 'pantalla_inicio' %}" class="añadir-button">Volver</a>
+
+</div>
+
+{% endblock %}

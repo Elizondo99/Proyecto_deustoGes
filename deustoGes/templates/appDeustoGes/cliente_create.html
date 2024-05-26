@@ -28,28 +28,28 @@
             <form id="formulario" action="{% url 'cliente_create' responsable.id %}" method="post">
                 {% csrf_token %}
                 {{ formulario.errors }}
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.nombre.label_tag }}
                     {{ formulario.nombre }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.telefono.label_tag }}
                     {{ formulario.telefono }}
                     <div id="error_telefono"></div>
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.email.label_tag }}
                     {{ formulario.email }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.direccion.label_tag }}
                     {{ formulario.direccion }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.usuario.label_tag }}
                     {{ formulario.usuario }}
                 </div>
-                <div>
+                <div class="contenido-formulario">
                     {{ formulario.contraseña.label_tag }}
                     {{ formulario.contraseña }}
                 </div>

@@ -51,7 +51,8 @@
                   <td>{{ proyecto.nombre }}</td>
                   <td>{{ proyecto.fecha_inicio }}</td>
                   <td>{{ proyecto.fecha_fin }}</td>
-                  <td><a href="{% url 'proyecto_detail_cliente' cliente.id proyecto.id  %}">Ver detalles</a></td>
+                  <td><a class="añadir-button"
+                         href="{% url 'proyecto_detail_cliente' cliente.id proyecto.id  %}">Ver detalles</a></td>
                 </tr>
               {% endif %}
             {% endfor %}

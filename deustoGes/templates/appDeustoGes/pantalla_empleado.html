@@ -50,7 +50,7 @@
                         <td>{{ tarea.fecha_inicio }}</td>
                         <td>{{ tarea.fecha_fin }}</td>
                         <td>{{ tarea.estado }}</td>
-                        <td><a href="{% url 'tarea_detail' empleado.id tarea.id %}">Ver detalles</a></td>
+                        <td><a class="añadir-button" href="{% url 'tarea_detail' empleado.id tarea.id %}">Ver detalles</a></td>
                     </tr>
                 {% endif %}
             {% endfor %}

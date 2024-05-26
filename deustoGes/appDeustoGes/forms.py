@@ -48,6 +48,7 @@ class ContactForm(forms.Form):
 
 
 class RegistroForm(UserCreationForm):
+    email = forms.EmailField()
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2')
