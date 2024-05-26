@@ -77,7 +77,6 @@ def registro(request):
     return render(request, 'appDeustoGes/pantalla_registro_usuario.html', {'formulario': formulario})
 
 
-
 # Función para obtener el listado de proyectos.
 def index_proyectos(request, id_responsable):
     responsable = get_object_or_404(Empleado, id=id_responsable)
@@ -364,3 +363,29 @@ def contact_view(request, id_cliente):
     return render(request, 'appDeustoGes/contacto.html', {'form': form, 'cliente': cliente})
 
 
+def gestion_empleados(request, id_responsable):
+    responsable = get_object_or_404(Empleado, id=id_responsable)
+    empleados = Empleado.objects.all()
+    return render(request, 'appDeustoGes/gestion_empleados.html',
+                  {'responsable': responsable, 'empleados': empleados})
+
+
+def gestion_clientes(request, id_responsable):
+    responsable = get_object_or_404(Empleado, id=id_responsable)
+    clientes = Cliente.objects.all()
+    return render(request, 'appDeustoGes/gestion_clientes.html',
+                  {'responsable': responsable, 'clientes': clientes})
+
+
+def gestion_tareas(request, id_responsable):
+    responsable = get_object_or_404(Empleado, id=id_responsable)
+    tareas = Tarea.objects.all()
+    return render(request, 'appDeustoGes/gestion_tareas.html',
+                  {'responsable': responsable, 'tareas': tareas})
+
+
+def gestion_solicitudes(request, id_responsable):
+    responsable = get_object_or_404(Empleado, id=id_responsable)
+    solicitudes = Solicitud.objects.all()
+    return render(request, 'appDeustoGes/gestion_solicitudes.html',
+                  {'responsable': responsable, 'solicitudes': solicitudes})

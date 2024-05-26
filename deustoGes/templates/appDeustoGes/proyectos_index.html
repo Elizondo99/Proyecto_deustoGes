@@ -8,9 +8,11 @@
         <ul class="listado-barra-lateral">
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
-                <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
-                <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Gestionar proyectos</a></li>
+                <li><a href="{% url 'gestion_empleados' responsable.id %}">Gestionar empleados</a></li>
+                <li><a href="{% url 'gestion_clientes' responsable.id %}">Gestionar clientes</a></li>
+                <li><a href="{% url 'gestion_tareas' responsable.id %}">Gestionar tareas</a></li>
+                <li><a href="{% url 'gestion_solicitudes' responsable.id %}">Gestionar solicitudes</a></li>
             </div>
             <div>
                 <li><a href="{% url 'pantalla_inicio' %}">Salir</a></li>
@@ -27,6 +29,7 @@
         <h3>MIS PROYECTOS</h3>
         <p>Aquí podrás observar una tabla con todos tus proyectos. Para ver los detalles de cada uno, pulsa en
             "Ver detalles". En caso de querer dar de baja alguno de los proyectos, pulse en "Dar de baja".</p>
+        <div class="responsable-overflow">
         <div class="contenido_interno">
             <table class="estilos-table">
                 <thead>
@@ -55,7 +58,15 @@
                 </tbody>
             </table>
         </div>
+        <p>En caso de querer crear un nuevo proyecto, pulse en "Crear proyecto a partir de una solicitud".</p>
+        <button class="añadir-button">
+            <a href="{% url 'gestion_solicitudes' responsable.id %}">Crear proyecto a partir de una solicitud"</a>
+        </button>
+        </div>
     </div>
 </div>
+
+
+
 
 {% endblock %}

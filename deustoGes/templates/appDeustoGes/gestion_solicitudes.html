@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" href="/../static/css/normalize.css">
+    <link rel="stylesheet" href="/../static/css/style.css">
+{% endblock %}
+{% block nav_header %}
+    <nav class="barra-lateral">
+        <ul class="listado-barra-lateral">
+            <div>
+                <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Gestionar proyectos</a></li>
+                <li><a href="{% url 'gestion_empleados' responsable.id %}">Gestionar empleados</a></li>
+                <li><a href="{% url 'gestion_clientes' responsable.id %}">Gestionar clientes</a></li>
+                <li><a href="{% url 'gestion_tareas' responsable.id %}">Gestionar tareas</a></li>
+                <li><a href="{% url 'gestion_solicitudes' responsable.id %}">Gestionar solicitudes</a></li>
+            </div>
+            <div>
+                <li><a href="{% url 'pantalla_inicio' %}">Salir</a></li>
+            </div>
+
+        </ul>
+    </nav>
+{% endblock %}
+{% block main_contenido %}
+<h2>Area responsable</h2>
+
+<div class="contenido">
+    <div class="introduccion">
+<h3>SOLICITUDES DE PROYECTOS DE NUESTROS CLIENTES</h3>
+    <p>Aquí podrá observar las solicitudes generadas por sus clientes. En caso que querer crear un proyecto
+        a partir de una solicitud, pulse en "Crear proyecto".</p>
+<div class="responsable-overflow">
+<div class="contenido_interno">
+
+
+        <table class="estilos-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for solicitud in solicitudes %}
+                    <tr>
+                        <td>{{ solicitud.titulo }}</td>
+                        <td>{{ solicitud.descripcion }}</td>
+                        <td>{{ solicitud.cliente }}</td>
+                        <td><a href="{% url 'proyecto_create' responsable.id solicitud.id %}" class="añadir-button">
+                            Crear proyecto</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
