@@ -15,11 +15,11 @@
     <form action="" method="post" class="formulario">
         {% csrf_token %}
         {{ formulario.errors }}
-        <div>
+        <div class="contenido-formulario">
             <label for="id_usuario">Usuario:</label>
             <input type="text" id="id_usuario" name="username">
         </div>
-        <div>
+        <div class="contenido-formulario">
             <label for="id_contraseña">Contraseña:</label>
             <input type="password" id="id_contraseña" name="password">
 
