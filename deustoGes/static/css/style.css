@@ -284,3 +284,55 @@ h2{
     flex-grow: 1;
     width: 20vw;
 }
+
+.flex_responsable{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.contenido_flex_responsable{
+    font-size: 20px;
+    font-family: "Georgia", "serif";
+    letter-spacing: 1px;
+    margin: 3vh 3vw;
+    padding-block: 5vh;
+    padding-inline: 4vw;
+    background-color: rgba(216, 136, 24, 0.27);
+    border-radius: 30px;
+}
+
+.contenido_flex_responsable:hover{
+    background-color: rgb(255, 162, 31);
+    color: white;
+}
+
+.flex-titulo{
+    display: flex;
+    align-items: center;
+}
+
+.logout-button{
+    background-color: rgba(252, 140, 24, 0.91);
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    height: fit-content;
+}
+
+.logout-button:hover{
+    background-color: rgb(255, 166, 0);
+}
+
+.enlace-tarea{
+    padding: 5px 10px;
+    background-color: rgba(252, 140, 24, 0.91);
+    color: white;
+    text-decoration: none;
+}
+
+.enlace-tarea:hover{
+    background-color: rgb(255, 196, 0);
+}

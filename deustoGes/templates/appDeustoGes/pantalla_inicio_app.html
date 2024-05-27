@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block main_contenido %}
+<div class="flex-titulo titulo-login">
+    <h2 class="">¡Bienvenido!</h2> <a class="logout-button" href="{% url 'logout' %}">Logout</a>
+</div>
 
-<h2 class="titulo-login">Bienvenido!</h2> <a class="añadir-button" href="{% url 'logout' %}">Logout</a>
 
 
 <div class="cuadrado-login">

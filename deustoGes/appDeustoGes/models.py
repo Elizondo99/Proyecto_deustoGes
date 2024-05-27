@@ -54,51 +54,6 @@ class Empleado(models.Model):
         verbose_name_plural = "empleados"
 
 
-# Modelo de la entidad Cliente.
-"""class Cliente(models.Model):
-    nombre = models.CharField(max_length=15)
-    telefono = models.IntegerField()
-    email = models.EmailField()
-    direccion = models.CharField(max_length=50)
-    usuario = models.CharField(max_length=50, default="", blank=False)
-    contraseña = models.CharField(max_length=50, default="deustoges", blank=False)
-
-    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
-
-
-    def __str__(self):
-        return str(self.nombre) + " (" + str(self.direccion) + ")"
-
-    class Meta:
-        verbose_name = "cliente"
-        verbose_name_plural = "clientes"
-
-
-# Modelo de la entidad Empleado.
-class Empleado(models.Model):
-    dni = models.CharField(max_length=9)
-    nombre = models.CharField(max_length=15)
-    apellidos = models.CharField(max_length=40, default="")
-    email = models.EmailField()
-    telefono = models.PositiveIntegerField()
-    responsable = models.BooleanField(default=False)
-    usuario = models.CharField(max_length=50, default="", blank=False)
-    contraseña = models.CharField(max_length=50, default="deustoges", blank=False)
-
-    created = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
-
-
-    def __str__(self):
-        return str(self.nombre) + " " + str(self.apellidos)
-
-    class Meta:
-        verbose_name = "empleado"
-        verbose_name_plural = "empleados"
-"""
-
-
 # Modelo de la entidad Proyecto.
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=15)

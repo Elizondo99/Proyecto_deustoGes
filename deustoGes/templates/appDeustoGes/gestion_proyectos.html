@@ -49,7 +49,8 @@
                                 <td>{{ proyecto.fecha_inicio }}</td>
                                 <td>{{ proyecto.fecha_fin }}</td>
                                 <td>{{ proyecto.presupuesto }}</td>
-                                <td><a href="{% url 'proyecto_detail' responsable.id proyecto.id %}">Ver detalles</a></td>
+                                <td><a href="{% url 'proyecto_detail' responsable.id proyecto.id %}"
+                                       class="añadir-button">Ver detalles</a></td>
                                 <td><a href="{% url 'delete_proyecto' responsable.id proyecto.id %}"
                                        class="añadir-button">Dar de baja</a></td>
                             </tr>

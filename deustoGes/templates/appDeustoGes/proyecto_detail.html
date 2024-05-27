@@ -9,13 +9,13 @@
         <ul class="listado-barra-lateral">
             <div>
                 <li><a href="{% url 'pantalla_responsable' responsable.id %}">Pantalla principal</a></li>
-                <li><a href="{% url 'empleado_create' responsable.id %}">Crear nuevo empleado</a></li>
-                <li><a href="{% url 'proyectos_index' responsable.id %}">Ir a mis proyectos</a></li>
-                <li><a href="{% url 'cliente_create' responsable.id %}">Añadir un nuevo cliente</a></li>
+                <li><a href="{% url 'proyectos_index' responsable.id %}">Gestionar proyectos</a></li>
+                <li><a href="{% url 'gestion_empleados' responsable.id %}">Gestionar empleados</a></li>
+                <li><a href="{% url 'gestion_clientes' responsable.id %}">Gestionar clientes</a></li>
+                <li><a href="{% url 'gestion_tareas' responsable.id %}">Gestionar tareas</a></li>
+                <li><a href="{% url 'gestion_solicitudes' responsable.id %}">Gestionar solicitudes</a></li>
             </div>
             <div>
-                <li><a href="">Dudas y preguntas</a></li>
-                <li><a href="">Contacto</a></li>
                 <li><a href="{% url 'pantalla_inicio' %}">Salir</a></li>
             </div>
 
@@ -53,11 +53,13 @@
                 <tr>
                     <td>Tareas:</td>
                     <td>
-                    {% if proyecto.id == tabla_intermedia.proyecto_id %}
-                    <p>hola</p>
-                    {% endif %}
+                    {% for tarea in tareas %}
+                        {% if tarea.proyecto_id == proyecto.id %}
+                        <a href="{% url 'tarea_update_responsable' responsable.id tarea.id %}"
+                            class="enlace-tarea">{{ tarea.nombre }}</a>
+                        {% endif %}
+                    {% endfor %}
                     </td>
-                    <td><a href="{% url 'tarea_create'  responsable.id  %}" class="añadir-button">Nueva Tarea</a></td>
                 </tr>
                 <tr>
                     <td>El responsable del proyecto es:</td>
@@ -69,6 +71,11 @@
                 </tr>
             </table>
         {% endif %}
+        <p>En caso de querer añadir alguna nueva tarea a este proyecto, pulse en el botón "Crear nueva tarea" y
+        asígnela directamente al proyecto.</p>
+        <button class="añadir-button">
+            <a href="{% url 'tarea_create'  responsable.id  %}">Nueva Tarea</a>
+        </button>
     </div>
     
     

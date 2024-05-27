@@ -30,7 +30,7 @@
         <p>En este apartado es posible actualizar vuestros datos. Para ello actualiza el siguiente formulario y pulse
         en "Actualizar"</p>
         <div class="contenido_interno">
-            <form id="formulario" class="formulario" action="{% url 'cliente_update' cliente.id%}" method="post">
+            <form id="formulario" class="formulario" action="{% url 'cliente_update' cliente.id %}" method="post">
                 {% csrf_token %}
                 {{ formulario.errors }}
                 <div class="contenido-formulario">

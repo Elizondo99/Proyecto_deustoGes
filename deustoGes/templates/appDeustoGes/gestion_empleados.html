@@ -63,11 +63,11 @@
                     {% endfor %}
                 </tbody>
             </table>
-
-            <button class="añadir-button">
-                <a href="{% url 'empleado_create' responsable.id %}">Añadir un nuevo empleado</a>
-            </button>
         </div>
+    <p>En caso de querer añadir un empleado nuevo a la plantilla, pulse en "Añadir nuevo empleado".</p>
+    <button class="añadir-button">
+        <a href="{% url 'empleado_create' responsable.id %}">Añadir un nuevo empleado</a>
+    </button>
 </div>
 </div>
     </div>

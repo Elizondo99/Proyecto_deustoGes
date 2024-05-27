@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block css %}
     <link rel="stylesheet" href="/../static/css/normalize.css">
@@ -17,17 +18,21 @@
             <div>
                 <li><a href="{% url 'pantalla_inicio' %}">Salir</a></li>
             </div>
+
         </ul>
     </nav>
 {% endblock %}
+
+
 {% block main_contenido %}
-    <h2>Area responsable</h2>
+<h2>Area responsable</h2>
 <div class="contenido">
-    <h3 class="introduccion">AÑADIR NUEVO CLIENTE</h3>
-    <div class="contenido_interno">
-        <p>Introduzca los datos para añadir un nuevo nuevo cliente:</p>
-        <div class="formulario">
-            <form id="formulario" action="{% url 'cliente_create' responsable.id %}" method="post">
+    <div class="introduccion">
+        <h3>EDITAR TAREA:</h3>
+        <p>En este apartado es posible editar todos los campos de la tarea.
+            Para ello edita el siguiente formulario y pulse en "Editar"</p>
+        <div class="contenido_interno responsable-overflow">
+            <form class="formulario" action="{% url 'tarea_update_responsable'  responsable.id tarea.id %}" method="post">
                 {% csrf_token %}
                 {{ formulario.errors }}
                 <div class="contenido-formulario">
@@ -35,34 +40,42 @@
                     {{ formulario.nombre }}
                 </div>
                 <div class="contenido-formulario">
-                    {{ formulario.telefono.label_tag }}
-                    {{ formulario.telefono }}
-                    <div id="error_telefono"></div>
+                    {{ formulario.fecha_inicio.label_tag }}
+                    {{ formulario.fecha_inicio }}
                 </div>
                 <div class="contenido-formulario">
-                    {{ formulario.email.label_tag }}
-                    {{ formulario.email }}
+                    {{ formulario.fecha_fin.label_tag }}
+                    {{ formulario.fecha_fin }}
                 </div>
                 <div class="contenido-formulario">
-                    {{ formulario.direccion.label_tag }}
-                    {{ formulario.direccion }}
+                    {{ formulario.prioridad.label_tag }}
+                    {{ formulario.prioridad }}
                 </div>
                 <div class="contenido-formulario">
-                    {{ formulario.usuario.label_tag }}
-                    {{ formulario.usuario }}
+                    {{ formulario.estado.label_tag }}
+                    {{ formulario.estado }}
                 </div>
                 <div class="contenido-formulario">
-                    {{ formulario.contraseña.label_tag }}
-                    {{ formulario.contraseña }}
+                    {{ formulario.empleado.label_tag }}
+                    {{ formulario.empleado }}
+                </div>
+                <div class="contenido-formulario">
+                    {{ formulario.proyecto.label_tag }}
+                    {{ formulario.proyecto }}
+                </div>
+                <div>
+                    {{ formulario.descripcion.label_tag }}
+                    {{ formulario.descripcion }}
+                </div>
+                <div class="contenido-formulario">
+                    {{ formulario.notas_adicionales.label_tag }}
+                    {{ formulario.notas_adicionales }}
                 </div>
 
-        <input type="submit" class="añadir-button" value="Nuevo cliente"/>
-    </form>
+                <input type="submit" class="añadir-button" value="Editar"/>
+            </form>
         </div>
 
     </div>
-
 </div>
-
-<script src="/../static/js/validacionTLF.js"></script>
 {% endblock %}

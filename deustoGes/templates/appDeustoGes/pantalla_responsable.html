@@ -33,7 +33,25 @@
     </div>
 
     <div class="responsable-overflow">
+        <div class="flex_responsable">
+                <a href="{% url 'proyectos_index' responsable.id %}"
+                   class="contenido_flex_responsable">GESTIONAR PROYECTOS</a>
+                <a href="{% url 'gestion_empleados' responsable.id %}"
+                   class="contenido_flex_responsable">GESTIONAR EMPLEADOS</a>
+                <a href="{% url 'gestion_clientes' responsable.id %}"
+                   class="contenido_flex_responsable">GESTIONAR CLIENTES</a>
+                <a href="{% url 'gestion_tareas' responsable.id %}"
+                   class="contenido_flex_responsable">GESTIONAR TAREAS</a>
+                <a href="{% url 'gestion_solicitudes' responsable.id %}"
+                   class="contenido_flex_responsable">GESTIONAR SOLICITUDES</a>
+            </div>
         <div class="contenido_interno">
+
+
+
+
+
+
             <h3>EMPLEADOS</h3>
             <p>Aquí puedes ver a todos tus empleados y crear nuevos empleados. Si quiere ver los detalles de dichos
             empleados pulse en "Ver detalles". Si quiere actualizar la información de alguno de los empleados pulse

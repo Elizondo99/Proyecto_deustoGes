@@ -28,10 +28,9 @@
     <div class="introduccion">
 <h3>TAREAS</h3>
     <p>Aquí podrá observar el listado de tareas actuales de la empresa. En caso de querer borrar alguna tarea,
-    pulse el botón "Borrar tarea". En caso de querer añadir alguna nueva tarea, pulse en "Añadir tarea".</p>
+    pulse el botón "Borrar tarea".</p>
 <div class="responsable-overflow">
 <div class="contenido_interno">
-
     <table class="estilos-table">
         <thead>
             <tr>
@@ -42,11 +41,12 @@
                 <th>Estado</th>
                 <th>Empleado</th>
                 <th>Proyecto</th>
+                <th>Descripción</th>
                 <th>Notas adicionales</th>
             </tr>
         </thead>
         <tbody>
-            {% for cliente in clientes %}
+            {% for tarea in tareas %}
                 <tr>
                     <td>{{ tarea.nombre }}</td>
                     <td>{{ tarea.fecha_inicio }}</td>
@@ -55,16 +55,20 @@
                     <td>{{ tarea.estado }}</td>
                     <td>{{ tarea.empleado }}</td>
                     <td>{{ tarea.proyecto }}</td>
+                    <td>{{ tarea.descripcion }}</td>
                     <td>{{tarea.notas_adicionales}}</td>
-                    <td><a href="{% url 'delete_tarea' responsable.id tarea.id %}">Borrar tarea</a></td>
+                    <td><a href="{% url 'tarea_update_responsable' responsable.id tarea.id %}"
+                           class="añadir-button">Editar tarea</a></td>
+                    <td><a href="{% url 'delete_tarea' responsable.id tarea.id %}" class="añadir-button">Borrar tarea</a></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
-
-
 </div>
+    <p>En caso de querer crear una nueva tarea, pulse en "Crear nueva tarea".</p>
+    <button class="añadir-button">
+        <a href="{% url 'tarea_create' responsable.id %}">Crear nueva tarea</a>
+    </button>
 </div>
 </div>
 </div>

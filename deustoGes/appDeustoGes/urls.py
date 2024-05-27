@@ -61,6 +61,8 @@ urlpatterns = [
     path('/responsables/<int:id_responsable>/empleados/<int:id_empleado>/update', EmpleadoUpdateView.as_view(),
          name="empleado_update"),
     path('/empleados/<int:id_empleado>/tareas/<int:id_tarea>/update', TareaUpdateView.as_view(), name="tarea_update"),
+    path('/responsables/<int:id_responsable>/tareas/<int:id_tarea>/update', views.updateTareaResponsable,
+         name="tarea_update_responsable"),
 
     # URL DE DELETE
     path('/responsables/<int:id_responsable>/deleted/empleado/<int:id_empleado>', views.delete_empleado,
@@ -69,6 +71,8 @@ urlpatterns = [
          name="delete_proyecto"),
     path('/responsables/<int:id_responsable>/deleted/cliente/<int:id_cliente>', views.delete_cliente,
          name="delete_cliente"),
+    path('/responsables/<int:id_responsable>/deleted/tarea/<int:id_tarea>', views.delete_tarea,
+         name="delete_tarea"),
 
     path("/clientes/<int:id_cliente>/preguntas_frecuentes", views.preguntas_frecuentes, name='preguntas_frecuentes'),
     path("/clientes/<int:id_cliente>/contacto", views.contact_view, name='contacto')

@@ -9,7 +9,7 @@ from pyexpat.errors import messages
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import ContactForm, RegistroForm
+from .forms import ContactForm, RegistroForm, TareaUpdateClienteForm
 
 from .forms import EmpleadoForm, ProyectoForm, ClienteForm, TareaForm, SolicitudForm, TareaUpdateForm
 from .models import Empleado, Proyecto, Cliente, Tarea, Solicitud
@@ -81,8 +81,8 @@ def registro(request):
 def index_proyectos(request, id_responsable):
     responsable = get_object_or_404(Empleado, id=id_responsable)
     proyectos = Proyecto.objects.all()
-    return render(request, "appDeustoGes/proyectos_index.html", {"proyectos": proyectos,
-                                                                 "responsable": responsable})
+    return render(request, "appDeustoGes/gestion_proyectos.html", {"proyectos": proyectos,
+                                                                   "responsable": responsable})
 
 
 # Función para obtener los proyectos del cliente.
@@ -113,12 +113,11 @@ def show_empleado(request, id_responsable, id_empleado):
 
 # Función para obtener los detalles de un proyecto.
 def show_proyecto(request, id_responsable, id_proyecto):
-    tabla_intermedia = Proyecto.tareas.through.objects.all()
     responsable = get_object_or_404(Empleado, id=id_responsable)
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
+    tareas = Tarea.objects.all()
     return render(request, "appDeustoGes/proyecto_detail.html", {"responsable": responsable,
-                                                                 "proyecto": proyecto,
-                                                                 'tabla_intermedia': tabla_intermedia})
+                                                                 "proyecto": proyecto, "tareas": tareas})
 
 
 # Función para obtener los detalles de un proyecto de un cliente.
@@ -288,7 +287,7 @@ class TareaUpdateView(UpdateView):
     def get(self, request, id_empleado, id_tarea):
         tarea = get_object_or_404(Tarea, id=id_tarea)
         empleado = get_object_or_404(Empleado, id=id_empleado)
-        formulario = TareaUpdateForm(instance=tarea)
+        formulario = TareaUpdateClienteForm(instance=tarea)
         context = {
             'formulario': formulario,
             'empleado': empleado,
@@ -298,15 +297,35 @@ class TareaUpdateView(UpdateView):
 
     def post(self, request, id_empleado, id_tarea):
         tarea = get_object_or_404(Tarea, id=id_tarea)
-        empleado = get_object_or_404(Empleado, id=id_empleado)
-        formulario = TareaUpdateForm(request.POST, instance=tarea)
+        empleado = Empleado.objects.get(id=id_empleado)
+        formulario = TareaUpdateClienteForm(request.POST, instance=tarea)
         if formulario.is_valid():
             formulario.save()
             return HttpResponseRedirect(reverse_lazy('pantalla_empleado', args=[empleado.id]))
         else:
-            formulario = TareaForm(instance=empleado)
+            formulario = TareaUpdateForm(instance=tarea)
         return render(request, 'appDeustoGes/tarea_update.html', {'formulario': formulario,
                                                                   'empleado': empleado})
+
+
+def updateTareaResponsable(request, id_responsable, id_tarea):
+    tarea = get_object_or_404(Tarea, id=id_tarea)
+    tareas = Tarea.objects.all()
+    responsable = get_object_or_404(Empleado, id=id_responsable)
+    if request.method == 'POST':
+        formulario = TareaUpdateForm(request.POST, instance=tarea)
+        if formulario.is_valid():
+            formulario.save()
+            return render(request, 'appDeustoGes/gestion_tareas.html',
+                          {'responsable': responsable, 'tareas': tareas})
+    else:
+        formulario = TareaUpdateForm(instance=tarea)
+    context = {
+        'formulario': formulario,
+        'responsable': responsable,
+        'tarea': tarea
+    }
+    return render(request, 'appDeustoGes/tarea_update_responsable.html', context)
 
 
 # ------------------------------------------------------DELETE---------------------------------------------------
@@ -333,6 +352,15 @@ def delete_cliente(request, id_responsable, id_cliente):
     cliente = get_object_or_404(Cliente, id=id_cliente)
     responsable = get_object_or_404(Empleado, id=id_responsable)
     if cliente.delete():
+        return render(request, 'appDeustoGes/pantalla_borrado_exitoso.html',
+                      {'responsable': responsable})
+
+
+# Función para borrar una tarea.
+def delete_tarea(request, id_responsable, id_tarea):
+    tarea = get_object_or_404(Cliente, id=id_tarea)
+    responsable = get_object_or_404(Empleado, id=id_responsable)
+    if tarea.delete():
         return render(request, 'appDeustoGes/pantalla_borrado_exitoso.html',
                       {'responsable': responsable})
 
