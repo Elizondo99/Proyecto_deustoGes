@@ -349,7 +349,7 @@ def contact_view(request, id_cliente):
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']
-            email = form.cleaned_data['email']
+            email = 'deustoges.contacto@gmail.com'
             message = form.cleaned_data['message']
             send_mail(
                 subject,
