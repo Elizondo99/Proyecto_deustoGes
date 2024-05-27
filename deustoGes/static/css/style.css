@@ -336,3 +336,11 @@ h2{
 .enlace-tarea:hover{
     background-color: rgb(255, 196, 0);
 }
+.tarea-nombre{
+    text-decoration: underline;
+    margin-block: 0;
+}
+
+.listado-tareas{
+    margin-left: 2rem;
+}

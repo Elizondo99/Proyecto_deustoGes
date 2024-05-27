@@ -6,15 +6,15 @@
 
 {% block nav_header %}
     <nav class="barra-lateral">
-        <ul class="listado-barra-lateral">
+        <ul class="listado-barra-lateral listado-barra-lateral-cliente">
             <div>
                 <li><a href="{% url 'pantalla_cliente' cliente.id %}">Pantalla principal</a></li>
                 <li><a href="{% url 'solicitud_create' cliente.id %}">Nueva solicitud de proyecto</a></li>
                 <li><a href="{% url 'cliente_update' cliente.id %}">Actualizar mis datos</a></li>
             </div>
             <div>
-                <li><a href="">Dudas y preguntas</a></li>
-                <li><a href="">Contacto</a></li>
+                <li><a href="{% url 'preguntas_frecuentes' cliente.id %}">Preguntas frecuentes</a></li>
+                <li><a href="{% url 'contacto' cliente.id %}">Contacto</a></li>
                 <li><a href="{% url 'pantalla_inicio' %}">Salir</a></li>
             </div>
 
@@ -51,7 +51,18 @@
     </tr>
     <tr>
         <td><h>Tareas </h></td>
-        <td>{{ proyecto.tareas }}</td>
+        <td>
+            {% for tarea in tareas %}
+                {% if tarea.proyecto_id == proyecto.id %}
+                    <p class="tarea-nombre">{{ tarea.nombre }}:
+                        <ul>
+                            <li class="listado-tareas">Fecha de fin prevista: {{ tarea.fecha_fin }}</li>
+                            <li class="listado-tareas">Estado de la tarea: {{ tarea.estado }}</li>
+                        </ul>
+                    </p>
+                {% endif %}
+            {% endfor %}
+        </td>
     </tr>
     <tr>
         <td><h>El responsable del proyecto es </h></td>

@@ -124,8 +124,9 @@ def show_proyecto(request, id_responsable, id_proyecto):
 def show_proyecto_cliente(request, id_proyecto, id_cliente):
     cliente = get_object_or_404(Cliente, id=id_cliente)
     proyecto = get_object_or_404(Proyecto, id=id_proyecto)
+    tareas = Tarea.objects.all()
     return render(request, "appDeustoGes/proyecto_detail_cliente.html", {"proyecto": proyecto,
-                                                                         'cliente': cliente})
+                                                                         'cliente': cliente, "tareas": tareas})
 
 
 # Función para obtener los detalles de una tarea.
