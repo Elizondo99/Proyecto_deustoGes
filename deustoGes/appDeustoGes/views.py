@@ -191,7 +191,8 @@ class ClienteCreateView(View):
         if formulario.is_valid():
             formulario.save()
             return HttpResponseRedirect(reverse_lazy('pantalla_responsable', args=[responsable.id]))
-        return render(request, 'appDeustoGes/cliente_create.html', {'formulario': formulario})
+        return render(request, 'appDeustoGes/cliente_create.html',
+                      {'formulario': formulario, 'responsable': responsable})
 
 
 # Función para crear una nueva tarea.
